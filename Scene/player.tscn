@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtrcl0qwvsyvg"]
+
+[ext_resource type="Texture2D" uid="uid://cys1v00vp04aa" path="res://Image/Entities/PlayerPlaceholder.png" id="1_8wyxx"]
+[ext_resource type="Script" path="res://Scene/player.gd" id="1_xw4o8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7dm0"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_xw4o8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8wyxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n7dm0")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_postprocessing = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
