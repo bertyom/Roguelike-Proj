@@ -5,9 +5,10 @@ class_name Entity
 @export var Max_HP: int
 @export var DMG: String: set = set_dmg
 @export var armor: int
-@export var health_bar: ProgressBar
+var health_bar: ProgressBar
 
 func _ready() -> void:
+	health_bar = get_node_or_null("HealthBar")
 	if health_bar:
 		health_bar.max_value = Max_HP
 		health_bar.value = HP

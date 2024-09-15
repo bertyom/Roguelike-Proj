@@ -10,14 +10,15 @@ const DIR_VECTORS := {
 	"MOVE_UP+RIGHT": Vector2i(1, -1),
 	"MOVE_DOWN+LEFT": Vector2i(-1, 1),
 	"MOVE_DOWN+RIGHT": Vector2i(1, 1),
-	"MOVE_WAIT": Vector2i(0, 0)
 }
 
-var current_tilemap_node
+@onready var proc_gen: Node = $ProcGen
+
+var current_tilemap_node: Node2D: set = set_tilemap
 var current_player_node
 var current_traverse_node
 var input_move_actions: Array
-var tile_size
+signal tilemap_loaded
 
 func _ready() -> void:
 	filter_move_inputs()
@@ -25,3 +26,7 @@ func _ready() -> void:
 func filter_move_inputs():
 	#Obtain all actions from InputMap, leave only player movement ones
 	input_move_actions = InputMap.get_actions().filter(func(action): return action.begins_with("MOVE_"))
+	
+func set_tilemap(new_node: Node2D):
+	current_tilemap_node = new_node
+	emit_signal("tilemap_loaded")
