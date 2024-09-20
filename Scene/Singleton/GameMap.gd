@@ -12,7 +12,7 @@ const DIR_VECTORS := {
 	"MOVE_DOWN+RIGHT": Vector2i(1, 1),
 }
 
-@onready var proc_gen: Node = $ProcGen
+@onready var proc_gen: Node2D = $ProcGen
 
 var current_tilemap_node: Node2D: set = set_tilemap
 var current_player_node

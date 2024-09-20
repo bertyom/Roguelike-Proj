@@ -4,8 +4,9 @@ extends Node2D
 var tilemap: TileMapLayer
 
 const EMPTY = 0
-const FLOOR = 1
-const WALL = 2
+const FLOOR_ROOM = 1
+const FLOOR_PATH = 2
+const WALL = 3
 
 func _on_game_map_tilemap_loaded() -> void:
 	tilemap = GameMap.current_tilemap_node.get_node("Floor")
@@ -19,7 +20,9 @@ func apply_matrix_to_tilemap(matrix: Array) -> void:
 	for x in range(len(matrix)):
 		for y in range(len(matrix[x])):
 			match matrix[x][y]:
-				FLOOR:
+				FLOOR_ROOM:
 					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
+				FLOOR_PATH:
+					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(1, 1))
 				WALL:
 					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
