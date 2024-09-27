@@ -46,6 +46,7 @@ func add_paths():
 			if matrix[point.x][point.y] != GameMap.proc_gen.FLOOR_ROOM:
 				set_matrix_cell(int(point.x), int(point.y), GameMap.proc_gen.FLOOR_PATH)
 
+#FIXME Keep it simple, stupid. Write your own orthogonal connection algo
 func create_astar_graph():
 	astar = AStar2D.new()
 	for x in range(world_size.x):

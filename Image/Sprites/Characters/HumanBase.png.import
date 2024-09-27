@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cys1v00vp04aa"
-path="res://.godot/imported/PlayerPlaceholder.png-d31acb8ae8c08b4e1a6026aa0a53be61.ctex"
+uid="uid://cfyqe4wd5gubl"
+path="res://.godot/imported/HumanBase.png-b335af83c9aba30fde177d32771a52c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/Entities/PlayerPlaceholder.png"
-dest_files=["res://.godot/imported/PlayerPlaceholder.png-d31acb8ae8c08b4e1a6026aa0a53be61.ctex"]
+source_file="res://Image/Sprites/Characters/HumanBase.png"
+dest_files=["res://.godot/imported/HumanBase.png-b335af83c9aba30fde177d32771a52c9.ctex"]
 
 [params]
 

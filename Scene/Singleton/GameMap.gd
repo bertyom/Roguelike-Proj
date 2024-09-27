@@ -1,32 +1,10 @@
 extends Node
 
-const TILE_SIZE = 32  # Hardcoded tile size
-const DIR_VECTORS := {
-	"MOVE_UP": Vector2i(0, -1),
-	"MOVE_DOWN": Vector2i(0, 1),
-	"MOVE_LEFT": Vector2i(-1, 0),
-	"MOVE_RIGHT": Vector2i(1, 0),
-	"MOVE_UP+LEFT": Vector2i(-1, -1),
-	"MOVE_UP+RIGHT": Vector2i(1, -1),
-	"MOVE_DOWN+LEFT": Vector2i(-1, 1),
-	"MOVE_DOWN+RIGHT": Vector2i(1, 1),
-}
-
 @onready var proc_gen: Node2D = $ProcGen
 
 var current_tilemap_node: Node2D: set = set_tilemap
-var current_player_node
-var current_traverse_node
-var input_move_actions: Array
 signal tilemap_loaded
 
-func _ready() -> void:
-	filter_move_inputs()
-
-func filter_move_inputs():
-	#Obtain all actions from InputMap, leave only player movement ones
-	input_move_actions = InputMap.get_actions().filter(func(action): return action.begins_with("MOVE_"))
-	
 func set_tilemap(new_node: Node2D):
 	current_tilemap_node = new_node
 	emit_signal("tilemap_loaded")

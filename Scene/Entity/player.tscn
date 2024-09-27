@@ -1,21 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtrcl0qwvsyvg"]
+[gd_scene load_steps=4 format=3 uid="uid://dky8mdap1yoc4"]
 
-[ext_resource type="Texture2D" uid="uid://cys1v00vp04aa" path="res://Image/Entities/PlayerPlaceholder.png" id="1_8wyxx"]
+[ext_resource type="Texture2D" uid="uid://cfyqe4wd5gubl" path="res://Image/Sprites/Characters/HumanBase.png" id="1_qso5o"]
 [ext_resource type="Script" path="res://Scene/Entity/player.gd" id="1_xw4o8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7dm0"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_adcac"]
+radius = 7.07107
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_xw4o8")
-HP = 100
-Max_HP = 100
-DMG = "2d5"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8wyxx")
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_adcac")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_n7dm0")
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, -18)
+texture = ExtResource("1_qso5o")
+hframes = 8
+vframes = 3
+
+[node name="Chest" type="Sprite2D" parent="Sprites"]
+
+[node name="Pants" type="Sprite2D" parent="Sprites"]
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprites"]
+root_node = NodePath(".")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/AnimationTree"]
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="Areas"]
+
+[node name="DetectionShape" type="Area2D" parent="Areas"]
+
+[node name="SoftCollision" type="Area2D" parent="Areas"]
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Dash" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Dash Cooldown" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="WeaponManager" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
