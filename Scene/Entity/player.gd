@@ -8,7 +8,7 @@ enum WeaponStates {NONE, FIRST, SECOND}
 #Player stats
 @export var walk_speed := 300.0
 @export var sprint_speed := 600.0
-@export var dash_speed := 1500.0
+@export var dash_speed := 1000.0
 @export var dash_duration := 0.2
 @export var dash_cooldown := 1.0
 
@@ -20,10 +20,11 @@ var current_weapon: int = WeaponStates.NONE
 @export var input_vector := Vector2.ZERO
 @export var mouse_position := Vector2.ZERO
 @export var dash_direction := Vector2.ZERO
+@export var mouse_vector: = Vector2.ZERO
+@export var matching_directions: =  true
 
 # Node references
-@onready var body_animation_tree: AnimationTree = $Sprites/AnimationTree
-@onready var animation_player := body_animation_tree.get_node("AnimationPlayer")
+@onready var body_animation_player := $Sprites/AnimationPlayer
 @onready var body_sprite: Sprite2D = $Sprites/Body
 @onready var weapon_manager: Node2D = $WeaponManager
 @onready var dash_timer: Timer = %Dash
@@ -39,6 +40,7 @@ func _ready():
 func _physics_process(delta):
 	_handle_input()
 	_update_state()
+	_update_sprites_and_animations()
 	_move()
 
 func _update_state():
@@ -59,10 +61,41 @@ func _handle_input():
 	).normalized()
 	
 	mouse_position = get_global_mouse_position()
+	mouse_vector = (mouse_position - global_position).normalized()
 
 	if Input.is_action_just_pressed("MOVE_DASH") and current_state != PlayerStates.DASH and dash_cooldown_timer.is_stopped():
 		_initiate_dash()
 
+func _update_sprites_and_animations():
+	if mouse_vector.x >= 0:
+		body_sprite.flip_h = false
+	else:
+		body_sprite.flip_h = true
+
+	if (input_vector.x > 0 and mouse_vector.x < 0) or (input_vector.x < 0 and mouse_vector.x > 0):
+		matching_directions = false
+	else:
+		matching_directions = true
+	
+	match current_state:
+		PlayerStates.SPRINT:
+			if matching_directions:
+				body_animation_player.play("Walk")
+			else:
+				body_animation_player.play("Walk_Back")
+		PlayerStates.WALK:
+			if matching_directions:
+				body_animation_player.play("Walk")
+			else:
+				body_animation_player.play("Walk_Back")
+		PlayerStates.DASH:
+			if matching_directions:
+				body_animation_player.play("Dash")
+			else:
+				body_animation_player.play("Dash_Back")
+		_:
+			body_animation_player.play("Idle")
+		
 #region Movement
 func _move():
 	var speed = walk_speed
