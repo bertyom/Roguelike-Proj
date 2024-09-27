@@ -3,12 +3,12 @@ extends CharacterBody2D
 #region Variables
 #State machine enums
 enum PlayerStates {IDLE, WALK, SPRINT, DASH, ATTACK}
-enum WeaponStates {NONE, MELEE, RANGED}
+enum WeaponStates {NONE, FIRST, SECOND}
 
 #Player stats
-@export var walk_speed := 100.0
-@export var sprint_speed := 200.0
-@export var dash_speed := 500.0
+@export var walk_speed := 300.0
+@export var sprint_speed := 600.0
+@export var dash_speed := 1500.0
 @export var dash_duration := 0.2
 @export var dash_cooldown := 1.0
 
@@ -17,12 +17,13 @@ var current_state: int = PlayerStates.IDLE
 var current_weapon: int = WeaponStates.NONE
 
 # Input variables
-@export var input_vector: Vector2 = Vector2.ZERO
-@export var mouse_position: Vector2 = Vector2.ZERO
+@export var input_vector := Vector2.ZERO
+@export var mouse_position := Vector2.ZERO
+@export var dash_direction := Vector2.ZERO
 
 # Node references
 @onready var body_animation_tree: AnimationTree = $Sprites/AnimationTree
-@onready var animation_player := $AnimationPlayer
+@onready var animation_player := body_animation_tree.get_node("AnimationPlayer")
 @onready var body_sprite: Sprite2D = $Sprites/Body
 @onready var weapon_manager: Node2D = $WeaponManager
 @onready var dash_timer: Timer = %Dash
@@ -31,30 +32,14 @@ var current_weapon: int = WeaponStates.NONE
 
 func _ready():
 	dash_timer.wait_time = dash_duration
-	dash_cooldown_timer.wait_time = dash_cooldown
+	dash_cooldown_timer.wait_time = dash_duration + dash_cooldown
+	
+	dash_timer.connect("timeout", _on_dash_timer_timeout)
 
 func _physics_process(delta):
 	_handle_input()
 	_update_state()
 	_move()
-
-func _handle_input():
-	input_vector = Vector2(
-	Input.get_action_strength("MOVE_RIGHT") - Input.get_action_strength("MOVE_LEFT"), 
-	Input.get_action_strength("MOVE_DOWN") - Input.get_action_strength("MOVE_UP")
-	).normalized()
-	
-	mouse_position = get_global_mouse_position()
-
-func _move():
-	var speed = walk_speed
-	if current_state == PlayerStates.SPRINT:
-		speed = sprint_speed
-	elif current_state == PlayerStates.DASH:
-		speed = dash_speed
-	
-	velocity = input_vector * speed
-	move_and_slide()
 
 func _update_state():
 	if current_state == PlayerStates.DASH:
@@ -66,3 +51,46 @@ func _update_state():
 		current_state = PlayerStates.SPRINT
 	else:
 		current_state = PlayerStates.WALK
+
+func _handle_input():
+	input_vector = Vector2(
+	Input.get_action_strength("MOVE_RIGHT") - Input.get_action_strength("MOVE_LEFT"), 
+	Input.get_action_strength("MOVE_DOWN") - Input.get_action_strength("MOVE_UP")
+	).normalized()
+	
+	mouse_position = get_global_mouse_position()
+
+	if Input.is_action_just_pressed("MOVE_DASH") and current_state != PlayerStates.DASH and dash_cooldown_timer.is_stopped():
+		_initiate_dash()
+
+#region Movement
+func _move():
+	var speed = walk_speed
+	match current_state:
+		PlayerStates.SPRINT:
+			speed = sprint_speed
+		PlayerStates.DASH:
+			speed = dash_speed
+	
+	if current_state == PlayerStates.DASH:
+		velocity = dash_direction * speed
+	else:
+		velocity = input_vector * speed
+
+	move_and_slide()
+
+func _initiate_dash():
+	current_state = PlayerStates.DASH
+
+	if input_vector != Vector2.ZERO:
+		dash_direction = input_vector
+	else:
+		dash_direction = (mouse_position - global_position).normalized()
+
+	dash_timer.start()
+	dash_cooldown_timer.start()
+
+func _on_dash_timer_timeout():
+	current_state = PlayerStates.IDLE
+	dash_direction = Vector2.ZERO
+#endregion
