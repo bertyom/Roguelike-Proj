@@ -65,6 +65,12 @@ func _handle_input():
 
 	if Input.is_action_just_pressed("MOVE_DASH") and current_state != PlayerStates.DASH and dash_cooldown_timer.is_stopped():
 		_initiate_dash()
+		
+	if Input.is_action_just_pressed("WEAPON_ATTACK"):
+		weapon_manager.start_attack()
+		current_state = PlayerStates.ATTACK
+	elif Input.is_action_just_released("WEAPON_ATTACK"):
+		current_state = PlayerStates.IDLE
 
 func _update_sprites_and_animations():
 	if mouse_vector.x >= 0:
@@ -93,6 +99,14 @@ func _update_sprites_and_animations():
 				body_animation_player.play("Dash")
 			else:
 				body_animation_player.play("Dash_Back")
+		PlayerStates.ATTACK:
+			if input_vector != Vector2.ZERO:
+				if matching_directions:
+					body_animation_player.play("Walk")
+				else:
+					body_animation_player.play("Walk_Back")
+			else:
+				body_animation_player.play("Idle")
 		_:
 			body_animation_player.play("Idle")
 		

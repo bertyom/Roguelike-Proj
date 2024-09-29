@@ -84,10 +84,19 @@ WEAPON_ATTACK={
 
 [layer_names]
 
-2d_physics/layer_1="Entity"
+2d_physics/layer_1="World"
 2d_navigation/layer_1="FloorNav"
-2d_physics/layer_2="World"
-2d_physics/layer_3="EntityVision"
+2d_physics/layer_2="WorldObstacle"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Enemy"
+2d_physics/layer_5="PlayerHurtbox"
+2d_physics/layer_6="PlayerHitbox"
+2d_physics/layer_7="EnemyHurtbox"
+2d_physics/layer_8="EnemyHitbox"
+2d_physics/layer_9="Interactable"
+2d_physics/layer_10="ProjectileCollision"
+2d_physics/layer_11="EnemyVision"
+2d_physics/layer_12="SoftCollisions"
 
 [rendering]
 
