@@ -54,6 +54,8 @@ func _update_state():
 	else:
 		current_state = PlayerStates.WALK
 
+#FIXME Prevent dashing, flipping and whatever else during attack
+
 func _handle_input():
 	input_vector = Vector2(
 	Input.get_action_strength("MOVE_RIGHT") - Input.get_action_strength("MOVE_LEFT"), 
@@ -99,6 +101,7 @@ func _update_sprites_and_animations():
 				body_animation_player.play("Dash")
 			else:
 				body_animation_player.play("Dash_Back")
+		#FIXME Prevent switching left and right when attacking (lock the facing direction when initiated)
 		PlayerStates.ATTACK:
 			if input_vector != Vector2.ZERO:
 				if matching_directions:

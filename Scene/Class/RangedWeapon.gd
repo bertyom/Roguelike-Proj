@@ -8,7 +8,7 @@ func _init():
 	weapon_type = WeaponType.RANGED
 
 func _release_attack(mouse_vector: Vector2):
-	super.release_attack(mouse_vector)
+	super.release_attack()
 	spawn_projectile(mouse_vector)
 
 func spawn_projectile(mouse_vector: Vector2):

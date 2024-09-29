@@ -16,7 +16,8 @@ enum WeaponState {IDLE, WINDUP, ATTACKING, COOLDOWN}
 @onready var animation_state_machine = animation_tree["parameters/playback"]
 
 var last_direction: String
-
+var attack_direction: String
+var attack_vector: Vector2
 
 func _ready():
 	attack_timer.wait_time = attack_cooldown
@@ -26,13 +27,9 @@ func _ready():
 func update_weapon_rotation(mouse_vector: Vector2):
 	var new_direction = "Right" if mouse_vector.x >= 0 else "Left"
 	
-	# Update blend position for all states
+	# Update blend position for idle states only
 	animation_tree.set("parameters/WeaponRight/blend_position", mouse_vector)
 	animation_tree.set("parameters/WeaponLeft/blend_position", mouse_vector)
-	animation_tree.set("parameters/WindupRight/blend_position", mouse_vector)
-	animation_tree.set("parameters/WindupLeft/blend_position", mouse_vector)
-	animation_tree.set("parameters/AttackRight/blend_position", mouse_vector)
-	animation_tree.set("parameters/AttackLeft/blend_position", mouse_vector)
 	
 	# Only switch between left and right if in IDLE state
 	if current_state == WeaponState.IDLE and new_direction != last_direction:
@@ -42,16 +39,22 @@ func update_weapon_rotation(mouse_vector: Vector2):
 func start_windup(mouse_vector: Vector2):
 	if current_state != WeaponState.IDLE:
 		return
-	var direction = "Right" if mouse_vector.x >= 0 else "Left"
-	animation_state_machine.travel("Windup"+direction)
+	
+	current_state = WeaponState.WINDUP
+	attack_direction = "Right" if mouse_vector.x >= 0 else "Left"
+	attack_vector = mouse_vector
+	animation_tree.set("parameters/Windup"+attack_direction+"/blend_position", attack_vector)
+	animation_state_machine.travel("Windup"+attack_direction)
 
-func release_attack(mouse_vector: Vector2):
+func release_attack():
 	if current_state != WeaponState.WINDUP:
 		return
-	var direction = "Right" if mouse_vector.x >= 0 else "Left"
-	animation_state_machine.travel("Attack"+direction)
+	
+	current_state = WeaponState.ATTACKING
+	animation_tree.set("parameters/Attack"+attack_direction+"/blend_position", attack_vector)
+	animation_state_machine.travel("Attack"+attack_direction)
 	attack_timer.start()
+
 
 func on_attack_timer_timeout():
 	current_state = WeaponState.IDLE
-	# Return to the appropriate idle state

@@ -32,4 +32,4 @@ func start_attack():
 
 func end_attack():
 	if current_weapon and current_weapon.current_state == Weapon.WeaponState.WINDUP:
-		current_weapon.release_attack(mouse_vector)
+		current_weapon.release_attack()
