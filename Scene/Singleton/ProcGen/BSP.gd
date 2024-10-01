@@ -6,7 +6,6 @@ var astar: AStar2D
 
 
 func start():
-	var rng = RandomNumberGenerator.new()
 	root_node = Branch.new(Vector2i(0,0), Vector2i(80,80))
 	root_node.split(4, paths)
 	return generate()

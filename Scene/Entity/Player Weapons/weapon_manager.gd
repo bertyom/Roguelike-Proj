@@ -10,7 +10,7 @@ var mouse_vector:= Vector2.ZERO
 var is_attacking: set = set_attacking
 
 
-func _process(delta):
+func _process(_delta):
 	handle_input()
 	update_mouse_vector()
 	update_weapon_rotation()
