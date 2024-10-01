@@ -1,10 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvwfwwc61wbve"]
+[gd_scene load_steps=14 format=3 uid="uid://dvwfwwc61wbve"]
 
 [ext_resource type="Texture2D" uid="uid://er2featxinhy" path="res://Image/UI/Inventory/InventorySheet.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ch4ll306uen27" path="res://Image/UI/Inventory/SliderGrabber.png" id="4_2pfiy"]
 [ext_resource type="Script" path="res://Scene/UI/Inventory/SplitStackPopUp.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://c10j0rx4nnf2w" path="res://Image/UI/Inventory/SliderGrabberDisabled.png" id="5_3ishs"]
+[ext_resource type="Texture2D" uid="uid://20chs7uwj6k2" path="res://Image/UI/Inventory/Slider.png" id="6_bnh5x"]
 [ext_resource type="Texture2D" uid="uid://bhxoivxryay4e" path="res://Image/UI/Inventory/InventoryBG.png" id="12"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twhml"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqihx"]
+
 [sub_resource type="Theme" id="4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62dl1"]
+texture = ExtResource("6_bnh5x")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_26qkq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bdstn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ln6jr"]
 
 [node name="SplitStackPopUp" type="Popup"]
 size = Vector2i(210, 110)
@@ -52,6 +68,8 @@ alignment = 1
 
 [node name="LabelL" type="LineEdit" parent="Frame/Margin/VBox/SliderBox"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_twhml")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_aqihx")
 text = "9"
 max_length = 5
 context_menu_enabled = false
@@ -59,10 +77,17 @@ context_menu_enabled = false
 [node name="HSlider" type="HSlider" parent="Frame/Margin/VBox/SliderBox"]
 layout_mode = 2
 theme = SubResource("4")
+theme_override_icons/grabber = ExtResource("4_2pfiy")
+theme_override_icons/grabber_disabled = ExtResource("5_3ishs")
+theme_override_styles/slider = SubResource("StyleBoxTexture_62dl1")
 
 [node name="LabelR" type="LineEdit" parent="Frame/Margin/VBox/SliderBox"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_26qkq")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_bdstn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ln6jr")
 text = "9"
+alignment = 2
 max_length = 5
 
 [node name="ButtonBox" type="HBoxContainer" parent="Frame/Margin/VBox"]
@@ -77,8 +102,12 @@ text = "OK"
 layout_mode = 2
 text = "CANCEL"
 
-[connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_LabelL_text_changed"]
-[connection signal="value_changed" from="Frame/Margin/VBox/SliderBox/HSlider" to="." method="_on_HSlider_value_changed"]
-[connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_LabelR_text_changed"]
-[connection signal="pressed" from="Frame/Margin/VBox/ButtonBox/Ok" to="." method="_on_Ok_pressed"]
-[connection signal="pressed" from="Frame/Margin/VBox/ButtonBox/Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="focus_exited" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_label_l_focus_exited"]
+[connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_label_l_text_changed"]
+[connection signal="text_submitted" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_label_l_text_submitted"]
+[connection signal="value_changed" from="Frame/Margin/VBox/SliderBox/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="focus_exited" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_r_focus_exited"]
+[connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_r_text_changed"]
+[connection signal="text_submitted" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_r_text_submitted"]
+[connection signal="pressed" from="Frame/Margin/VBox/ButtonBox/Ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="Frame/Margin/VBox/ButtonBox/Cancel" to="." method="_on_cancel_pressed"]
