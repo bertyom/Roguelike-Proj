@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scene/UI/Inventory/ToolTip.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://er2featxinhy" path="res://Image/UI/Inventory/InventorySheet.png" id="5"]
 
-[node name="Tooltip" type="Popup"]
+[node name="Tooltip" type="PopupPanel"]
 visible = true
 script = ExtResource("4")
 
@@ -12,6 +12,10 @@ script = ExtResource("4")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("5")

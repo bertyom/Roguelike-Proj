@@ -215,25 +215,8 @@ func _SplitStack(split_amount, data):
 		else:
 			get_node("../Stack").set_text("")
 
-func _on_Icon_mouse_entered():
-	if container_data[get_parent().get_name()]["Item"] != null:
-		#if SceneHandler.close_tooltip.is_connected(self._on_close_tooltip) == false:
-			#SceneHandler.close_tooltip.connect(self._on_close_tooltip)
-		var tooltip_instance = tooltip.instantiate()
-		tooltip_instance.origin = "Container"
-		tooltip_instance.slot = get_parent().get_name()
-		
-		tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin + Vector2(20,20)
-		add_child(tooltip_instance)
-		await get_tree().create_timer(0.35).timeout
-		if has_node("Tooltip") and get_node("Tooltip").valid == true:
-			get_node("Tooltip").show()
-	
-
-func _on_Icon_mouse_exited():
-	if has_node("Tooltip") == true:
-		get_node("Tooltip").free()
-
-func _on_close_tooltip():
-	if has_node("Tooltip") == true:
-		get_node("Tooltip").free()
+func _make_custom_tooltip(for_text):
+	var tooltip = preload("res://Scene/UI/Inventory/ToolTip.tscn").instantiate()
+	tooltip.origin = "Inventory"
+	tooltip.slot = get_parent().get_name()
+	return tooltip

@@ -14,7 +14,6 @@ anchor_right = 0.199
 anchor_bottom = 0.201
 offset_right = -229.248
 offset_bottom = -130.248
-mouse_filter = 1
 script = ExtResource("17")
 
 [node name="Equipment" type="NinePatchRect" parent="."]

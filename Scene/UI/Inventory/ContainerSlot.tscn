@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://o6rbpitejoxh"]
+[gd_scene load_steps=4 format=3 uid="uid://o6rbpitejoxh"]
 
+[ext_resource type="Texture2D" uid="uid://bk88ffqfw2o2v" path="res://Image/UI/Inventory/Slots/Empty.png" id="1_7j5t4"]
 [ext_resource type="Script" path="res://Scene/UI/Inventory/ContainerSlot.gd" id="2"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h6npl"]
+texture = ExtResource("1_7j5t4")
+
 [node name="CntSlot1" type="Panel"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_h6npl")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 0
