@@ -1,0 +1,30 @@
+{
+  "main_test": {
+    "CntSlot1": {
+      "Item": "ITM_GLD",
+      "StackSize": 55
+    },
+    "CntSlot2": {
+      "Item": "WPN_ST_SWORD",
+      "StackSize": 1
+    },
+    "CntSlot3": {
+      "Item": "WPN_BOAR_SPEAR",
+      "StackSize": 1
+    },
+    "CntSlot4": {
+      "Item": "ARM_MAIL_SHIRT",
+      "StackSize": 1
+    }
+  },
+  "main_test2": {
+    "CntSlot1": {
+      "Item": "ITM_GLD",
+      "StackSize": 3
+    },
+    "CntSlot2": {
+      "Item": "ITEM_HLTH_POT",
+      "StackSize": 2
+    }
+  }
+}

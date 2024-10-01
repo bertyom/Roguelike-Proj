@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameMap="*res://Scene/Singleton/GameMap.tscn"
+CommonFunctions="*res://Scene/Singleton/CommonFunctions.gd"
+ContainerLoot="*res://Scene/Singleton/ContainerLoot.gd"
+GameData="*res://Scene/Singleton/GameData.gd"
+PlayerData="*res://Scene/Singleton/PlayerData.gd"
 
 [global_group]
 

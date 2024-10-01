@@ -1,0 +1,284 @@
+[gd_scene load_steps=8 format=3 uid="uid://dij2pt8gwijuw"]
+
+[ext_resource type="Texture2D" uid="uid://c1jyx2a00uxbk" path="res://Images/UI/InventorySheet.png" id="1"]
+[ext_resource type="Script" path="res://Scenes/GUI/EquipSlot.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://s5ry6xp2mfmh" path="res://Images/UI/InventorySheetDeco.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cr6bm1k407od3" path="res://Images/UI/EquipSheetDeco.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dxoqgf6fpvyhp" path="res://Images/UI/InventoryBG.png" id="5"]
+[ext_resource type="Script" path="res://Scenes/GUI/InventorySystem.gd" id="17"]
+[ext_resource type="Script" path="res://Scenes/GUI/EquipTexture.gd" id="18"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("17")
+
+[node name="Equipment" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 130.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource("1")
+draw_center = false
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Equipment"]
+show_behind_parent = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("5")
+expand_mode = 1
+
+[node name="Decoration" type="TextureRect" parent="Equipment"]
+custom_minimum_size = Vector2(42, 23)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = -19.0
+offset_right = 21.0
+offset_bottom = 4.0
+grow_horizontal = 2
+texture = ExtResource("4")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Equipment"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+
+[node name="ArmorBoxContainer" type="HBoxContainer" parent="Equipment/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="EquipRight" type="VBoxContainer" parent="Equipment/VBoxContainer/ArmorBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="None1" type="Panel" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight"]
+layout_mode = 2
+
+[node name="PauldronRightSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight/PauldronRightSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="HandRightSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight/HandRightSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="RingRightSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight/RingRightSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="BootRightSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipRight/BootRightSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="EquipCenter" type="VBoxContainer" parent="Equipment/VBoxContainer/ArmorBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HelmetSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter/HelmetSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="AmuletSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter/AmuletSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="ArmorSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter/ArmorSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="BeltSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter/BeltSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="PantsSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipCenter/PantsSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="EquipLeft" type="VBoxContainer" parent="Equipment/VBoxContainer/ArmorBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="None2" type="Panel" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft"]
+layout_mode = 2
+
+[node name="PauldronLeftSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft/PauldronLeftSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="HandLeftSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft/HandLeftSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="RingLeftSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft/RingLeftSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="BootLeftSlot" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/ArmorBoxContainer/EquipLeft/BootLeftSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="WeaponBoxContainer" type="HBoxContainer" parent="Equipment/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="WeaponMeleeSlot" type="TextureRect" parent="Equipment/VBoxContainer/WeaponBoxContainer"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/WeaponBoxContainer/WeaponMeleeSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="WeaponRangedSlot" type="TextureRect" parent="Equipment/VBoxContainer/WeaponBoxContainer"]
+layout_mode = 2
+script = ExtResource("18")
+
+[node name="Icon" type="TextureRect" parent="Equipment/VBoxContainer/WeaponBoxContainer/WeaponRangedSlot"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="Inventory" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_right = 229.0
+offset_bottom = 130.0
+texture = ExtResource("1")
+draw_center = false
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Inventory"]
+show_behind_parent = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("5")
+expand_mode = 1
+
+[node name="Decoration" type="TextureRect" parent="Inventory"]
+custom_minimum_size = Vector2(38, 24)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = 5.0
+grow_horizontal = 2
+texture = ExtResource("3")
+stretch_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Inventory"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainInventory" type="GridContainer" parent="Inventory/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 8

@@ -1,0 +1,111 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Images/UI/InventoryBG.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/8PX Regular.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/GUI/ToolTip.gd" type="Script" id=4]
+[ext_resource path="res://Images/UI/InventorySheet.png" type="Texture" id=5]
+
+[node name="Tooltip" type="Popup"]
+visible = true
+margin_right = 142.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 142, 25 )
+script = ExtResource( 4 )
+
+[node name="Texture" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 142, 44 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="BG" type="TextureRect" parent="Texture"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Texture"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 5.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+
+[node name="V1" type="VBoxContainer" parent="Texture/MarginContainer"]
+margin_right = 134.0
+margin_bottom = 44.0
+mouse_filter = 2
+
+[node name="ItemName" type="Label" parent="Texture/MarginContainer/V1"]
+margin_right = 134.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+text = "<ItemName>"
+align = 1
+valign = 1
+
+[node name="V2" type="VBoxContainer" parent="Texture/MarginContainer/V1"]
+margin_top = 12.0
+margin_right = 134.0
+margin_bottom = 44.0
+
+[node name="Stat1" type="HBoxContainer" parent="Texture/MarginContainer/V1/V2"]
+margin_right = 134.0
+margin_bottom = 8.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Texture/MarginContainer/V1/V2/Stat1"]
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Diff" type="Label" parent="Texture/MarginContainer/V1/V2/Stat1"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Stat2" type="HBoxContainer" parent="Texture/MarginContainer/V1/V2"]
+margin_top = 12.0
+margin_right = 134.0
+margin_bottom = 20.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Texture/MarginContainer/V1/V2/Stat2"]
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Diff" type="Label" parent="Texture/MarginContainer/V1/V2/Stat2"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Stat3" type="HBoxContainer" parent="Texture/MarginContainer/V1/V2"]
+margin_top = 24.0
+margin_right = 134.0
+margin_bottom = 32.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Texture/MarginContainer/V1/V2/Stat3"]
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Diff" type="Label" parent="Texture/MarginContainer/V1/V2/Stat3"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
