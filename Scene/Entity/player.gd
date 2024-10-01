@@ -21,7 +21,8 @@ var current_weapon: int = WeaponStates.NONE
 @export var mouse_position := Vector2.ZERO
 @export var dash_direction := Vector2.ZERO
 @export var mouse_vector: = Vector2.ZERO
-@export var matching_directions: =  true
+@export var matching_directions:=  true
+@export var attack_lock_controls:= false
 
 # Node references
 @onready var body_animation_player := $Sprites/AnimationPlayer
@@ -36,6 +37,7 @@ func _ready():
 	dash_cooldown_timer.wait_time = dash_duration + dash_cooldown
 	
 	dash_timer.connect("timeout", _on_dash_timer_timeout)
+	weapon_manager.connect("attack_state_changed", _on_attack_state_changed)
 
 func _physics_process(delta):
 	_handle_input()
@@ -49,12 +51,10 @@ func _update_state():
 
 	if input_vector == Vector2.ZERO:
 		current_state = PlayerStates.IDLE
-	elif Input.is_action_pressed("MOVE_SPRINT"):
+	elif Input.is_action_pressed("MOVE_SPRINT") and !attack_lock_controls:
 		current_state = PlayerStates.SPRINT
 	else:
 		current_state = PlayerStates.WALK
-
-#FIXME Prevent dashing, flipping and whatever else during attack
 
 func _handle_input():
 	input_vector = Vector2(
@@ -75,43 +75,22 @@ func _handle_input():
 		current_state = PlayerStates.IDLE
 
 func _update_sprites_and_animations():
-	if mouse_vector.x >= 0:
-		body_sprite.flip_h = false
-	else:
-		body_sprite.flip_h = true
+	if !attack_lock_controls:
+		body_sprite.flip_h = mouse_vector.x < 0
+	var matching_directions = (input_vector.x >= 0) == (mouse_vector.x >= 0)
+	var matching_direction_animation = "" if matching_directions else "_Back"
 
-	if (input_vector.x > 0 and mouse_vector.x < 0) or (input_vector.x < 0 and mouse_vector.x > 0):
-		matching_directions = false
-	else:
-		matching_directions = true
-	
+	var animation = "Idle"
 	match current_state:
-		PlayerStates.SPRINT:
-			if matching_directions:
-				body_animation_player.play("Walk")
-			else:
-				body_animation_player.play("Walk_Back")
-		PlayerStates.WALK:
-			if matching_directions:
-				body_animation_player.play("Walk")
-			else:
-				body_animation_player.play("Walk_Back")
+		PlayerStates.SPRINT, PlayerStates.WALK:
+			animation = "Walk"+matching_direction_animation
 		PlayerStates.DASH:
-			if matching_directions:
-				body_animation_player.play("Dash")
-			else:
-				body_animation_player.play("Dash_Back")
-		#FIXME Prevent switching left and right when attacking (lock the facing direction when initiated)
+			animation = "Dash"+matching_direction_animation
 		PlayerStates.ATTACK:
 			if input_vector != Vector2.ZERO:
-				if matching_directions:
-					body_animation_player.play("Walk")
-				else:
-					body_animation_player.play("Walk_Back")
-			else:
-				body_animation_player.play("Idle")
-		_:
-			body_animation_player.play("Idle")
+				animation = "Walk"+matching_direction_animation
+	
+	body_animation_player.play(animation)
 		
 #region Movement
 func _move():
@@ -130,17 +109,21 @@ func _move():
 	move_and_slide()
 
 func _initiate_dash():
-	current_state = PlayerStates.DASH
+	if !attack_lock_controls:
+		current_state = PlayerStates.DASH
 
-	if input_vector != Vector2.ZERO:
-		dash_direction = input_vector
-	else:
-		dash_direction = (mouse_position - global_position).normalized()
+		if input_vector != Vector2.ZERO:
+			dash_direction = input_vector
+		else:
+			dash_direction = (mouse_position - global_position).normalized()
 
-	dash_timer.start()
-	dash_cooldown_timer.start()
+		dash_timer.start()
+		dash_cooldown_timer.start()
 
 func _on_dash_timer_timeout():
 	current_state = PlayerStates.IDLE
 	dash_direction = Vector2.ZERO
 #endregion
+
+func _on_attack_state_changed(is_attacking: bool):
+	attack_lock_controls = is_attacking

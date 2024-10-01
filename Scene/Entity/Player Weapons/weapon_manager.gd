@@ -1,11 +1,13 @@
 extends Node2D
 
 #var current_weapon: Weapon = null
+signal attack_state_changed(is_attacking: bool)
 
 @onready var player: CharacterBody2D = get_parent()
 @onready var current_weapon: Weapon = get_child(0) #Debug only
 
-var mouse_vector: Vector2 = Vector2.ZERO
+var mouse_vector:= Vector2.ZERO
+var is_attacking: set = set_attacking
 
 
 func _process(delta):
@@ -33,3 +35,15 @@ func start_attack():
 func end_attack():
 	if current_weapon and current_weapon.current_state == Weapon.WeaponState.WINDUP:
 		current_weapon.release_attack()
+
+func set_attacking(value: bool):
+	if is_attacking != value:
+		is_attacking = value
+		emit_signal("attack_state_changed", is_attacking)
+		print("Attacking = " + str(is_attacking))
+
+func _on_weapon_windup_started():
+	set_attacking(true)
+
+func _on_weapon_attack_ended():
+	set_attacking(false)
