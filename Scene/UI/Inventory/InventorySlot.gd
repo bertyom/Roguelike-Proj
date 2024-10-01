@@ -1,6 +1,5 @@
 extends TextureRect
 
-@onready var tooltip = preload("res://Scene/UI/Inventory/ToolTip.tscn")
 @onready var split_popup = preload("res://Scene/UI/Inventory/SplitStackPopUp.tscn")
 var origin_data_dict
 var target_data_dict
@@ -14,10 +13,8 @@ func _gui_input(event):
 			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Input.is_action_pressed("UI_INV_QSTACK"):
 				var inv_slot = get_parent().get_name() 
 				CommonFunctions._transfer_from_inv(inv_slot)
-				if has_node("Tooltip") == true:
-					get_node("Tooltip").free()
 
-func get_drag_data(_pos):
+func _get_drag_data(_pos):
 # Retrieve information about the slot we are dragging
 	var inv_slot = get_parent().get_name()
 	origin_data_dict = PlayerData.inv_data
@@ -36,16 +33,16 @@ func get_drag_data(_pos):
 		drag_texture = TextureRect.new()
 		drag_texture.expand = true
 		drag_texture.texture = texture
-		drag_texture.rect_size = Vector2(25, 25)
+		drag_texture.size = Vector2(25, 25)
 		
 		var control = Control.new()
 		control.add_child(drag_texture)
-		drag_texture.rect_position = -0.5 * drag_texture.rect_size 
+		drag_texture.position = -0.5 * drag_texture.size 
 		set_drag_preview(control)
 	
 		return data
 
-func can_drop_data(_pos, data):
+func _can_drop_data(_pos, data):
 	if ContainerLoot.current_container_ID != null:
 		container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 	# Check if we can drop an item in this slot
@@ -78,7 +75,7 @@ func can_drop_data(_pos, data):
 				return true
 
 
-func drop_data(_pos, data):
+func _drop_data(_pos, data):
 	if is_instance_valid(data["origin_node"]):
 		if ContainerLoot.current_container_ID != null:
 			container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
@@ -108,7 +105,7 @@ func drop_data(_pos, data):
 			if data["origin_stack"] > 2:
 		#show split popup
 				var split_popup_instance = split_popup.instantiate()
-				split_popup_instance.rect_position = get_parent().get_global_transform_with_canvas().origin + Vector2(0,20)
+				split_popup_instance.position = get_parent().get_global_transform().origin + Vector2(0,20)
 				split_popup_instance.data = data
 				add_child(split_popup_instance)
 			if data["origin_stack"] == 2:

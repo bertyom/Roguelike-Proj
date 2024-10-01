@@ -9,7 +9,7 @@ var container_data
 func _ready():
 	draw.connect(parent._on_Icon_draw)
 
-func get_drag_data(_pos):
+func _get_drag_data(_pos):
 	# Retrieve information about the slot we are dragging
 	var equipslot = get_parent().get_name()
 	origin_data_dict = PlayerData.equipment_data
@@ -24,16 +24,16 @@ func get_drag_data(_pos):
 	var drag_texture = TextureRect.new()
 	drag_texture.expand = true
 	drag_texture.texture = texture
-	drag_texture.rect_size = Vector2(25, 25)
+	drag_texture.size = Vector2(25, 25)
 	
 	var control = Control.new()
 	control.add_child(drag_texture)
-	drag_texture.rect_position = -0.5 * drag_texture.rect_size 
+	drag_texture.position = -0.5 * drag_texture.size 
 	set_drag_preview(control)
 	
 	return data
 
-func can_drop_data(_pos, data):
+func _can_drop_data(_pos, data):
 	if ContainerLoot.current_container_ID != null:
 		container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 	# Check if we can drop an item in this slot
@@ -49,7 +49,7 @@ func can_drop_data(_pos, data):
 	else:
 		return false
 
-func drop_data(_pos, data):
+func _drop_data(_pos, data):
 	if ContainerLoot.current_container_ID != null:
 		container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 	# What happens when we drop an item in this slot
