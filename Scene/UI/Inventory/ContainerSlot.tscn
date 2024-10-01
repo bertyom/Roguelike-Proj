@@ -1,36 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://o6rbpitejoxh"]
 
-[ext_resource path="res://Fonts/6px Numbers.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Scenes/GUI/ContainerSlot.gd" type="Script" id=2]
-[ext_resource path="res://Images/Inventory/Slots/Empty.png" type="Texture" id=3]
-
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 16, 16 )
+[ext_resource type="Script" path="res://Scene/UI/Inventory/ContainerSlot.gd" id="2"]
 
 [node name="CntSlot1" type="Panel"]
-margin_right = 16.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
 
 [node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Stack" type="Label" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -7.0
-margin_top = -9.0
-margin_right = 7.0
-margin_bottom = 3.0
-custom_fonts/font = ExtResource( 1 )
-align = 2
-valign = 2
+horizontal_alignment = 2
+vertical_alignment = 2
 uppercase = true
 
 [connection signal="mouse_entered" from="Icon" to="Icon" method="_on_Icon_mouse_entered"]

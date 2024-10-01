@@ -1,219 +1,80 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dvwfwwc61wbve"]
 
-[ext_resource path="res://Images/UI/InventorySheet.png" type="Texture" id=1]
-[ext_resource path="res://Fonts/8PX Regular.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Fonts/Triple 6X.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Fonts/Triple 6px Numbers.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Scenes/GUI/SplitStackPopUp.gd" type="Script" id=5]
-[ext_resource path="res://Images/UI/Slider.png" type="Texture" id=6]
-[ext_resource path="res://Images/UI/SliderGrabberDisabled.png" type="Texture" id=7]
-[ext_resource path="res://Images/UI/ButtonPress.png" type="Texture" id=8]
-[ext_resource path="res://Images/UI/SliderGrabber.png" type="Texture" id=9]
-[ext_resource path="res://Images/UI/Button.png" type="Texture" id=10]
-[ext_resource path="res://Images/UI/ButtonHover.png" type="Texture" id=11]
-[ext_resource path="res://Images/UI/InventoryBG.png" type="Texture" id=12]
+[ext_resource type="Texture2D" uid="uid://er2featxinhy" path="res://Image/UI/Inventory/InventorySheet.png" id="1"]
+[ext_resource type="Script" path="res://Scene/UI/Inventory/SplitStackPopUp.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://bhxoivxryay4e" path="res://Image/UI/Inventory/InventoryBG.png" id="12"]
 
-[sub_resource type="StyleBoxEmpty" id=14]
+[sub_resource type="Theme" id="4"]
 
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="StyleBoxEmpty" id=9]
-
-[sub_resource type="StyleBoxEmpty" id=10]
-
-[sub_resource type="Theme" id=4]
-
-[sub_resource type="StyleBoxTexture" id=15]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 3.0
-margin_right = 3.0
-margin_top = 1.0
-margin_bottom = 1.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxEmpty" id=7]
-
-[sub_resource type="StyleBoxEmpty" id=11]
-
-[sub_resource type="StyleBoxEmpty" id=12]
-
-[sub_resource type="StyleBoxEmpty" id=13]
-
-[sub_resource type="StyleBoxTexture" id=20]
-texture = ExtResource( 11 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=16]
-texture = ExtResource( 8 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=17]
-texture = ExtResource( 10 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=21]
-texture = ExtResource( 11 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=18]
-texture = ExtResource( 8 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=19]
-texture = ExtResource( 10 )
-region_rect = Rect2( 0, 0, 50, 12 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[node name="SplitStackPopUp" type="PopupDialog"]
+[node name="SplitStackPopUp" type="Popup"]
+size = Vector2i(210, 110)
 visible = true
-margin_right = 210.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 210, 55 )
-custom_styles/panel = SubResource( 14 )
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="BG" type="TextureRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = 3.0
-margin_right = -3.0
-margin_bottom = -2.0
-texture = ExtResource( 12 )
-expand = true
+texture = ExtResource("12")
+expand_mode = 1
 
 [node name="Frame" type="NinePatchRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -10.0
-rect_min_size = Vector2( 210, 55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
 [node name="Margin" type="MarginContainer" parent="Frame"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = 4.0
-margin_right = -3.0
-margin_bottom = -3.0
 mouse_filter = 2
 
 [node name="VBox" type="VBoxContainer" parent="Frame/Margin"]
-margin_right = 204.0
-margin_bottom = 48.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="Name" type="Label" parent="Frame/Margin/VBox"]
-margin_right = 204.0
-margin_bottom = 8.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
 text = "<ItemName>"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SliderBox" type="HBoxContainer" parent="Frame/Margin/VBox"]
-margin_top = 12.0
-margin_right = 204.0
-margin_bottom = 28.0
-grow_horizontal = 0
+layout_mode = 2
 alignment = 1
 
 [node name="LabelL" type="LineEdit" parent="Frame/Margin/VBox/SliderBox"]
-margin_right = 48.0
-margin_bottom = 16.0
-grow_horizontal = 0
-custom_fonts/font = ExtResource( 3 )
-custom_styles/read_only = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+layout_mode = 2
 text = "9"
-align = 2
 max_length = 5
 context_menu_enabled = false
 
 [node name="HSlider" type="HSlider" parent="Frame/Margin/VBox/SliderBox"]
-margin_left = 52.0
-margin_right = 152.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 100, 2.935 )
-theme = SubResource( 4 )
-custom_icons/grabber_highlight = ExtResource( 9 )
-custom_icons/grabber = ExtResource( 7 )
-custom_styles/slider = SubResource( 15 )
-custom_styles/grabber_area_highlight = SubResource( 6 )
-custom_styles/grabber_area = SubResource( 7 )
+layout_mode = 2
+theme = SubResource("4")
 
 [node name="LabelR" type="LineEdit" parent="Frame/Margin/VBox/SliderBox"]
-margin_left = 156.0
-margin_right = 204.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 25, 15 )
-custom_fonts/font = ExtResource( 4 )
-custom_styles/read_only = SubResource( 11 )
-custom_styles/focus = SubResource( 12 )
-custom_styles/normal = SubResource( 13 )
+layout_mode = 2
 text = "9"
 max_length = 5
 
 [node name="ButtonBox" type="HBoxContainer" parent="Frame/Margin/VBox"]
-margin_top = 32.0
-margin_right = 204.0
-margin_bottom = 47.0
+layout_mode = 2
 alignment = 1
 
 [node name="Ok" type="Button" parent="Frame/Margin/VBox/ButtonBox"]
-margin_left = 50.0
-margin_right = 100.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 50, 15 )
-custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = SubResource( 20 )
-custom_styles/pressed = SubResource( 16 )
-custom_styles/normal = SubResource( 17 )
+layout_mode = 2
 text = "OK"
 
 [node name="Cancel" type="Button" parent="Frame/Margin/VBox/ButtonBox"]
-margin_left = 104.0
-margin_right = 154.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 50, 15 )
-custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 18 )
-custom_styles/normal = SubResource( 19 )
+layout_mode = 2
 text = "CANCEL"
 
 [connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_LabelL_text_changed"]

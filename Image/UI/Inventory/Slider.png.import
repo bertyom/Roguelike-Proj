@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wrnm2nileexy"
-path="res://.godot/imported/Gambeson.png-66471e9253095327a0fe2c94ec5da0ec.ctex"
+uid="uid://20chs7uwj6k2"
+path="res://.godot/imported/Slider.png-5170be8e16ab41ebd12989635cce0f57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Gambeson.png"
-dest_files=["res://.godot/imported/Gambeson.png-66471e9253095327a0fe2c94ec5da0ec.ctex"]
+source_file="res://Image/UI/Inventory/Slider.png"
+dest_files=["res://.godot/imported/Slider.png-5170be8e16ab41ebd12989635cce0f57.ctex"]
 
 [params]
 

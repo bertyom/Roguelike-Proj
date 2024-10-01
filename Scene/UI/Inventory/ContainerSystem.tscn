@@ -1,27 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cl7koloffieb0"]
 
-[ext_resource path="res://Images/UI/InventoryBG.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/GUI/ContainerSystem.gd" type="Script" id=2]
-[ext_resource path="res://Images/UI/ContainerSheet.png" type="Texture" id=3]
-[ext_resource path="res://Images/UI/ContainerSheetDeco.png" type="Texture" id=4]
+[ext_resource type="Texture2D" uid="uid://bhxoivxryay4e" path="res://Image/UI/Inventory/InventoryBG.png" id="1"]
+[ext_resource type="Script" path="res://Scene/UI/Inventory/ContainerSystem.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dg8iea8o70xcq" path="res://Image/UI/Inventory/ContainerSheet.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b60j7lkeqvok7" path="res://Image/UI/Inventory/ContainerSheetDeco.png" id="4"]
 
 [node name="Container" type="Control"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 76.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 66, 22 )
+layout_mode = 3
+anchors_preset = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 66, 22 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource( 3 )
+texture = ExtResource("3")
 draw_center = false
 patch_margin_left = 2
 patch_margin_top = 2
@@ -29,37 +26,28 @@ patch_margin_right = 2
 patch_margin_bottom = 2
 
 [node name="Background" type="TextureRect" parent="BG"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = -1.0
-margin_right = -2.0
-margin_bottom = -2.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 stretch_mode = 1
 
 [node name="Decoration" type="TextureRect" parent="BG"]
-margin_top = -23.0
-margin_right = 56.0
-margin_bottom = 17.0
+layout_mode = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 4 )
+texture = ExtResource("4")
 stretch_mode = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BG"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = -2.0
-margin_bottom = -2.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="BG/ScrollContainer"]
-custom_constants/vseparation = 1
-custom_constants/hseparation = 1
+layout_mode = 2
 columns = 3

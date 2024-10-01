@@ -11,7 +11,7 @@ func _ready():
 		var inv_slot_new = template_inv_slot.instantiate()
 		if PlayerData.inv_data[i]["Item"] != null:
 			var item_name = GameData.item_data[str(PlayerData.inv_data[i]["Item"])]["Name"]
-			var icon_texture = load("res://Images/Inventory/"+item_name+".png")
+			var icon_texture = load("res://Image/UI/Inventory/Icons/"+item_name+".png")
 			inv_slot_new.get_node("Icon").set_texture(icon_texture)
 			var item_stack = PlayerData.inv_data[i]["StackSize"]
 			if item_stack != null and item_stack > 1:

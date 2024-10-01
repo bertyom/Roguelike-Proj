@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cog0el1km26jl"
-path="res://.godot/imported/Money.png-fa82fae5aeb61c610680ed5e627415cc.ctex"
+uid="uid://bjwt70js0mfgu"
+path="res://.godot/imported/Billhook.png-16d68d1ad8f3ee9ce2a8c3dedbfa8415.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Money.png"
-dest_files=["res://.godot/imported/Money.png-fa82fae5aeb61c610680ed5e627415cc.ctex"]
+source_file="res://Image/UI/Inventory/Icons/Billhook.png"
+dest_files=["res://.godot/imported/Billhook.png-16d68d1ad8f3ee9ce2a8c3dedbfa8415.ctex"]
 
 [params]
 

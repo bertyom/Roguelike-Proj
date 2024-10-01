@@ -11,4 +11,6 @@
 
 [node name="Player" parent="." instance=ExtResource("2_h3b3y")]
 
+[node name="UI" type="CanvasLayer" parent="."]
+
 [editable path="Tilemap"]

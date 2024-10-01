@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi2ckfggf8m70"
-path="res://.godot/imported/Health Potion.png-82b874f19fd6d5e0d405c48ead5dcc7b.ctex"
+uid="uid://4srgdkjkv45u"
+path="res://.godot/imported/Recurve Bow.png-ad166ebc9e1dc48cd1e7e021183b5819.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Health Potion.png"
-dest_files=["res://.godot/imported/Health Potion.png-82b874f19fd6d5e0d405c48ead5dcc7b.ctex"]
+source_file="res://Image/UI/Inventory/Icons/Recurve Bow.png"
+dest_files=["res://.godot/imported/Recurve Bow.png-ad166ebc9e1dc48cd1e7e021183b5819.ctex"]
 
 [params]
 

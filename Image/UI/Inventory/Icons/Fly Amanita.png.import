@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4srgdkjkv45u"
-path="res://.godot/imported/Recurve Bow.png-16c55c9c97408175490891a608f27026.ctex"
+uid="uid://8cb0ohje5qu1"
+path="res://.godot/imported/Fly Amanita.png-599e565b42ec10ccc23497f7d8d3253a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Recurve Bow.png"
-dest_files=["res://.godot/imported/Recurve Bow.png-16c55c9c97408175490891a608f27026.ctex"]
+source_file="res://Image/UI/Inventory/Icons/Fly Amanita.png"
+dest_files=["res://.godot/imported/Fly Amanita.png-599e565b42ec10ccc23497f7d8d3253a.ctex"]
 
 [params]
 

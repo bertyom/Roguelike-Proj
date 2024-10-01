@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0j0qinj2n0qr"
-path="res://.godot/imported/Steel Sword.png-137177adb6b60d79fbf99ef3f486c87e.ctex"
+uid="uid://cxyop0m57gsmv"
+path="res://.godot/imported/InventorySheetDeco.png-9d31cd91f8cfde246ae55170809656ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Steel Sword.png"
-dest_files=["res://.godot/imported/Steel Sword.png-137177adb6b60d79fbf99ef3f486c87e.ctex"]
+source_file="res://Image/UI/Inventory/InventorySheetDeco.png"
+dest_files=["res://.godot/imported/InventorySheetDeco.png-9d31cd91f8cfde246ae55170809656ee.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1yyt02a4c6w6"
-path="res://.godot/imported/Glint Scepter.png-4bdf904ef86c25e1e5bbd0d3ef357b30.ctex"
+uid="uid://er2featxinhy"
+path="res://.godot/imported/InventorySheet.png-348282d1e1c21bb2bfd1f447d4421ffa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Glint Scepter.png"
-dest_files=["res://.godot/imported/Glint Scepter.png-4bdf904ef86c25e1e5bbd0d3ef357b30.ctex"]
+source_file="res://Image/UI/Inventory/InventorySheet.png"
+dest_files=["res://.godot/imported/InventorySheet.png-348282d1e1c21bb2bfd1f447d4421ffa.ctex"]
 
 [params]
 

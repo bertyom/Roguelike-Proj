@@ -43,5 +43,3 @@ func _ready():
 				var stat_value = GameData.item_data[item_id][stat_name]
 				get_node("Texture/MarginContainer/V1/V2/Stat" + str(item_stat) + "/Label").set_text(stat_label + ": " +str(stat_value))
 				item_stat += 1
-		#if $TextureRect/MarginContainer/VBoxContainer/Stat1/Label.text == "":
-			#$TextureRect.texture = load("res://Images/Inventory/ToolTipSmall.png")

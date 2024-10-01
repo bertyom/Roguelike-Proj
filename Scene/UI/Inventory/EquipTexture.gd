@@ -5,12 +5,12 @@ extends TextureRect
 
 func _ready():
 	if icon.texture == null:
-		texture = load("res://Images/Inventory/Slots/"+slot_name+".png")
+		texture = load("res://Image/UI/Inventory/Slots/"+slot_name+".png")
 	else:
-		texture = load("res://Images/Inventory/Slots/Empty.png")
+		texture = load("res://Image/UI/Inventory/Slots/Empty.png")
 
 func _on_Icon_draw():
 	if icon.texture == null:
-		texture = load("res://Images/Inventory/Slots/"+slot_name+".png")
+		texture = load("res://Image/UI/Inventory/Slots/"+slot_name+".png")
 	else:
-		texture = load("res://Images/Inventory/Slots/Empty.png")
+		texture = load("res://Image/UI/Inventory/Slots/Empty.png")

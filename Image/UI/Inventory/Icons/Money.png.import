@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b45b62uougxtk"
-path="res://.godot/imported/Boar Spear.png-9864d61580b5e9648177c096b2b5d28e.ctex"
+uid="uid://cog0el1km26jl"
+path="res://.godot/imported/Money.png-5514f7ceb5561d687ee1258a1ef5cc9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Boar Spear.png"
-dest_files=["res://.godot/imported/Boar Spear.png-9864d61580b5e9648177c096b2b5d28e.ctex"]
+source_file="res://Image/UI/Inventory/Icons/Money.png"
+dest_files=["res://.godot/imported/Money.png-5514f7ceb5561d687ee1258a1ef5cc9c.ctex"]
 
 [params]
 

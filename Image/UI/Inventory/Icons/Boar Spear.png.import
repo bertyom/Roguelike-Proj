@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8cb0ohje5qu1"
-path="res://.godot/imported/Fly Amanita.png-0a1a3455a1f5ea3279d68e3a59489241.ctex"
+uid="uid://b45b62uougxtk"
+path="res://.godot/imported/Boar Spear.png-fe130cfb7043eb44701fcff204f33a96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Fly Amanita.png"
-dest_files=["res://.godot/imported/Fly Amanita.png-0a1a3455a1f5ea3279d68e3a59489241.ctex"]
+source_file="res://Image/UI/Inventory/Icons/Boar Spear.png"
+dest_files=["res://.godot/imported/Boar Spear.png-fe130cfb7043eb44701fcff204f33a96.ctex"]
 
 [params]
 

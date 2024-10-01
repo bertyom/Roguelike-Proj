@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjwt70js0mfgu"
-path="res://.godot/imported/Billhook.png-852f90e9904364d9788bea733bf97add.ctex"
+uid="uid://cg5kaj8u7g33m"
+path="res://.godot/imported/Padded Pants.png-d32d844a34f6cea55c6ce13eba813ac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/UI/Inventory/Billhook.png"
-dest_files=["res://.godot/imported/Billhook.png-852f90e9904364d9788bea733bf97add.ctex"]
+source_file="res://Image/UI/Inventory/Icons/Padded Pants.png"
+dest_files=["res://.godot/imported/Padded Pants.png-d32d844a34f6cea55c6ce13eba813ac3.ctex"]
 
 [params]
 
