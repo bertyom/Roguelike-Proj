@@ -40,7 +40,7 @@ func set_attacking(value: bool):
 	if is_attacking != value:
 		is_attacking = value
 		emit_signal("attack_state_changed", is_attacking)
-		print("Attacking = " + str(is_attacking))
+		#print("Attacking = " + str(is_attacking))
 
 func _on_weapon_windup_started():
 	set_attacking(true)

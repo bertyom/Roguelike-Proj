@@ -428,6 +428,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [1, 1]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerWeaponHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="40"]
 resource_name = "Left_Windup_Bottom"
@@ -494,6 +506,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [1, 1]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerWeaponHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="41"]
 resource_name = "Left_Windup_Top"
@@ -559,6 +583,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerWeaponHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="29"]
@@ -980,6 +1016,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [1, 1]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerWeaponHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="44"]
 resource_name = "Right_Windup_Bottom"
@@ -1046,6 +1094,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [1, 1]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerWeaponHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="43"]
 resource_name = "Right_Windup_Top"
@@ -1111,6 +1171,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerWeaponHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dv4oy"]
@@ -1276,7 +1348,7 @@ states/WindupLeft/position = Vector2(248, 196)
 states/WindupRight/node = SubResource("AnimationNodeBlendSpace2D_wa8dc")
 states/WindupRight/position = Vector2(880, 196)
 transitions = ["Start", "WeaponLeft", SubResource("AnimationNodeStateMachineTransition_sxnb2"), "WeaponLeft", "WindupLeft", SubResource("AnimationNodeStateMachineTransition_5bab6"), "WindupLeft", "AttackLeft", SubResource("AnimationNodeStateMachineTransition_5o2h2"), "WeaponRight", "WindupRight", SubResource("AnimationNodeStateMachineTransition_11ocs"), "WindupRight", "AttackRight", SubResource("AnimationNodeStateMachineTransition_38v8i"), "WeaponRight", "WeaponLeft", SubResource("AnimationNodeStateMachineTransition_wvde8"), "WeaponLeft", "WeaponRight", SubResource("AnimationNodeStateMachineTransition_sh2s5"), "AttackLeft", "WeaponLeft", SubResource("AnimationNodeStateMachineTransition_yyojx"), "AttackRight", "WeaponRight", SubResource("AnimationNodeStateMachineTransition_3s36s")]
-graph_offset = Vector2(-32, -51)
+graph_offset = Vector2(-30, 74)
 
 [node name="Steel Sword" type="Marker2D"]
 rotation = 1.98867

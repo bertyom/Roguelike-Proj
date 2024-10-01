@@ -1,18 +1,19 @@
 extends CharacterBody2D
 
+#region Variables
 enum MovementState {IDLE, WALK, SPRINT, DASH}
-enum AttackState {NONE, ATTACKING}
+enum AttackState {IDLE, ATTACKING}
 
 @export var walk_speed := 300.0
 @export var sprint_speed := 450.0
 @export var dash_speed := 2000.0
 @export var attack_speed_multiplier := 0.5
-@export var matching_direction_speed_multiplier: = 0.7
+@export var unmatching_direction_speed_multiplier: = 0.7
 @export var dash_duration := 0.1
 @export var dash_cooldown := 1.0
 
 var movement_state: MovementState = MovementState.IDLE
-var attack_state: AttackState = AttackState.NONE
+var attack_state: AttackState = AttackState.IDLE
 var input_vector := Vector2.ZERO
 var mouse_position := Vector2.ZERO
 var dash_direction := Vector2.ZERO
@@ -24,6 +25,7 @@ var mouse_vector := Vector2.ZERO
 @onready var dash_timer: Timer = %Dash
 @onready var dash_cooldown_timer: Timer = %"Dash Cooldown"
 @onready var matching_directions: bool
+#endregion
 
 func _ready():
 	dash_timer.wait_time = dash_duration
@@ -44,7 +46,7 @@ func _update_movement_state():
 
 	if input_vector == Vector2.ZERO:
 		movement_state = MovementState.IDLE
-	elif Input.is_action_pressed("MOVE_SPRINT") and attack_state == AttackState.NONE:
+	elif Input.is_action_pressed("MOVE_SPRINT") and attack_state == AttackState.IDLE:
 		movement_state = MovementState.SPRINT
 	else:
 		movement_state = MovementState.WALK
@@ -53,20 +55,19 @@ func _handle_input():
 	input_vector = Input.get_vector("MOVE_LEFT", "MOVE_RIGHT", "MOVE_UP", "MOVE_DOWN")
 	mouse_position = get_global_mouse_position()
 	mouse_vector = (mouse_position - global_position).normalized()
+	matching_directions = (input_vector.x >= 0) == (mouse_vector.x >= 0)
 
-	if Input.is_action_just_pressed("MOVE_DASH") and movement_state != MovementState.DASH and dash_cooldown_timer.is_stopped() and attack_state == AttackState.NONE:
+	if Input.is_action_just_pressed("MOVE_DASH") and movement_state != MovementState.DASH and dash_cooldown_timer.is_stopped() and attack_state == AttackState.IDLE:
 		_initiate_dash()
 		
-	if Input.is_action_just_pressed("WEAPON_ATTACK") and attack_state == AttackState.NONE:
+	if Input.is_action_just_pressed("WEAPON_ATTACK") and attack_state == AttackState.IDLE:
 		weapon_manager.start_attack()
-	elif Input.is_action_just_released("WEAPON_ATTACK") and attack_state != AttackState.NONE:
+	elif Input.is_action_just_released("WEAPON_ATTACK") and attack_state != AttackState.IDLE:
 		weapon_manager.end_attack()
 
 func _update_sprites_and_animations():
-	if attack_state == AttackState.NONE:
+	if attack_state == AttackState.IDLE:
 		body_sprite.flip_h = mouse_vector.x < 0
-	
-	matching_directions = (input_vector.x >= 0) == (mouse_vector.x >= 0)
 	
 	var animation = "Idle"
 	if movement_state in [MovementState.WALK, MovementState.SPRINT]:
@@ -79,6 +80,20 @@ func _update_sprites_and_animations():
 
 	body_animation_player.play(animation)
 
+	var speed_scale = 1.0
+	if movement_state == MovementState.SPRINT:
+		speed_scale = sprint_speed / walk_speed
+	else:
+		speed_scale = 1.0
+	
+	if !matching_directions and movement_state != MovementState.DASH:
+		speed_scale *= unmatching_direction_speed_multiplier
+	
+	if attack_state != AttackState.IDLE:
+		speed_scale *= attack_speed_multiplier
+	
+	body_animation_player.speed_scale = speed_scale
+
 func _move():
 	var speed = walk_speed
 	match movement_state:
@@ -86,11 +101,11 @@ func _move():
 			speed = sprint_speed
 		MovementState.DASH:
 			speed = dash_speed
-	
+
 	if !matching_directions and movement_state != MovementState.DASH:
-		speed *= matching_direction_speed_multiplier
+		speed *= unmatching_direction_speed_multiplier
 	
-	if attack_state != AttackState.NONE:
+	if attack_state != AttackState.IDLE:
 		speed *= attack_speed_multiplier
 	
 	if movement_state == MovementState.DASH:
@@ -117,4 +132,4 @@ func _on_attack_state_changed(is_attacking: bool):
 	if is_attacking:
 		attack_state = AttackState.ATTACKING
 	else:
-		attack_state = AttackState.NONE
+		attack_state = AttackState.IDLE
