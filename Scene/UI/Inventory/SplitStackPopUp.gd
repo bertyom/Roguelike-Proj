@@ -50,10 +50,6 @@ func _on_ok_pressed():
 	get_parent()._SplitStack(split_amount, data)
 	queue_free()
 
-func _input(event):
-	if event.is_action_pressed("CHR_INTERACT"):
-		_on_ok_pressed()
-
 func _on_cancel_pressed():
 	queue_free()
 

@@ -8,7 +8,6 @@ var weapon_lookup_data = {}
 var enemy_weapon_stats = {}
 
 func _ready():
-	enemy_weapon_stats = CommonFunctions.parse_json("res://Data/Enemy Weapons.json")
 	item_data = CommonFunctions.parse_json("res://Data/Item Database.json")
 
 	for item_id in item_data:
