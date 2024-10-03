@@ -20,8 +20,9 @@ func update_mouse_vector():
 	mouse_vector = (get_global_mouse_position() - global_position).normalized()
 
 func update_weapon_rotation():
-	if current_weapon:
-		current_weapon.update_weapon_rotation(mouse_vector)
+	if CommonFunctions.inventory_node.visible == false:
+		if current_weapon:
+			current_weapon.update_weapon_rotation(mouse_vector)
 
 func start_attack():
 	if current_weapon and current_weapon.current_state == Weapon.WeaponState.IDLE:

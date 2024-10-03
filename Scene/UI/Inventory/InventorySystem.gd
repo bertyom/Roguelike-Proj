@@ -39,9 +39,7 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				var draggable_item = _get_draggable_item_at_position(event.global_position)
 				if draggable_item:
-					dragging = true
-					dragged_node = draggable_item
-					drag_start_position = get_global_mouse_position() - dragged_node.global_position
+					return
 				elif _is_draggable_area(event.global_position):
 					window_dragging = true
 					window_drag_start_position = get_global_mouse_position() - global_position
@@ -52,10 +50,7 @@ func _input(event: InputEvent) -> void:
 				dragged_node = null
 	
 	if event is InputEventMouseMotion:
-		if dragging and dragged_node:
-			# Move the item
-			dragged_node.global_position = get_global_mouse_position() - drag_start_position
-		elif window_dragging:
+		if window_dragging:
 			# Move the window
 			global_position = get_global_mouse_position() - window_drag_start_position
 
