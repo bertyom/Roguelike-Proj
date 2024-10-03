@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvwfwwc61wbve"]
+[gd_scene load_steps=13 format=3 uid="uid://dvwfwwc61wbve"]
 
 [ext_resource type="Texture2D" uid="uid://er2featxinhy" path="res://Image/UI/Inventory/InventorySheet.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://ch4ll306uen27" path="res://Image/UI/Inventory/SliderGrabber.png" id="4_2pfiy"]
-[ext_resource type="FontFile" uid="uid://bydfmq65hdc8y" path="res://Font/3x6 pixel numbers.ttf" id="4_f3r2s"]
 [ext_resource type="FontFile" uid="uid://dqc0qlcs7io7u" path="res://Font/8PX Font Regular.ttf" id="4_siufk"]
 [ext_resource type="Script" path="res://Scene/UI/Inventory/SplitStackPopUp.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://c10j0rx4nnf2w" path="res://Image/UI/Inventory/SliderGrabberDisabled.png" id="5_3ishs"]
@@ -10,9 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://20chs7uwj6k2" path="res://Image/UI/Inventory/Slider.png" id="6_bnh5x"]
 [ext_resource type="Texture2D" uid="uid://bhxoivxryay4e" path="res://Image/UI/Inventory/InventoryBG.png" id="12"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twhml"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqihx"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgi8g"]
 
 [sub_resource type="Theme" id="4"]
 
@@ -23,17 +20,13 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_26qkq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bdstn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ln6jr"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppvgd"]
 
 [node name="SplitStackPopUp" type="Popup"]
 disable_3d = true
-size = Vector2i(200, 100)
+size = Vector2i(150, 70)
 visible = true
-min_size = Vector2i(200, 100)
+min_size = Vector2i(150, 70)
 content_scale_stretch = 1
 script = ExtResource("5")
 
@@ -83,6 +76,9 @@ mouse_filter = 2
 
 [node name="Name" type="Label" parent="Frame/Margin/VBox"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_siufk")
+theme_override_font_sizes/font_size = 8
 text = "<ItemName>"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -93,16 +89,17 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="LabelL" type="LineEdit" parent="Frame/Margin/VBox/SliderBox"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("4_f3r2s")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_twhml")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_aqihx")
-text = "9999"
-alignment = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_i1sci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sgi8g")
+text = "99999"
+alignment = 2
 max_length = 5
-expand_to_text_length = true
 context_menu_enabled = false
 flat = true
 
@@ -111,6 +108,7 @@ z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+size_flags_stretch_ratio = 20.0
 theme = SubResource("4")
 theme_override_icons/grabber = ExtResource("4_2pfiy")
 theme_override_icons/grabber_highlight = ExtResource("4_2pfiy")
@@ -118,16 +116,17 @@ theme_override_icons/grabber_disabled = ExtResource("5_3ishs")
 theme_override_styles/slider = SubResource("StyleBoxTexture_62dl1")
 
 [node name="LabelR" type="LineEdit" parent="Frame/Margin/VBox/SliderBox"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("5_i1sci")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_26qkq")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_bdstn")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ln6jr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ppvgd")
 text = "99999"
-alignment = 2
 max_length = 5
-expand_to_text_length = true
+context_menu_enabled = false
 flat = true
 
 [node name="ButtonBox" type="HBoxContainer" parent="Frame/Margin/VBox"]
@@ -137,19 +136,21 @@ alignment = 1
 [node name="Ok" type="Button" parent="Frame/Margin/VBox/ButtonBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_siufk")
+theme_override_font_sizes/font_size = 8
 text = "OK"
 
 [node name="Cancel" type="Button" parent="Frame/Margin/VBox/ButtonBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_siufk")
+theme_override_font_sizes/font_size = 8
 text = "CANCEL"
 
 [connection signal="focus_exited" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_label_l_focus_exited"]
 [connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_label_l_text_changed"]
 [connection signal="text_submitted" from="Frame/Margin/VBox/SliderBox/LabelL" to="." method="_on_label_l_text_submitted"]
 [connection signal="value_changed" from="Frame/Margin/VBox/SliderBox/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="focus_exited" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_r_focus_exited"]
-[connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_r_text_changed"]
-[connection signal="text_submitted" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_r_text_submitted"]
+[connection signal="focus_exited" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_l_focus_exited"]
+[connection signal="text_changed" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_l_text_changed"]
+[connection signal="text_submitted" from="Frame/Margin/VBox/SliderBox/LabelR" to="." method="_on_label_l_text_submitted"]
 [connection signal="pressed" from="Frame/Margin/VBox/ButtonBox/Ok" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="Frame/Margin/VBox/ButtonBox/Cancel" to="." method="_on_cancel_pressed"]
