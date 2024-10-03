@@ -12,19 +12,22 @@ enum AttackState {IDLE, ATTACKING}
 @export var dash_duration := 0.1
 @export var dash_cooldown := 1.0
 
+#Movement and state variables
 var movement_state: MovementState = MovementState.IDLE
 var attack_state: AttackState = AttackState.IDLE
 var input_vector := Vector2.ZERO
 var mouse_position := Vector2.ZERO
 var dash_direction := Vector2.ZERO
 var mouse_vector := Vector2.ZERO
+var matching_directions: bool
 
+#Node references
+@onready var interaction_raycast: RayCast2D = $InteractionRaycast
 @onready var body_animation_player := $Sprites/AnimationPlayer
 @onready var body_sprite: Sprite2D = $Sprites/Body
 @onready var weapon_manager: Node2D = $WeaponManager
 @onready var dash_timer: Timer = %Dash
 @onready var dash_cooldown_timer: Timer = %"Dash Cooldown"
-@onready var matching_directions: bool
 #endregion
 
 func _ready():
@@ -34,11 +37,14 @@ func _ready():
 	dash_timer.connect("timeout", _on_dash_timer_timeout)
 	weapon_manager.connect("attack_state_changed", _on_attack_state_changed)
 
+	PlayerData.player_node = self
+	
 func _physics_process(_delta):
 	_handle_input()
 	_update_movement_state()
 	_update_sprites_and_animations()
 	_move()
+	interaction_raycast.target_position = mouse_position - global_position
 
 func _update_movement_state():
 	if movement_state == MovementState.DASH:
@@ -59,11 +65,12 @@ func _handle_input():
 
 	if Input.is_action_just_pressed("MOVE_DASH") and movement_state != MovementState.DASH and dash_cooldown_timer.is_stopped() and attack_state == AttackState.IDLE:
 		_initiate_dash()
-		
-	if Input.is_action_just_pressed("WEAPON_ATTACK") and attack_state == AttackState.IDLE:
-		weapon_manager.start_attack()
-	elif Input.is_action_just_released("WEAPON_ATTACK") and attack_state != AttackState.IDLE:
-		weapon_manager.end_attack()
+	
+	if CommonFunctions.inventory_node.visible == false:
+		if Input.is_action_just_pressed("WEAPON_ATTACK") and attack_state == AttackState.IDLE:
+			weapon_manager.start_attack()
+		elif Input.is_action_just_released("WEAPON_ATTACK") and attack_state != AttackState.IDLE:
+			weapon_manager.end_attack()
 
 func _update_sprites_and_animations():
 	if attack_state == AttackState.IDLE:

@@ -105,7 +105,7 @@ func _drop_data(_pos, data):
 			if data["origin_stack"] > 2:
 		#show split popup
 				var split_popup_instance = split_popup.instantiate()
-				split_popup_instance.position = get_parent().get_global_transform_with_canvas().origin + Vector2(0,20)
+				split_popup_instance.position = get_parent().get_global_transform().origin + Vector2(0,20)
 				split_popup_instance.data = data
 				add_child(split_popup_instance)
 			if data["origin_stack"] == 2:

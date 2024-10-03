@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dky8mdap1yoc4"]
+[gd_scene load_steps=14 format=3 uid="uid://dky8mdap1yoc4"]
 
 [ext_resource type="Texture2D" uid="uid://cfyqe4wd5gubl" path="res://Image/Sprites/Characters/HumanBase.png" id="1_qso5o"]
 [ext_resource type="Script" path="res://Scene/Entity/Player.gd" id="1_xw4o8"]
@@ -121,8 +121,17 @@ _data = {
 "Walk_Back": SubResource("Animation_q76se")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfeh8"]
+radius = 5.0
+height = 38.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_xw4o8")
+
+[node name="InteractionRaycast" type="RayCast2D" parent="."]
+collision_mask = 256
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_adcac")
@@ -148,6 +157,12 @@ libraries = {
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="Areas"]
+collision_layer = 16
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Hurtbox"]
+position = Vector2(0, -22)
+shape = SubResource("CapsuleShape2D_cfeh8")
 
 [node name="DetectionShape" type="Area2D" parent="Areas"]
 

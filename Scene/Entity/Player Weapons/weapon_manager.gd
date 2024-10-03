@@ -9,21 +9,16 @@ signal attack_state_changed(is_attacking: bool)
 var mouse_vector:= Vector2.ZERO
 var is_attacking: set = set_attacking
 
+#TODO Add weapon instancing via inventory
+#TODO Move the weapon cooldown timer to prevent spamming inventory unequipping
 
 func _process(_delta):
-	handle_input()
 	update_mouse_vector()
 	update_weapon_rotation()
 
 func update_mouse_vector():
 	mouse_vector = (get_global_mouse_position() - global_position).normalized()
 
-func handle_input():
-	if Input.is_action_pressed("WEAPON_ATTACK"):
-		start_attack()
-	elif Input.is_action_just_released("WEAPON_ATTACK"):
-		end_attack()
-		
 func update_weapon_rotation():
 	if current_weapon:
 		current_weapon.update_weapon_rotation(mouse_vector)
