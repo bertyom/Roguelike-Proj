@@ -6,7 +6,6 @@ var need_to_add = false
 
 var dragging = false
 var drag_start_position = Vector2.ZERO
-var dragged_node: Control = null
 
 # Window dragging variables
 var window_dragging = false
@@ -30,49 +29,35 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("UI_INV_SHOW"):
 		self.visible = !self.visible
-
+		
 	if not visible:
 		return
-
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				var draggable_item = _get_draggable_item_at_position(event.global_position)
-				if draggable_item:
-					return
-				elif _is_draggable_area(event.global_position):
+				if _is_draggable_area(event.global_position):
 					window_dragging = true
 					window_drag_start_position = get_global_mouse_position() - global_position
 			else:
 				# Stop dragging
 				dragging = false
 				window_dragging = false
-				dragged_node = null
 	
 	if event is InputEventMouseMotion:
 		if window_dragging:
 			# Move the window
 			global_position = get_global_mouse_position() - window_drag_start_position
 
-		# Optional: Limit the inventory position to stay within the viewport
+		#Limit the inventory position to stay within the viewport
 		var viewport_rect = get_viewport_rect()
 		global_position.x = clamp(global_position.x, 0, viewport_rect.size.x - size.x)
 		global_position.y = clamp(global_position.y, 0, viewport_rect.size.y - size.y)
 
-func _get_draggable_item_at_position(point: Vector2) -> Control:
-	var draggable_items = get_tree().get_nodes_in_group("item_drag&drop")
-	for item in draggable_items:
-		if item is Control and item.get_global_rect().has_point(point):
-			return item
-	return null
-
 func _is_draggable_area(point: Vector2) -> bool:
 	if not get_global_rect().has_point(point):
 		return false
-	
 	var draggable_items = get_tree().get_nodes_in_group("item_drag&drop")
 	for item in draggable_items:
 		if item is Control and item.get_global_rect().has_point(point):
 			return false
-	
 	return true

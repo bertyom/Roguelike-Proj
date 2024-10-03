@@ -7,6 +7,7 @@ var stacksize
 var container_data = {}
 
 func _ready():
+#region Data initialization
 	if ContainerLoot.current_container_ID != null:
 		container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 	var item_id
@@ -43,3 +44,5 @@ func _ready():
 				var stat_value = GameData.item_data[item_id][stat_name]
 				get_node("Texture/MarginContainer/V1/V2/Stat" + str(item_stat) + "/Label").set_text(stat_label + ": " +str(stat_value))
 				item_stat += 1
+#endregion
+	popup()

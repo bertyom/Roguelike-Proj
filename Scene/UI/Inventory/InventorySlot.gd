@@ -1,6 +1,7 @@
 extends TextureRect
 
 @onready var split_popup = preload("res://Scene/UI/Inventory/SplitStackPopUp.tscn")
+@onready var tooltip_popup = preload("res://Scene/UI/Inventory/ToolTip.tscn")
 var origin_data_dict
 var target_data_dict
 var container_data
@@ -175,8 +176,8 @@ func _SplitStack(split_amount, data):
 		if ContainerLoot.current_container_ID != null:
 			container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 		# What happens when we drop an item in this slot
-		var target_slot = get_parent().get_name( )
-		var origin_slot = data["origin_node"].get_parent( ).get_name( )
+		var target_slot = get_parent().get_name()
+		var origin_slot = data["origin_node"].get_parent().get_name()
 		
 		# Identify the target slot type and get its data
 		if target_slot.begins_with("Inv"):
@@ -218,8 +219,25 @@ func _SplitStack(split_amount, data):
 		else:
 			get_node("../Stack").set_text("")
 
-func _make_custom_tooltip(for_text):
-	var tooltip = preload("res://Scene/UI/Inventory/ToolTip.tscn").instantiate()
-	tooltip.origin = "Inventory"
-	tooltip.slot = get_parent().get_name()
-	return tooltip
+func _on_Icon_mouse_entered():
+	if PlayerData.inv_data[get_parent().get_name()]["Item"] != null:
+		#if SceneHandler.is_connected("close_tooltip", self, "_on_close_tooltip") == false:
+			#SceneHandler.connect("close_tooltip", self, "_on_close_tooltip")
+		var tooltip_instance = tooltip_popup.instantiate()
+		tooltip_instance.origin = "Inventory"
+		tooltip_instance.slot = get_parent().get_name()
+		
+		tooltip_instance.position = get_parent().get_global_transform().origin + Vector2(0,20)
+		add_child(tooltip_instance)
+		#await (get_tree().create_timer(0.35), "timeout")
+		if has_node("Tooltip") and get_node("Tooltip").valid == true:
+			get_node("Tooltip").show()
+	
+
+func _on_Icon_mouse_exited():
+	if has_node("Tooltip") == true:
+		get_node("Tooltip").free()
+
+func _on_close_tooltip():
+	if has_node("Tooltip") == true:
+		get_node("Tooltip").free()
