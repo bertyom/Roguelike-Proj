@@ -24,7 +24,7 @@ func update_labels():
 	label_left.caret_column = len(label_left.text)
 	label_right.caret_column = len(label_right.text)
 
-func _on_h_slider_value_changed(value):
+func _on_h_slider_value_changed(_value):
 	update_labels()
 
 func _on_label_l_text_submitted(new_text):

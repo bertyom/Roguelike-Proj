@@ -80,9 +80,3 @@ func _drop_data(_pos, data):
 	# Update the texture and data of the target
 	PlayerData.equipment_data[target_equipslot] = data["origin_item_id"]
 	texture = data["origin_texture"]
-
-func _make_custom_tooltip(for_text):
-	var tooltip = preload("res://Scene/UI/Inventory/ToolTip.tscn").instantiate()
-	tooltip.origin = "Equipment"
-	tooltip.slot = get_parent().get_name()
-	return tooltip

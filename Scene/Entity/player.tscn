@@ -132,6 +132,7 @@ script = ExtResource("1_xw4o8")
 
 [node name="InteractionRaycast" type="RayCast2D" parent="."]
 collision_mask = 256
+hit_from_inside = true
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_adcac")
