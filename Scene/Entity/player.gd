@@ -176,5 +176,5 @@ func _manage_interaction_raycast():
 		
 func _interaction_input():
 	if Input.is_action_just_pressed("CHR_INTERACT") and interacted_object:
-		interacted_object._start_interaction()
+		interacted_object.start_interaction()
 #endregion

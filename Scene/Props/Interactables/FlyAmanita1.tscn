@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0m81gc61s6mq"]
 
 [ext_resource type="Texture2D" uid="uid://c6w6w7rrhapns" path="res://Image/Sprites/Props/FlyAmanita.png" id="1"]
-[ext_resource type="Script" path="res://Scene/Class/Interactable.gd" id="2"]
+[ext_resource type="Script" path="res://Scene/Class/InteractableHarvest.gd" id="1_rd0e7"]
 [ext_resource type="Shader" path="res://Scene/Shader/interaction_outline.gdshader" id="2_b8ybb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2hwk"]
@@ -59,7 +59,9 @@ _data = {
 [node name="FlyAmanita" type="StaticBody2D"]
 collision_layer = 256
 collision_mask = 0
-script = ExtResource("2")
+script = ExtResource("1_rd0e7")
+item_id = "ING_AMANITA"
+item_amount = 1
 
 [node name="InteractionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
