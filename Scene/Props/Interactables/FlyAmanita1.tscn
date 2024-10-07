@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://Scene/Shader/interaction_outline.gdshader" id="2_b8ybb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2hwk"]
-radius = 6.0
+radius = 11.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohwec"]
 shader = ExtResource("2_b8ybb")

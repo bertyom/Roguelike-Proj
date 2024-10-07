@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfyqe4wd5gubl"
-path="res://.godot/imported/HumanBase.png-b335af83c9aba30fde177d32771a52c9.ctex"
+uid="uid://dosd4yy6iufmg"
+path="res://.godot/imported/EnemyAlertIcon.png-d97b921b558b5c58fde4a31ca325a9cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/Sprites/Characters/HumanBase.png"
-dest_files=["res://.godot/imported/HumanBase.png-b335af83c9aba30fde177d32771a52c9.ctex"]
+source_file="res://Image/UI/Enemy UI/EnemyAlertIcon.png"
+dest_files=["res://.godot/imported/EnemyAlertIcon.png-d97b921b558b5c58fde4a31ca325a9cb.ctex"]
 
 [params]
 

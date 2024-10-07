@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://w6h1f0cmdujj"]
 
-[ext_resource type="Texture2D" uid="uid://7c7ap2rf4l2r" path="res://Image/Sprites/Player Weapons/WoodLongbow.png" id="1_b2wmc"]
+[ext_resource type="Texture2D" uid="uid://7c7ap2rf4l2r" path="res://Image/Sprites/Entity/Player/Player Weapons/WoodLongbow.png" id="1_b2wmc"]
 [ext_resource type="Script" path="res://Scene/Class/RangedWeapon.gd" id="1_wv4ku"]
 
 [sub_resource type="Animation" id="4"]

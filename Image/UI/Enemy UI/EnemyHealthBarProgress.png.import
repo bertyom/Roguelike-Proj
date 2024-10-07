@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4jbeydf3cvda"
-path="res://.godot/imported/trail_arrow.png-11b1d0cedca21cd7b4ce8c104b875e0f.ctex"
+uid="uid://dcmq7ms70ttom"
+path="res://.godot/imported/EnemyHealthBarProgress.png-dbf7a2d9e1fdc65c530c459d343b59a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/Sprites/Player Weapons/trail_arrow.png"
-dest_files=["res://.godot/imported/trail_arrow.png-11b1d0cedca21cd7b4ce8c104b875e0f.ctex"]
+source_file="res://Image/UI/Enemy UI/EnemyHealthBarProgress.png"
+dest_files=["res://.godot/imported/EnemyHealthBarProgress.png-dbf7a2d9e1fdc65c530c459d343b59a4.ctex"]
 
 [params]
 

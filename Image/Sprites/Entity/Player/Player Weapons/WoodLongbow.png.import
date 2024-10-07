@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7c7ap2rf4l2r"
-path="res://.godot/imported/WoodLongbow.png-b0ec64d33c670e5adcd4d0ca8eacf7ec.ctex"
+path="res://.godot/imported/WoodLongbow.png-74834385a7b1a67311f6c5d4251580c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/Sprites/Player Weapons/WoodLongbow.png"
-dest_files=["res://.godot/imported/WoodLongbow.png-b0ec64d33c670e5adcd4d0ca8eacf7ec.ctex"]
+source_file="res://Image/Sprites/Entity/Player/Player Weapons/WoodLongbow.png"
+dest_files=["res://.godot/imported/WoodLongbow.png-74834385a7b1a67311f6c5d4251580c8.ctex"]
 
 [params]
 

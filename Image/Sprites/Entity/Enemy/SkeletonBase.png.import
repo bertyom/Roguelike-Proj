@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpal0mk7yrnre"
-path="res://.godot/imported/SteelSword.png-5cd2fdd338c2dedad697a82750058d19.ctex"
+uid="uid://btxmc2auodybc"
+path="res://.godot/imported/SkeletonBase.png-ce5fdd8030d05c78b3a453622fdb5c71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/Sprites/Player Weapons/SteelSword.png"
-dest_files=["res://.godot/imported/SteelSword.png-5cd2fdd338c2dedad697a82750058d19.ctex"]
+source_file="res://Image/Sprites/Entity/Enemy/SkeletonBase.png"
+dest_files=["res://.godot/imported/SkeletonBase.png-ce5fdd8030d05c78b3a453622fdb5c71.ctex"]
 
 [params]
 
