@@ -1,7 +1,8 @@
-[gd_scene load_steps=58 format=3 uid="uid://dowksu2vru8ua"]
+[gd_scene load_steps=59 format=3 uid="uid://dowksu2vru8ua"]
 
 [ext_resource type="Texture2D" uid="uid://btxmc2auodybc" path="res://Image/Sprites/Entity/Enemy/SkeletonBase.png" id="1"]
 [ext_resource type="Script" path="res://Scene/Class/EnemyBase.gd" id="1_jnkoy"]
+[ext_resource type="PackedScene" uid="uid://dv0wxgaeybvnq" path="res://Scene/Entity/Enemy/Components/AI/AI Container.tscn" id="2_m7vvh"]
 [ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/Hurtbox.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://s2iunln0ceoe" path="res://Scene/UI/Enemy UI/EnemyIconPopup.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/DetectionBox.tscn" id="6"]
@@ -608,6 +609,8 @@ radius = 8.0
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_jnkoy")
+
+[node name="States" parent="." instance=ExtResource("2_m7vvh")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")

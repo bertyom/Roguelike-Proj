@@ -1,62 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dv0wxgaeybvnq"]
 
-[ext_resource path="res://Scenes/Characters/AI/Dead.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Characters/AI/Idle.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Characters/AI/Return.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Characters/AI/AI Container.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Characters/AI/Wander.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/Characters/AI/Chase.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Characters/AI/Stagger.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Characters/AI/Seek.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/Characters/AI/WeaponAttackMelee.gd" type="Script" id=10]
+[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AI Container.gd" id="1_tek01"]
 
-[node name="AI Container" type="Node"]
-script = ExtResource( 4 )
+[node name="States" type="Node2D"]
+position = Vector2(0, -24)
+script = ExtResource("1_tek01")
 
-[node name="TempTimer" type="Timer" parent="."]
+[node name="State Timer" type="Timer" parent="."]
+process_callback = 0
 one_shot = true
 
-[node name="OneTwoTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Idle" type="Node" parent="."]
-script = ExtResource( 2 )
-behaviour_type = "Passive"
-
-[node name="Stagger" type="Node" parent="."]
-script = ExtResource( 7 )
-behaviour_type = "None"
-
-[node name="Dead" type="Node" parent="."]
-script = ExtResource( 1 )
-behaviour_type = "None"
-
-[node name="Wander" type="Node" parent="."]
-script = ExtResource( 5 )
-behaviour_type = "Passive"
-
-[node name="WanderTimer" type="Timer" parent="Wander"]
-wait_time = 0.7
-one_shot = true
-
-[node name="Return" type="Node" parent="."]
-script = ExtResource( 3 )
-behaviour_type = "Passive"
-
-[node name="Seek" type="Node" parent="."]
-script = ExtResource( 8 )
-behaviour_type = "Passive"
-
-[node name="WanderTimer" type="Timer" parent="Seek"]
-wait_time = 0.7
-one_shot = true
-
-[node name="Chase" type="Node" parent="."]
-script = ExtResource( 6 )
-behaviour_type = "Agressive"
-
-[node name="WeaponAttackMelee" type="Node" parent="."]
-script = ExtResource( 10 )
-behaviour_type = "Agressive"
-
-[node name="WeaponAttackRanged" type="Node" parent="."]
+[connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]
