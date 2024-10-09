@@ -14,7 +14,7 @@ func _setup():
 	nav_agent.set_target_location(parent_node.starting_position)
 	returned_to_original.connect(parent_node._on_Return)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# If we've reached the starting position, go to the Idle state
 	if (parent_node.global_position - parent_node.starting_position).length() < 5:
 		emit_signal("returned_to_original")

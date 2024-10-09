@@ -6,8 +6,7 @@ var is_waiting = false
 var start_wander_position: Vector2
 var stuck_timer = Timer.new()
 var stuck_timeout = 5.0
-
-@onready var wander_timer = $WanderTimer
+var wander_timer
 
 func setup():
 	nav_agent = controlled_body.navigation_agent
@@ -27,7 +26,7 @@ func setup():
 	start_wander_position = controlled_body.global_position
 	_choose_new_destination()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !is_waiting:
 		var current_position: Vector2 = controlled_body.global_position
 		var next_position: Vector2 = nav_agent.get_next_path_position()

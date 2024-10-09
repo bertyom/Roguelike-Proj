@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bqtiom6yd7o4t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wbnf"]
 
 [node name="Hurtbox" type="Area2D"]
 collision_layer = 64
 collision_mask = 32
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="."]
-position = Vector2( 1, -23 )
+position = Vector2(1, -23)
+shape = SubResource("CapsuleShape2D_5wbnf")

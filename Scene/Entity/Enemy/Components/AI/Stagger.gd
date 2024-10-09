@@ -1,6 +1,6 @@
 extends AI_State
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#controlled_body.velocity += controlled_body.push_vector
 	controlled_body.move_and_slide()
 	

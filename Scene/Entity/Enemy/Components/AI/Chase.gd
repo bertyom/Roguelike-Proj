@@ -7,7 +7,7 @@ func setup():
 	nav_agent.target_desired_distance = 4.0
 	randomize()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Update the target location every frame
 	if nav_agent:
 		nav_agent.target_position = PlayerData.player_node.global_position

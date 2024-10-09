@@ -6,10 +6,10 @@ enum AttackState {IDLE, ATTACKING}
 
 @export var walk_speed := 300.0
 @export var sprint_speed := 450.0
-@export var dash_speed := 2000.0
+@export var dash_speed := 1700.0
 @export var attack_speed_multiplier := 0.5
 @export var unmatching_direction_speed_multiplier: = 0.7
-@export var dash_duration := 0.1
+@export var dash_duration := 0.07
 @export var dash_cooldown := 1.0
 @export var interaction_distance := 50.0
 

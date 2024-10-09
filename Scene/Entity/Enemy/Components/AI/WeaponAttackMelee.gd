@@ -35,7 +35,7 @@ func _attack():
 	currently_swinging = true
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	navigation_agent.target_position = PlayerData.player_node.global_position
 	
 	var current_agent_position: Vector2 = parent_node.global_position

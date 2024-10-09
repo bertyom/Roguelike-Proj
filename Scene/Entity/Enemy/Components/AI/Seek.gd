@@ -21,7 +21,7 @@ func setup():
 	seeking = true
 	nav_agent.target_position = controlled_body.lost_position
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if seeking:
 		if controlled_body.lost_position != null:
 			var current_position: Vector2 = controlled_body.global_position
