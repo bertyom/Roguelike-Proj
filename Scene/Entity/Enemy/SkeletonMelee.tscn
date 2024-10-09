@@ -1,15 +1,15 @@
-[gd_scene load_steps=59 format=3 uid="uid://dowksu2vru8ua"]
+[gd_scene load_steps=60 format=3 uid="uid://dowksu2vru8ua"]
 
 [ext_resource type="Texture2D" uid="uid://btxmc2auodybc" path="res://Image/Sprites/Entity/Enemy/SkeletonBase.png" id="1"]
 [ext_resource type="Script" path="res://Scene/Class/EnemyBase.gd" id="1_jnkoy"]
 [ext_resource type="PackedScene" uid="uid://dv0wxgaeybvnq" path="res://Scene/Entity/Enemy/Components/AI/AI Container.tscn" id="2_m7vvh"]
 [ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/Hurtbox.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://s2iunln0ceoe" path="res://Scene/UI/Enemy UI/EnemyIconPopup.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/DetectionBox.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/UnDetectionBox.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://b6m7fk211ep8s" path="res://Scene/Entity/Enemy/Components/DetectionBox.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c164madtb0wfl" path="res://Scene/Entity/Enemy/Components/UnDetectionBox.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://cggohs4jlwwlh" path="res://Image/UI/Enemy UI/EnemyHealthBarFrame.png" id="9"]
-[ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/SoftCollision.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://Scene/Entity/Enemy/Components/AttackRangeDetector.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://6mrp71ci52kc" path="res://Scene/Entity/Enemy/Components/SoftCollision.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://587kli78jioo" path="res://Scene/Entity/Enemy/Components/AttackRangeDetector.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://dcmq7ms70ttom" path="res://Image/UI/Enemy UI/EnemyHealthBarProgress.png" id="14"]
 [ext_resource type="Texture2D" uid="uid://57vxe5ltcsqh" path="res://Image/UI/Enemy UI/EnemyHealthBarDarker.png" id="21"]
 
@@ -570,6 +570,9 @@ animation = &"R_Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="64"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_di6kh"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="102"]
 states/L_Death/node = SubResource("81")
 states/L_Death/position = Vector2(213, 72)
@@ -589,8 +592,9 @@ states/R_Stagger/node = SubResource("60")
 states/R_Stagger/position = Vector2(706, 160)
 states/R_Walk/node = SubResource("87")
 states/R_Walk/position = Vector2(523, 237)
-transitions = ["L_Idle", "RESET", SubResource("88"), "RESET", "R_Idle", SubResource("89"), "R_Idle", "RESET", SubResource("90"), "RESET", "L_Idle", SubResource("91"), "L_Idle", "R_Idle", SubResource("92"), "R_Idle", "L_Idle", SubResource("93"), "L_Idle", "L_Walk", SubResource("94"), "L_Walk", "L_Idle", SubResource("95"), "L_Walk", "R_Walk", SubResource("96"), "R_Walk", "L_Walk", SubResource("97"), "R_Walk", "R_Idle", SubResource("98"), "R_Idle", "R_Walk", SubResource("99"), "L_Idle", "L_Death", SubResource("100"), "R_Idle", "R_Death", SubResource("101"), "L_Stagger", "L_Idle", SubResource("56"), "L_Idle", "L_Stagger", SubResource("57"), "L_Stagger", "L_Walk", SubResource("58"), "L_Walk", "L_Stagger", SubResource("59"), "R_Walk", "R_Stagger", SubResource("61"), "R_Stagger", "R_Walk", SubResource("62"), "R_Idle", "R_Stagger", SubResource("63"), "R_Stagger", "R_Idle", SubResource("64")]
-graph_offset = Vector2(-2, 19)
+states/Start/position = Vector2(370, -32)
+transitions = ["L_Idle", "RESET", SubResource("88"), "RESET", "R_Idle", SubResource("89"), "R_Idle", "RESET", SubResource("90"), "RESET", "L_Idle", SubResource("91"), "L_Idle", "R_Idle", SubResource("92"), "R_Idle", "L_Idle", SubResource("93"), "L_Idle", "L_Walk", SubResource("94"), "L_Walk", "L_Idle", SubResource("95"), "L_Walk", "R_Walk", SubResource("96"), "R_Walk", "L_Walk", SubResource("97"), "R_Walk", "R_Idle", SubResource("98"), "R_Idle", "R_Walk", SubResource("99"), "L_Idle", "L_Death", SubResource("100"), "R_Idle", "R_Death", SubResource("101"), "L_Stagger", "L_Idle", SubResource("56"), "L_Idle", "L_Stagger", SubResource("57"), "L_Stagger", "L_Walk", SubResource("58"), "L_Walk", "L_Stagger", SubResource("59"), "R_Walk", "R_Stagger", SubResource("61"), "R_Stagger", "R_Walk", SubResource("62"), "R_Idle", "R_Stagger", SubResource("63"), "R_Stagger", "R_Idle", SubResource("64"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_di6kh")]
+graph_offset = Vector2(-3, -45)
 
 [sub_resource type="CapsuleShape2D" id="104"]
 radius = 0.0
@@ -610,7 +614,8 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_jnkoy")
 
-[node name="States" parent="." instance=ExtResource("2_m7vvh")]
+[node name="States" parent="." node_paths=PackedStringArray("active_state") instance=ExtResource("2_m7vvh")]
+active_state = NodePath("Wander")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -703,6 +708,7 @@ script = null
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource("71")
 
+[editable path="States"]
 [editable path="Hurtbox"]
 [editable path="EnemyIconPopup"]
 [editable path="AttackRange"]

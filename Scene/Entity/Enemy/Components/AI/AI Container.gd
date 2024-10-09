@@ -2,20 +2,23 @@ extends Node
 
 @export var states = []
 
-@export var active_state: Node
-@export var previous_state: Node
+@export var active_state: AI_State
+@export var previous_state: AI_State
 @onready var parent_node: CharacterBody2D
 @onready var state_timer: Timer = $"State Timer"
 
 func _ready():
+	await get_tree().process_frame
+	setup_states()
 	for child in get_children():
 		if child is AI_State:
-			if child.name != active_state.name:
-				child.set_physics_process(false)
+			child.controlled_body = parent_node
+	active_state.enter()
 
 func setup_states():
 	for state in get_children():
-		states.append(state.name)
+		if state is AI_State:
+			states.append(state.name)
 
 func change_state(new_state: String):
 	if active_state:

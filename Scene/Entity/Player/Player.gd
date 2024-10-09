@@ -77,7 +77,7 @@ func _vector_and_mouse_input():
 #endregion
 
 func _update_sprites_and_animations():
-	if attack_state == AttackState.IDLE:
+	if attack_state == AttackState.IDLE and CommonFunctions.inventory_node.visible == false:
 		body_sprite.flip_h = mouse_vector.x < 0
 	
 	var animation = "Idle"

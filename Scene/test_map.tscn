@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c88jnio33tvny"]
+[gd_scene load_steps=6 format=3 uid="uid://c88jnio33tvny"]
 
 [ext_resource type="PackedScene" uid="uid://1pmbacqrr23f" path="res://Scene/tilemap.tscn" id="1_32odn"]
 [ext_resource type="PackedScene" uid="uid://dky8mdap1yoc4" path="res://Scene/Entity/Player/Player.tscn" id="2_h3b3y"]
+[ext_resource type="PackedScene" uid="uid://dowksu2vru8ua" path="res://Scene/Entity/Enemy/SkeletonMelee.tscn" id="2_odwtl"]
 [ext_resource type="PackedScene" uid="uid://dij2pt8gwijuw" path="res://Scene/UI/Inventory/InventorySystem.tscn" id="3_748l5"]
 [ext_resource type="PackedScene" uid="uid://d0m81gc61s6mq" path="res://Scene/Props/Interactables/FlyAmanita1.tscn" id="4_b01q6"]
 
@@ -10,6 +11,9 @@
 [node name="Tilemap" parent="." instance=ExtResource("1_32odn")]
 
 [node name="Map Entities" type="Node2D" parent="."]
+
+[node name="ENM_SkeletonMelee" parent="Map Entities" instance=ExtResource("2_odwtl")]
+position = Vector2(141, -7)
 
 [node name="Player" parent="." instance=ExtResource("2_h3b3y")]
 
