@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0p27cm5mt6kp"]
+[gd_scene load_steps=5 format=3 uid="uid://c0p27cm5mt6kp"]
 
-[ext_resource type="Script" path="res://Scenes/GUI/DamageIndicator.gd" id="1"]
+[ext_resource type="Script" path="res://Scene/UI/Enemy UI/DamageIndicator.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://wlylu51glfig" path="res://Font/6px Numbers.ttf" id="1_qwea3"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Fade"
@@ -50,6 +51,7 @@ _data = {
 }
 
 [node name="DamageIndicator" type="Label"]
+theme_override_fonts/font = ExtResource("1_qwea3")
 text = "4"
 script = ExtResource("1")
 

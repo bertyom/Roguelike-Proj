@@ -33,11 +33,11 @@ behaviour_type = "Passive"
 
 [node name="Stagger" type="Node" parent="."]
 script = ExtResource("6_mk2sm")
-behaviour_type = "Passive"
+behaviour_type = "None"
 
 [node name="Dead" type="Node" parent="."]
 script = ExtResource("7_urm4u")
-behaviour_type = "Passive"
+behaviour_type = "None"
 
 [node name="Return" type="Node" parent="."]
 script = ExtResource("7_urm4u")

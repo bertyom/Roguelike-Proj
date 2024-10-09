@@ -593,7 +593,7 @@ collision_mask = 3
 script = ExtResource("1_jnkoy")
 
 [node name="States" parent="." node_paths=PackedStringArray("active_state") instance=ExtResource("2_m7vvh")]
-active_state = NodePath("Chase")
+active_state = NodePath("Idle")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -645,20 +645,19 @@ texture_over = ExtResource("9")
 texture_progress = ExtResource("14")
 
 [node name="EnemyIconPopup" parent="." instance=ExtResource("5")]
-visible = false
 offset_left = -8.0
 offset_top = -58.0
 offset_right = -8.0
 offset_bottom = -58.0
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyAlertIcon" parent="EnemyIconPopup" index="0"]
-physics_interpolation_mode = 0
-
-[node name="EnemyLostIcon" parent="EnemyIconPopup" index="1"]
+[node name="EnemyLostIcon" parent="EnemyIconPopup" index="0"]
 physics_interpolation_mode = 0
 offset_top = 0.0
 offset_bottom = 16.0
+
+[node name="EnemyAlertIcon" parent="EnemyIconPopup" index="1"]
+physics_interpolation_mode = 0
 
 [node name="AttackRange" parent="." instance=ExtResource("12")]
 position = Vector2(0, -24)

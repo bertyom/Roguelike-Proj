@@ -11,8 +11,10 @@ class_name EnemyBase
 #@onready var detection_area: Area2D = $DetectionArea
 #@onready var attack_area: Area2D = $AttackArea
 @onready var hp_bar: TextureProgressBar = $EnemyHPBar
+@onready var icon_popup: Control = $EnemyIconPopup
 @onready var ai_states: Node = $States
 const dead_body_template = preload("res://Scene/Entity/Enemy/Components/DeadBody.tscn")
+const damage_indicator_template = preload("res://Scene/UI/Enemy UI/DamageIndicator.tscn")
 
 #Universal humanoid stats
 @export var max_hp: int = 10
@@ -23,6 +25,7 @@ const dead_body_template = preload("res://Scene/Entity/Enemy/Components/DeadBody
 
 #Operational variables
 var facing_right: bool
+var lost_position: Vector2i
 @export var current_hp: int
 var starting_position: Vector2 
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -45,22 +48,8 @@ func _is_facing_right():
 			facing_right = false
 	else:
 		facing_right = !sprite.flip_h
-	
-func take_damage(amount: int, knockback: float, attacker_position: Vector2):
-	current_hp -= amount
-	update_hp_bar()
-	if knockback > 0:
-		apply_knockback(knockback*5, attacker_position)
-		if knockback > knockback_resistance and current_hp > 0:
-			ai_states.temp_change_state("Stagger", 0.2)
-	if current_hp <= 0:
-		ai_states.change_state("Dead")
-		
-func apply_knockback(force: float, source_position: Vector2):
-	var knockback_direction = (global_position - source_position).normalized()
-	velocity = knockback_direction * force
-	move_and_slide()
 
+#region UI
 func update_hp_bar():
 	hp_bar.max_value = max_hp
 	hp_bar.value = current_hp
@@ -68,6 +57,44 @@ func update_hp_bar():
 		hp_bar.visible = false
 	elif current_hp < max_hp:
 		hp_bar.visible = true
+
+func display_alert_popup():
+	icon_popup.get_node("EnemyAlertIcon").start()
+
+func display_lost_popup():
+	icon_popup.get_node("EnemyLostIcon").start()
+
+func _show_damage_indicator(damage):
+	var damage_indicator = damage_indicator_template.instantiate()
+	damage_indicator.global_position = self.global_position + Vector2(randi_range(-20, 0), randi_range(-10, -30))
+	get_tree().root.add_child(damage_indicator)
+	damage_indicator.start(damage)
+#endregion
+
+func take_damage(amount: int, knockback: float, attacker_position: Vector2):
+	current_hp -= amount
+	update_hp_bar()
+	_show_damage_indicator(amount)
+	_unknown_hurt(attacker_position)
+	if knockback > 0:
+		if knockback > knockback_resistance and current_hp > 0:
+			ai_states.temp_change_state("Stagger", 0.2)
+		apply_knockback(knockback*5, attacker_position)
+	if current_hp <= 0:
+		ai_states.change_state("Dead")
+
+func _unknown_hurt(location):
+	if ai_states.active_state.behaviour_type == "Passive":
+		display_lost_popup()
+		if location != null:
+			lost_position = location
+		else:
+			lost_position = PlayerData.player_node.get_global_position()
+
+func apply_knockback(force: float, source_position: Vector2):
+	var knockback_direction = (global_position - source_position).normalized()
+	velocity = knockback_direction * force
+	move_and_slide()
 		
 func _spawn_dead_body():
 	# Create an instance of the dead body scene
