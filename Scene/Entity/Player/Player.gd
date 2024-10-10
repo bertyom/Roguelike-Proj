@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Player
 
 #region Variables
 enum MovementState {IDLE, WALK, SPRINT, DASH}

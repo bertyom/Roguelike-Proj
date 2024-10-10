@@ -104,4 +104,8 @@ func _spawn_dead_body():
 	queue_free()
 
 func _on_hurtbox_area_entered(area: Area2D):
-	take_damage(area.get_meta("Attack"), area.get_meta("Knockback"), area.position)
+	take_damage(area.get_meta("Attack"), area.get_meta("Knockback"), area.global_position)
+
+func _on_detection_box_body_entered(body: Node2D) -> void:
+	if body is Player:
+		print("Hello there")

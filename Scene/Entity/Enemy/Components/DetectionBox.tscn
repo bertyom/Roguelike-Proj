@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/DetectionBox.gd" id="1"]
 
 [node name="DetectionBox" type="Area2D"]
+rotation = -1.5708
 collision_layer = 0
 collision_mask = 1024
 script = ExtResource("1")

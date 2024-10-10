@@ -1,15 +1,33 @@
 extends Area2D
 
-var nodesDesired : int = 9
-@export var radius: float
-@onready var parent_node = $".."
+@export var nodesDesired: int = 9
+@export var radius: float = 100.0  # Default radius, can be changed in the inspector
+
+@onready var detection_polygon = $CollisionPolygon2D
 
 func _ready():
-	var a : float = PI / float(nodesDesired - 1) # 1.0 for half circle
-	var poly_points := PackedVector2Array() # The array of points for the Polygon2D
+	update_polygon()
+
+func update_polygon():
+	var a: float = PI / (nodesDesired - 1)  # Angle between each point
+	var poly_points := PackedVector2Array()
+	
+	# Add the center point
+	poly_points.append(Vector2.ZERO)
+	
+	# Create the semi-circle points
 	for i in range(nodesDesired):
-		var x = sin(i * a) * radius
-		var y = cos(i * a) * radius
+		var angle = i * a
+		var x = cos(angle) * radius
+		var y = sin(angle) * radius
 		poly_points.append(Vector2(x, y))
-	var polygon = get_node("CollisionPolygon2D")
-	polygon.polygon = poly_points
+	
+	detection_polygon.polygon = poly_points
+
+func set_radius(new_radius: float):
+	radius = new_radius
+	update_polygon()
+
+func set_nodes(new_nodes: int):
+	nodesDesired = new_nodes
+	update_polygon()
