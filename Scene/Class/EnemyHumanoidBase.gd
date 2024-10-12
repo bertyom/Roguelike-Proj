@@ -1,15 +1,14 @@
 extends CharacterBody2D
-class_name EnemyBase
+class_name EnemyHumanoidBase
 
 #Universal node references
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree = $AnimationPlayer/AnimationTree["parameters/playback"]
 @onready var sprite: Sprite2D = $Sprite
 @onready var hurtbox: Area2D = $Hurtbox
-#@onready var weapon_container: Node2D = $WeaponContainer
+@onready var weapon_container: Node2D = $WeaponContainer
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
-#@onready var detection_area: Area2D = $DetectionArea
-#@onready var attack_area: Area2D = $AttackArea
+@onready var vision_detection_area: Area2D = $DetectionBox
 @onready var hp_bar: TextureProgressBar = $EnemyHPBar
 @onready var icon_popup: Control = $EnemyIconPopup
 @onready var ai_states: Node = $States
@@ -36,6 +35,7 @@ func _ready():
 	starting_position = get_global_position()
 	update_hp_bar()
 	hurtbox.connect("area_entered", _on_hurtbox_area_entered)
+	setup_weapon_container()
 
 func _physics_process(_delta):
 	_is_facing_right()
@@ -81,6 +81,7 @@ func take_damage(amount: int, knockback: float, attacker_position: Vector2):
 			ai_states.temp_change_state("Stagger", 0.2)
 		apply_knockback(knockback*5, attacker_position)
 	if current_hp <= 0:
+		weapon_container.visible = false
 		ai_states.change_state("Dead")
 
 func _unknown_hurt(location):
@@ -106,6 +107,10 @@ func _spawn_dead_body():
 func _on_hurtbox_area_entered(area: Area2D):
 	take_damage(area.get_meta("Attack"), area.get_meta("Knockback"), area.global_position)
 
-func _on_detection_box_body_entered(body: Node2D) -> void:
+func _on_detection_box_body_entered(body: Node2D):
 	if body is Player:
 		print("Hello there")
+
+func setup_weapon_container():
+	weapon_container.controlled_body = self
+	weapon_container.setup()

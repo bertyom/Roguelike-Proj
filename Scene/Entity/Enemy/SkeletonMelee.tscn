@@ -1,8 +1,10 @@
-[gd_scene load_steps=59 format=3 uid="uid://dowksu2vru8ua"]
+[gd_scene load_steps=61 format=3 uid="uid://dowksu2vru8ua"]
 
 [ext_resource type="Texture2D" uid="uid://btxmc2auodybc" path="res://Image/Sprites/Entity/Enemy/SkeletonBase.png" id="1"]
-[ext_resource type="Script" path="res://Scene/Class/EnemyBase.gd" id="1_jnkoy"]
+[ext_resource type="Script" path="res://Scene/Class/EnemyHumanoidBase.gd" id="1_jnkoy"]
 [ext_resource type="PackedScene" uid="uid://dv0wxgaeybvnq" path="res://Scene/Entity/Enemy/Components/AI/AI Container.tscn" id="2_m7vvh"]
+[ext_resource type="PackedScene" uid="uid://bu6ylxuqdyjtn" path="res://Scene/Entity/Enemy/Components/enemy_weapon_container.tscn" id="2_ojljw"]
+[ext_resource type="PackedScene" uid="uid://li2w6s8kvbhp" path="res://Scene/Entity/Enemy/Enemy Weapons/RustyGlaive.tscn" id="2_vu85k"]
 [ext_resource type="PackedScene" uid="uid://s2iunln0ceoe" path="res://Scene/UI/Enemy UI/EnemyIconPopup.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://b6m7fk211ep8s" path="res://Scene/Entity/Enemy/Components/DetectionBox.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c164madtb0wfl" path="res://Scene/Entity/Enemy/Components/UnDetectionBox.tscn" id="7"]
@@ -613,8 +615,13 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_jnkoy")
 
+[node name="WeaponContainer" parent="." instance=ExtResource("2_ojljw")]
+position = Vector2(0, -24)
+
+[node name="ENM_RustyGlaive" parent="WeaponContainer" instance=ExtResource("2_vu85k")]
+
 [node name="States" parent="." node_paths=PackedStringArray("active_state") instance=ExtResource("2_m7vvh")]
-active_state = NodePath("Chase")
+active_state = NodePath("Idle")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -704,6 +711,7 @@ position = Vector2(0, -24)
 
 [connection signal="body_entered" from="DetectionBox" to="." method="_on_detection_box_body_entered"]
 
+[editable path="WeaponContainer"]
 [editable path="States"]
 [editable path="EnemyIconPopup"]
 [editable path="AttackRange"]

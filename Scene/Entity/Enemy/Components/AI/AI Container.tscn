@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv0wxgaeybvnq"]
+[gd_scene load_steps=9 format=3 uid="uid://dv0wxgaeybvnq"]
 
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AI Container.gd" id="1_tek01"]
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Idle.gd" id="2_4s8mx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Seek.gd" id="5_xteyq"]
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Stagger.gd" id="6_mk2sm"]
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Dead.gd" id="7_urm4u"]
+[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AttackMelee.gd" id="8_4fdkj"]
 
 [node name="States" type="Node"]
 script = ExtResource("1_tek01")
@@ -21,7 +22,7 @@ behaviour_type = "Passive"
 
 [node name="Chase" type="Node" parent="."]
 script = ExtResource("3_os86d")
-behaviour_type = "Passive"
+behaviour_type = "Agressive"
 
 [node name="Wander" type="Node" parent="."]
 script = ExtResource("4_4b5mi")
@@ -29,7 +30,7 @@ behaviour_type = "Passive"
 
 [node name="Seek" type="Node" parent="."]
 script = ExtResource("5_xteyq")
-behaviour_type = "Passive"
+behaviour_type = "Agressive"
 
 [node name="Stagger" type="Node" parent="."]
 script = ExtResource("6_mk2sm")
@@ -42,5 +43,9 @@ behaviour_type = "None"
 [node name="Return" type="Node" parent="."]
 script = ExtResource("7_urm4u")
 behaviour_type = "Passive"
+
+[node name="AttackMelee" type="Node" parent="."]
+script = ExtResource("8_4fdkj")
+behaviour_type = "Agressive"
 
 [connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]

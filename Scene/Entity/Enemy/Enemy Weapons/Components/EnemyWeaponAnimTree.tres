@@ -1,0 +1,60 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=15 format=3 uid="uid://1iv7k3whc67x"]
+
+[sub_resource type="AnimationNodeAnimation" id="1"]
+animation = &"Left"
+
+[sub_resource type="AnimationNodeAnimation" id="2"]
+animation = &"LeftAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="3"]
+animation = &"LeftWindup"
+
+[sub_resource type="AnimationNodeAnimation" id="4"]
+animation = &"Right"
+
+[sub_resource type="AnimationNodeAnimation" id="5"]
+animation = &"RightAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="6"]
+animation = &"RightWindup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="9"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="10"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="11"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="12"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="13"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="14"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/Left/node = SubResource("1")
+states/Left/position = Vector2(285.745, -387.298)
+states/LeftAttack/node = SubResource("2")
+states/LeftAttack/position = Vector2(285.745, -252.298)
+states/LeftWindup/node = SubResource("3")
+states/LeftWindup/position = Vector2(114.745, -320.298)
+states/Right/node = SubResource("4")
+states/Right/position = Vector2(522.745, -387.298)
+states/RightAttack/node = SubResource("5")
+states/RightAttack/position = Vector2(522.745, -252.298)
+states/RightWindup/node = SubResource("6")
+states/RightWindup/position = Vector2(709.745, -320.298)
+states/Start/position = Vector2(412, -511)
+transitions = ["Left", "LeftWindup", SubResource("7"), "Right", "RightWindup", SubResource("8"), "Right", "Left", SubResource("9"), "Left", "Right", SubResource("10"), "LeftAttack", "Left", SubResource("11"), "RightAttack", "Right", SubResource("12"), "RightWindup", "RightAttack", SubResource("13"), "LeftWindup", "LeftAttack", SubResource("14")]
+graph_offset = Vector2(-48.255, -702.298)
