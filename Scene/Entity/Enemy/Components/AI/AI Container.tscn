@@ -41,8 +41,6 @@ script = ExtResource("7_urm4u")
 behaviour_type = "None"
 
 [node name="Return" type="Node" parent="."]
-script = ExtResource("7_urm4u")
-behaviour_type = "Passive"
 
 [node name="AttackMelee" type="Node" parent="."]
 script = ExtResource("8_4fdkj")

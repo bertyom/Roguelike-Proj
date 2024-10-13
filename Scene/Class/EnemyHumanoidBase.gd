@@ -44,6 +44,7 @@ func _ready():
 func _physics_process(_delta):
 	_update_sprite_direction()
 	_delayed_state_change()
+	weapon_container.update_radius_rotation()
 
 func _update_sprite_direction():
 	if ai_states.active_state.behaviour_type != "None":
@@ -120,6 +121,7 @@ func _on_hurtbox_area_entered(area: Area2D):
 func _on_detection_box_body_entered(body: Node2D):
 	if body is Player:
 		ai_states.change_state("Chase")
+		display_alert_popup()
 
 func _on_attack_range_detector_body_entered(body: Node2D):
 	if body is Player:

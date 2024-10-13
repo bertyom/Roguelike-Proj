@@ -18,6 +18,12 @@ func find_weapon_child():
 	if current_weapon:
 		current_weapon.controlled_body = controlled_body
 
+func update_radius_rotation():
+	if controlled_body.facing_right:
+		attack_range_detector.rotation_degrees = -90
+	else:
+		attack_range_detector.rotation_degrees = 90
+
 func update_attack_radius_polygon():
 	attack_range = ceil(current_weapon.attack_radius)
 	

@@ -10,15 +10,14 @@ extends Node
 func _ready():
 	await get_tree().process_frame
 	setup_states()
-	for child in get_children():
-		if child is AI_State:
-			child.controlled_body = parent_node
 	active_state.enter()
 
 func setup_states():
 	for state in get_children():
 		if state is AI_State:
 			states.append(state.name)
+			state.controlled_body = parent_node
+			state.weapon = parent_node.weapon_container.current_weapon
 
 func change_state(new_state: String):
 	if active_state:

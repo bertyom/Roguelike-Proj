@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dowksu2vru8ua"]
+[gd_scene load_steps=60 format=3 uid="uid://dowksu2vru8ua"]
 
 [ext_resource type="Texture2D" uid="uid://btxmc2auodybc" path="res://Image/Sprites/Entity/Enemy/SkeletonBase.png" id="1"]
 [ext_resource type="Script" path="res://Scene/Class/EnemyHumanoidBase.gd" id="1_jnkoy"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c164madtb0wfl" path="res://Scene/Entity/Enemy/Components/UnDetectionBox.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://cggohs4jlwwlh" path="res://Image/UI/Enemy UI/EnemyHealthBarFrame.png" id="9"]
 [ext_resource type="PackedScene" uid="uid://6mrp71ci52kc" path="res://Scene/Entity/Enemy/Components/SoftCollision.tscn" id="11"]
-[ext_resource type="PackedScene" uid="uid://587kli78jioo" path="res://Scene/Entity/Enemy/Components/AttackRangeDetector.tscn" id="12"]
 [ext_resource type="Texture2D" uid="uid://dcmq7ms70ttom" path="res://Image/UI/Enemy UI/EnemyHealthBarProgress.png" id="14"]
 [ext_resource type="Texture2D" uid="uid://57vxe5ltcsqh" path="res://Image/UI/Enemy UI/EnemyHealthBarDarker.png" id="21"]
 
@@ -98,22 +97,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -150,22 +137,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -203,22 +178,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -254,22 +217,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -360,22 +311,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -412,22 +351,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -465,22 +392,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../AttackRange:scale")
+tracks/2/path = NodePath("../DetectionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../DetectionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -618,6 +533,9 @@ script = ExtResource("1_jnkoy")
 [node name="WeaponContainer" parent="." instance=ExtResource("2_ojljw")]
 position = Vector2(0, -24)
 
+[node name="AttackRangeDetector" parent="WeaponContainer" index="0"]
+collision_mask = 4
+
 [node name="ENM_RustyGlaive" parent="WeaponContainer" instance=ExtResource("2_vu85k")]
 
 [node name="States" parent="." node_paths=PackedStringArray("active_state") instance=ExtResource("2_m7vvh")]
@@ -687,10 +605,6 @@ physics_interpolation_mode = 0
 [node name="EnemyAlertIcon" parent="EnemyIconPopup" index="1"]
 physics_interpolation_mode = 0
 
-[node name="AttackRange" parent="." instance=ExtResource("12")]
-position = Vector2(0, -24)
-script = null
-
 [node name="UnDetectionBox" parent="." instance=ExtResource("7")]
 visible = false
 position = Vector2(0, -24)
@@ -716,7 +630,6 @@ position = Vector2(0, -24)
 [editable path="WeaponContainer"]
 [editable path="States"]
 [editable path="EnemyIconPopup"]
-[editable path="AttackRange"]
 [editable path="UnDetectionBox"]
 [editable path="SoftCollision"]
 [editable path="DetectionBox"]

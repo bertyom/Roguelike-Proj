@@ -59,10 +59,14 @@ func _update_animation(velocity: Vector2):
 	if velocity == Vector2.ZERO:
 		if controlled_body.facing_right:
 			controlled_body.animation_tree.travel("R_Idle")
+			weapon.animation_tree.travel("Right")
 		else:
 			controlled_body.animation_tree.travel("L_Idle")
+			weapon.animation_tree.travel("Left")
 	else:
 		if velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Walk")
+			weapon.animation_tree.travel("Right")
 		else:
 			controlled_body.animation_tree.travel("L_Walk")
+			weapon.animation_tree.travel("Left")

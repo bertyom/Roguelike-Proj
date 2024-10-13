@@ -21,5 +21,7 @@ func _physics_process(_delta):
 		# Move towards the waypoint
 		if new_velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Walk")
+			weapon.animation_tree.travel("Right")
 		else:
 			controlled_body.animation_tree.travel("L_Walk")
+			weapon.animation_tree.travel("Left")

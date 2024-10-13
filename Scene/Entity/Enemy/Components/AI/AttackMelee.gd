@@ -1,15 +1,13 @@
 extends AI_State
 
-var weapon
 var can_attack = true
 var currently_swinging = false
 
 func setup():
-	await get_tree().physics_frame
+	nav_agent = controlled_body.navigation_agent
 	nav_agent.path_desired_distance = 4.0
 	nav_agent.target_desired_distance = 4.0
 	randomize()
-	weapon = controlled_body.current_weapon
 	if !weapon.attack_timer.timeout.is_connected(_on_AttackTimer_timeout):
 		weapon.attack_timer.timeout.connect(_on_AttackTimer_timeout)
 	if !weapon.attack_finished.is_connected(_on_attack_finished):
@@ -43,8 +41,10 @@ func _update_animation():
 	if !currently_swinging:
 		if controlled_body.velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Walk")
+			weapon.animation_tree.travel("Right")
 		else:
 			controlled_body.animation_tree.travel("L_Walk")
+			weapon.animation_tree.travel("Right")
 	else:
 		if controlled_body.facing_right:
 			controlled_body.animation_tree.travel("R_Walk")
