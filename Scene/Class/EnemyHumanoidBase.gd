@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name EnemyHumanoidBase
+signal facing_right_changed #to update weapon facing in real time
 
 #Universal node references
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -30,6 +31,7 @@ var starting_position: Vector2
 var knockback_velocity: Vector2 = Vector2.ZERO
 
 func _ready():
+	facing_right = !sprite.flip_h #Initialize facing direction based on sprite's initial state
 	current_hp = max_hp
 	ai_states.parent_node = self
 	starting_position = get_global_position()
@@ -38,16 +40,13 @@ func _ready():
 	setup_weapon_container()
 
 func _physics_process(_delta):
-	_is_facing_right()
+	_update_sprite_direction()
 
-func _is_facing_right():
-	if velocity != Vector2.ZERO:
-		if velocity.x > 0:
-			facing_right = true
-		else:
-			facing_right = false
-	else:
-		facing_right = !sprite.flip_h
+func _update_sprite_direction():
+	if ai_states.active_state.behaviour_type != "None":
+		if velocity.x != 0:
+			facing_right = velocity.x > 0
+	
 
 #region UI
 func update_hp_bar():
@@ -78,7 +77,7 @@ func take_damage(amount: int, knockback: float, attacker_position: Vector2):
 	_unknown_hurt(attacker_position)
 	if knockback > 0:
 		if knockback > knockback_resistance and current_hp > 0:
-			ai_states.temp_change_state("Stagger", 0.2)
+			ai_states.temp_change_state("Stagger", 0.5)
 		apply_knockback(knockback*5, attacker_position)
 	if current_hp <= 0:
 		weapon_container.visible = false
@@ -109,7 +108,9 @@ func _on_hurtbox_area_entered(area: Area2D):
 
 func _on_detection_box_body_entered(body: Node2D):
 	if body is Player:
-		print("Hello there")
+		ai_states.change_state("Chase")
+
+
 
 func setup_weapon_container():
 	weapon_container.controlled_body = self

@@ -621,7 +621,7 @@ position = Vector2(0, -24)
 [node name="ENM_RustyGlaive" parent="WeaponContainer" instance=ExtResource("2_vu85k")]
 
 [node name="States" parent="." node_paths=PackedStringArray("active_state") instance=ExtResource("2_m7vvh")]
-active_state = NodePath("Idle")
+active_state = NodePath("Wander")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")

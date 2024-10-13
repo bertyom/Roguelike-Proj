@@ -44,8 +44,8 @@ func _physics_process(_delta):
 			var next_position: Vector2 = nav_agent.get_next_path_position()
 			var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
 			controlled_body.velocity = new_velocity + controlled_body.push_vector
-			_update_animation(new_velocity)
 			controlled_body.move_and_slide()
+			_update_animation(new_velocity)
 	else:
 		_update_animation(Vector2.ZERO)
 

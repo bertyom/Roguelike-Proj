@@ -23,7 +23,7 @@ func setup_states():
 func change_state(new_state: String):
 	if active_state:
 		active_state.exit()
-	
+	parent_node.velocity = Vector2.ZERO #FIXME Maybe introduces unintended behaviour, needs testing
 	active_state = self.get_node(new_state)
 	active_state.enter()
 

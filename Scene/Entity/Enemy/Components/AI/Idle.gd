@@ -5,6 +5,3 @@ func _physics_process(_delta):
 		controlled_body.animation_tree.travel("R_Idle")
 	else:
 		controlled_body.animation_tree.travel("L_Idle")
-
-	controlled_body.velocity = Vector2.ZERO
-	controlled_body.move_and_slide()

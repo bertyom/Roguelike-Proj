@@ -37,12 +37,11 @@ func _physics_process(_delta):
 		else:
 			var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
 			controlled_body.velocity = new_velocity
-
+			controlled_body.move_and_slide()
 			if new_velocity.x >= 0:
 				controlled_body.animation_tree.travel("R_Walk")
 			else:
 				controlled_body.animation_tree.travel("L_Walk")
-			controlled_body.move_and_slide()
 	else:
 		if controlled_body.velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Idle")
