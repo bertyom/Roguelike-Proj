@@ -29,6 +29,8 @@ var lost_position: Vector2i
 @export var current_hp: int
 var starting_position: Vector2 
 var knockback_velocity: Vector2 = Vector2.ZERO
+var should_change_state:= false
+var future_state: String
 
 func _ready():
 	facing_right = !sprite.flip_h #Initialize facing direction based on sprite's initial state
@@ -41,12 +43,12 @@ func _ready():
 
 func _physics_process(_delta):
 	_update_sprite_direction()
+	_delayed_state_change()
 
 func _update_sprite_direction():
 	if ai_states.active_state.behaviour_type != "None":
 		if velocity.x != 0:
 			facing_right = velocity.x > 0
-	
 
 #region UI
 func update_hp_bar():
@@ -103,6 +105,15 @@ func _spawn_dead_body():
 	get_parent().add_child(dead_body)
 	queue_free()
 
+func _delayed_state_change():
+	if should_change_state and !ai_states.current_state.currently_swinging and current_hp > 0:
+		ai_states.change_state(future_state)
+		should_change_state = false
+
+func setup_weapon_container():
+	weapon_container.controlled_body = self
+	weapon_container.setup()
+
 func _on_hurtbox_area_entered(area: Area2D):
 	take_damage(area.get_meta("Attack"), area.get_meta("Knockback"), area.global_position)
 
@@ -110,8 +121,14 @@ func _on_detection_box_body_entered(body: Node2D):
 	if body is Player:
 		ai_states.change_state("Chase")
 
+func _on_attack_range_detector_body_entered(body: Node2D):
+	if body is Player:
+		ai_states.change_state("AttackMelee")
 
-
-func setup_weapon_container():
-	weapon_container.controlled_body = self
-	weapon_container.setup()
+func _on_attack_range_detector_body_exited(body: Node2D):
+	if body is Player and ai_states.current_state.name == "AttackMelee":
+		if ai_states.current_state.currently_swinging:
+			should_change_state = true
+			future_state = "Chase"
+		else:
+			ai_states.change_state("Chase")
