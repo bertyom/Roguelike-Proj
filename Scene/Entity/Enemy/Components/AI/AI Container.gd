@@ -18,6 +18,7 @@ func setup_states():
 			states.append(state.name)
 			state.controlled_body = parent_node
 			state.weapon = parent_node.weapon_container.current_weapon
+			state.nav_agent = parent_node.navigation_agent
 
 func change_state(new_state: String):
 	if active_state:

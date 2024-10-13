@@ -1,7 +1,6 @@
 extends AI_State
 
 func setup():
-	nav_agent = controlled_body.navigation_agent
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = 4.0
 	nav_agent.target_desired_distance = 4.0

@@ -107,9 +107,13 @@ func _spawn_dead_body():
 	queue_free()
 
 func _delayed_state_change():
-	if should_change_state and !ai_states.current_state.currently_swinging and current_hp > 0:
-		ai_states.change_state(future_state)
-		should_change_state = false
+	if should_change_state:
+		if ai_states.active_state.name != "AttackMelee":
+			ai_states.change_state(future_state)
+			should_change_state = false
+		elif !ai_states.active_state.currently_swinging and current_hp > 0:
+			ai_states.change_state(future_state)
+			should_change_state = false
 
 func setup_weapon_container():
 	weapon_container.controlled_body = self
@@ -128,8 +132,8 @@ func _on_attack_range_detector_body_entered(body: Node2D):
 		ai_states.change_state("AttackMelee")
 
 func _on_attack_range_detector_body_exited(body: Node2D):
-	if body is Player and ai_states.current_state.name == "AttackMelee":
-		if ai_states.current_state.currently_swinging:
+	if body is Player and ai_states.active_state.name == "AttackMelee":
+		if ai_states.active_state.currently_swinging:
 			should_change_state = true
 			future_state = "Chase"
 		else:

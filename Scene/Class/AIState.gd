@@ -2,9 +2,9 @@ extends Node
 class_name AI_State
 
 @export_enum("Passive", "Agressive", "None") var behaviour_type: String
-var controlled_body: CharacterBody2D
-var weapon: EnemyWeaponBase
-var nav_agent: NavigationAgent2D
+@export var controlled_body: CharacterBody2D
+@export var weapon: EnemyWeaponBase
+@export var nav_agent: NavigationAgent2D
 
 func _ready():
 	set_physics_process(false)

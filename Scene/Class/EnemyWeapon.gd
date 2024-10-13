@@ -4,6 +4,7 @@ class_name EnemyWeaponBase
 @export var controlled_body: CharacterBody2D
 @export var attack_radius: float
 @onready var animation_tree = $AnimationPlayer/AnimationTree["parameters/playback"]
+@onready var attack_timer: Timer = $AttackTimer
 
 signal arrow_shot
 signal attack_finished

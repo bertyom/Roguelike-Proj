@@ -4,7 +4,7 @@ var can_attack = true
 var currently_swinging = false
 
 func setup():
-	nav_agent = controlled_body.navigation_agent
+	await get_tree().physics_frame
 	nav_agent.path_desired_distance = 4.0
 	nav_agent.target_desired_distance = 4.0
 	randomize()
@@ -16,15 +16,14 @@ func setup():
 func _attack():
 	can_attack = false
 	if controlled_body.velocity.x >= 0:
-		weapon.anim_state_machine.travel("RightWindup")
+		weapon.animation_tree.travel("RightWindup")
 	else:
-		weapon.anim_state_machine.travel("LeftWindup")
+		weapon.animation_tree.travel("LeftWindup")
 	weapon.attack_timer.start()
 	currently_swinging = true
 
 func _physics_process(_delta):
 	nav_agent.target_position = PlayerData.player_node.global_position
-	
 	var current_position: Vector2 = controlled_body.global_position
 	var next_position: Vector2 = nav_agent.get_next_path_position()
 	var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
