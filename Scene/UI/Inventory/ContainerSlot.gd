@@ -44,7 +44,7 @@ func _get_drag_data(_pos):
 	
 		return data
 
-func _can_drop_data(_pos, data):
+func _can_drop_data(_pos, data) -> bool:
 	# Check if we can drop an item in this slot
 	var target_slot = get_parent().get_name()
 	if target_slot.begins_with("Inv"):

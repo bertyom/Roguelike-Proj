@@ -1,7 +1,7 @@
 extends Node
 class_name AI_State
 
-@export_enum("Passive", "Agressive", "None") var behaviour_type: String
+@export_enum("Passive", "Agressive", "Attacking", "None") var behaviour_type: String
 @export var controlled_body: CharacterBody2D
 @export var weapon: EnemyWeaponBase
 @export var nav_agent: NavigationAgent2D

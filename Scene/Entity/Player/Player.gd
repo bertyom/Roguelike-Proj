@@ -29,6 +29,7 @@ var matching_directions: bool
 @onready var weapon_manager: Node2D = $WeaponManager
 @onready var dash_timer: Timer = %Dash
 @onready var dash_cooldown_timer: Timer = %"Dash Cooldown"
+@onready var soft_collision: Area2D = $SoftCollision
 
 #Helper variables
 @export var interacted_object: Interactable = null
@@ -49,6 +50,8 @@ func _physics_process(_delta):
 	_update_movement_state()
 	_update_sprites_and_animations()
 	_move()
+	apply_soft_collisions()
+	move_and_slide()
 	
 
 func _update_movement_state():
@@ -124,7 +127,10 @@ func _move():
 	else:
 		velocity = input_vector * speed
 
-	move_and_slide()
+func apply_soft_collisions():
+	var push_vector = soft_collision.get_push_vector()
+	if push_vector != Vector2.ZERO:
+		velocity += push_vector
 
 #region Dash logic
 func _dash_input():

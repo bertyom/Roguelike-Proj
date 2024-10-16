@@ -37,7 +37,6 @@ func _physics_process(_delta):
 		else:
 			var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
 			controlled_body.velocity = new_velocity
-			controlled_body.move_and_slide()
 			if new_velocity.x >= 0:
 				controlled_body.animation_tree.travel("R_Walk")
 				weapon.animation_tree.travel("Right")
@@ -45,6 +44,7 @@ func _physics_process(_delta):
 				controlled_body.animation_tree.travel("L_Walk")
 				weapon.animation_tree.travel("Left")
 	else:
+		controlled_body.velocity = Vector2.ZERO
 		if controlled_body.velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Idle")
 			weapon.animation_tree.travel("Right")

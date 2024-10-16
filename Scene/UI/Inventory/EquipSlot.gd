@@ -33,7 +33,7 @@ func _get_drag_data(_pos):
 	
 	return data
 
-func _can_drop_data(_pos, data):
+func _can_drop_data(_pos, data) -> bool:
 	if ContainerLoot.current_container_ID != null:
 		container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 	# Check if we can drop an item in this slot

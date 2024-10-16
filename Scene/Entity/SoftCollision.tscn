@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://6mrp71ci52kc"]
+[gd_scene load_steps=2 format=3 uid="uid://0hxmonmpdi8m"]
 
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/SoftCollision.gd" id="1"]
+[ext_resource type="Script" path="res://Scene/Entity/SoftCollision.gd" id="1"]
 
 [node name="SoftCollision" type="Area2D"]
 collision_layer = 2048

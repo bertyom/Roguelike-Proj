@@ -44,6 +44,6 @@ behaviour_type = "None"
 
 [node name="AttackMelee" type="Node" parent="."]
 script = ExtResource("8_4fdkj")
-behaviour_type = "Agressive"
+behaviour_type = "Attacking"
 
 [connection signal="timeout" from="State Timer" to="." method="_on_state_timer_timeout"]

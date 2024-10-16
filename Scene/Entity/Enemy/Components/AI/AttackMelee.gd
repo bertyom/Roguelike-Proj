@@ -34,7 +34,7 @@ func _physics_process(_delta):
 
 	_update_animation()
 	
-	controlled_body.move_and_slide()
+	
 
 func _update_animation():
 	if !currently_swinging:

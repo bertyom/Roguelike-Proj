@@ -13,6 +13,7 @@ signal facing_right_changed #to update weapon facing in real time
 @onready var hp_bar: TextureProgressBar = $EnemyHPBar
 @onready var icon_popup: Control = $EnemyIconPopup
 @onready var ai_states: Node = $States
+@onready var soft_collision: Area2D = $SoftCollision
 const dead_body_template = preload("res://Scene/Entity/Enemy/Components/DeadBody.tscn")
 const damage_indicator_template = preload("res://Scene/UI/Enemy UI/DamageIndicator.tscn")
 
@@ -45,6 +46,8 @@ func _physics_process(_delta):
 	_update_sprite_direction()
 	_delayed_state_change()
 	weapon_container.update_radius_rotation()
+	apply_soft_collisions()
+	move_and_slide()
 
 func _update_sprite_direction():
 	if ai_states.active_state.behaviour_type != "None":
@@ -66,7 +69,7 @@ func display_alert_popup():
 func display_lost_popup():
 	icon_popup.get_node("EnemyLostIcon").start()
 
-func _show_damage_indicator(damage):
+func _show_damage_indicator(damage: int):
 	var damage_indicator = damage_indicator_template.instantiate()
 	damage_indicator.global_position = self.global_position + Vector2(randi_range(-20, 0), randi_range(-10, -30))
 	get_tree().root.add_child(damage_indicator)
@@ -96,9 +99,13 @@ func _unknown_hurt(location):
 
 func apply_knockback(force: float, source_position: Vector2):
 	var knockback_direction = (global_position - source_position).normalized()
-	velocity = knockback_direction * force
-	move_and_slide()
-		
+	velocity += knockback_direction * force
+
+func apply_soft_collisions():
+	var push_vector = soft_collision.get_push_vector()
+	if push_vector != Vector2.ZERO:
+		velocity += push_vector
+
 func _spawn_dead_body():
 	# Create an instance of the dead body scene
 	var dead_body = dead_body_template.instantiate()
@@ -107,11 +114,11 @@ func _spawn_dead_body():
 	queue_free()
 
 func _delayed_state_change():
-	if should_change_state:
-		if ai_states.active_state.name != "AttackMelee":
+	if should_change_state and current_hp > 0:
+		if ai_states.active_state.behaviour_type != "Attacking":
 			ai_states.change_state(future_state)
 			should_change_state = false
-		elif !ai_states.active_state.currently_swinging and current_hp > 0:
+		elif !ai_states.active_state.currently_swinging:
 			ai_states.change_state(future_state)
 			should_change_state = false
 

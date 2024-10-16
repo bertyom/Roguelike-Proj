@@ -33,7 +33,7 @@ func _physics_process(_delta):
 				wander_timer.start(randf_range(0.5, 2.5))
 			else:
 				_update_animation(new_velocity)
-				controlled_body.move_and_slide()
+				
 	elif !is_waiting:
 		if controlled_body.lost_position != null and nav_agent.is_navigation_finished():
 			is_waiting = true
@@ -43,9 +43,10 @@ func _physics_process(_delta):
 			var next_position: Vector2 = nav_agent.get_next_path_position()
 			var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
 			controlled_body.velocity = new_velocity + controlled_body.push_vector
-			controlled_body.move_and_slide()
+			
 			_update_animation(new_velocity)
 	else:
+		controlled_body.velocity = Vector2.ZERO
 		_update_animation(Vector2.ZERO)
 
 func _on_wander_timer_timeout():

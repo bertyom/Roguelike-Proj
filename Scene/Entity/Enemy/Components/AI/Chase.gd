@@ -16,7 +16,6 @@ func _physics_process(_delta):
 		var next_path_position: Vector2 = nav_agent.get_next_path_position()
 		var new_velocity: Vector2 = (next_path_position - current_agent_position).normalized() * controlled_body.movement_speed
 		controlled_body.velocity = new_velocity
-		controlled_body.move_and_slide()
 		# Move towards the waypoint
 		if new_velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Walk")
