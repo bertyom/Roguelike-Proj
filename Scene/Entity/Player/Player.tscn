@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scene/Entity/Player/Player.gd" id="1_xw4o8"]
 [ext_resource type="Script" path="res://Scene/Entity/Player/Player Weapons/weapon_manager.gd" id="3_q6c78"]
 [ext_resource type="PackedScene" uid="uid://3ovgaqoxo2nv" path="res://Scene/Entity/Player/Player Weapons/Steel Sword.tscn" id="4_vt2rh"]
-[ext_resource type="PackedScene" path="res://Scene/Entity/SoftCollision.tscn" id="5_02s5l"]
+[ext_resource type="PackedScene" uid="uid://0hxmonmpdi8m" path="res://Scene/Entity/SoftCollision.tscn" id="5_02s5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_adcac"]
 radius = 7.07107
@@ -188,6 +188,7 @@ script = ExtResource("3_q6c78")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="SoftCollision" parent="." instance=ExtResource("5_02s5l")]
-script = null
+push_strength = 500.0
+push_falloff = 200.0
 
 [editable path="SoftCollision"]

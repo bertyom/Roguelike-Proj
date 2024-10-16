@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b6m7fk211ep8s" path="res://Scene/Entity/Enemy/Components/DetectionBox.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c164madtb0wfl" path="res://Scene/Entity/Enemy/Components/UnDetectionBox.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://cggohs4jlwwlh" path="res://Image/UI/Enemy UI/EnemyHealthBarFrame.png" id="9"]
-[ext_resource type="PackedScene" uid="uid://6mrp71ci52kc" path="res://Scene/Entity/Enemy/Components/SoftCollision.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://0hxmonmpdi8m" path="res://Scene/Entity/SoftCollision.tscn" id="11"]
 [ext_resource type="Texture2D" uid="uid://dcmq7ms70ttom" path="res://Image/UI/Enemy UI/EnemyHealthBarProgress.png" id="14"]
 [ext_resource type="Texture2D" uid="uid://57vxe5ltcsqh" path="res://Image/UI/Enemy UI/EnemyHealthBarDarker.png" id="21"]
 
@@ -613,8 +613,11 @@ shape = SubResource("70")
 position = Vector2(0, -24)
 
 [node name="SoftCollision" parent="." instance=ExtResource("11")]
+push_strength = 15.0
+push_falloff = 7.0
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
+position = Vector2(0, -9)
 debug_color = Color(0.841776, 0.174201, 0.827622, 0.42)
 
 [connection signal="body_entered" from="WeaponContainer/AttackRangeDetector" to="." method="_on_attack_range_detector_body_entered"]
