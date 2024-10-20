@@ -8,8 +8,8 @@ var player_name = "Markus"
 var player_base_stats = {
 	"health": 100,
 	"max_health": 100,
-	"glint": 75,
-	"max_glint": 100,
+	"mana": 75,
+	"max_mana": 100,
 	"stamina": 50,
 	"max_stamina": 50,
 }

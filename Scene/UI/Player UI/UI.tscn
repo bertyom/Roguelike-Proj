@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c763sg1va44bi"]
+
+[ext_resource type="PackedScene" uid="uid://dij2pt8gwijuw" path="res://Scene/UI/Inventory/InventorySystem.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dban02ydfltvl" path="res://Scene/UI/Player UI/StatBars.tscn" id="3_jht3r"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Inventory" parent="." instance=ExtResource("2")]
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="UI Bars" parent="." instance=ExtResource("3_jht3r")]
+anchors_preset = -1
+offset_left = 4.0
+offset_top = 4.0
+
+[editable path="Inventory"]

@@ -2,7 +2,7 @@ extends Node
 
 var item_data = {}
 var item_stats = ["Attack", "Knockback", "Defense", "HealthRestored", "EnergyRestored", "ManaRestored"]
-var item_stats_labels = ["Attack", "Knockback", "Defense", "Health Restored", "Energy Restored", "Glint Restored"]
+var item_stats_labels = ["Attack", "Knockback", "Defense", "Health Restored", "Energy Restored", "mana Restored"]
 var equip_slot = {}
 var weapon_lookup_data = {}
 var enemy_weapon_stats = {}

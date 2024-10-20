@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://1pmbacqrr23f" path="res://Scene/tilemap.tscn" id="1_32odn"]
 [ext_resource type="PackedScene" uid="uid://dky8mdap1yoc4" path="res://Scene/Entity/Player/Player.tscn" id="2_h3b3y"]
 [ext_resource type="PackedScene" uid="uid://dowksu2vru8ua" path="res://Scene/Entity/Enemy/SkeletonMelee.tscn" id="2_odwtl"]
-[ext_resource type="PackedScene" uid="uid://dij2pt8gwijuw" path="res://Scene/UI/Inventory/InventorySystem.tscn" id="3_748l5"]
 [ext_resource type="PackedScene" uid="uid://d0m81gc61s6mq" path="res://Scene/Props/Interactables/FlyAmanita1.tscn" id="4_b01q6"]
+[ext_resource type="PackedScene" uid="uid://c763sg1va44bi" path="res://Scene/UI/Player UI/UI.tscn" id="5_paqd3"]
 
 [node name="TestMap" type="Node2D"]
 
@@ -17,12 +17,10 @@ position = Vector2(141, -7)
 
 [node name="Player" parent="." instance=ExtResource("2_h3b3y")]
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Inventory" parent="UI" instance=ExtResource("3_748l5")]
-visible = false
-
 [node name="FlyAmanita" parent="." instance=ExtResource("4_b01q6")]
 position = Vector2(115, 33)
 
+[node name="UI" parent="." instance=ExtResource("5_paqd3")]
+
 [editable path="Tilemap"]
+[editable path="UI"]

@@ -23,13 +23,13 @@ func update_max_health(amount):
 	PlayerData.player_base_stats["max_health"] += amount
 	emit_signal("player_stat_changed", "max_health", PlayerData.player_base_stats["health"], PlayerData.player_base_stats["max_health"])
 
-func update_glint(amount):
-	PlayerData.player_base_stats["glint"] += amount
-	emit_signal("player_stat_changed", "glint", PlayerData.player_base_stats["glint"], PlayerData.player_base_stats["max_glint"])
+func update_mana(amount):
+	PlayerData.player_base_stats["mana"] += amount
+	emit_signal("player_stat_changed", "mana", PlayerData.player_base_stats["mana"], PlayerData.player_base_stats["max_mana"])
 
-func update_max_glint(amount):
-	PlayerData.player_base_stats["max_glint"] += amount
-	emit_signal("player_stat_changed", "glint", PlayerData.player_base_stats["glint"], PlayerData.player_base_stats["max_glint"])
+func update_max_mana(amount):
+	PlayerData.player_base_stats["max_mana"] += amount
+	emit_signal("player_stat_changed", "mana", PlayerData.player_base_stats["mana"], PlayerData.player_base_stats["max_mana"])
 
 func update_stamina(amount):
 	PlayerData.player_base_stats["stamina"] += amount
