@@ -4,6 +4,7 @@ var can_attack = true
 var currently_swinging = false
 
 func setup():
+	super.setup()
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = 4.0
 	nav_agent.target_desired_distance = 4.0
@@ -23,27 +24,19 @@ func _attack():
 	currently_swinging = true
 
 func _physics_process(_delta):
-	nav_agent.target_position = PlayerData.player_node.global_position
-	var current_position: Vector2 = controlled_body.global_position
-	var next_position: Vector2 = nav_agent.get_next_path_position()
-	var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
-	controlled_body.velocity = new_velocity
-
+	var velocity = move_towards_player()
 	if can_attack:
 		_attack()
+	_update_animation(velocity)
 
-	_update_animation()
-	
-	
-
-func _update_animation():
+func _update_animation(velocity: Vector2):
 	if !currently_swinging:
-		if controlled_body.velocity.x >= 0:
+		if velocity.x >= 0:
 			controlled_body.animation_tree.travel("R_Walk")
 			weapon.animation_tree.travel("Right")
 		else:
 			controlled_body.animation_tree.travel("L_Walk")
-			weapon.animation_tree.travel("Right")
+			weapon.animation_tree.travel("Left")
 	else:
 		if controlled_body.facing_right:
 			controlled_body.animation_tree.travel("R_Walk")

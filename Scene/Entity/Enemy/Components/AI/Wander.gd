@@ -28,36 +28,39 @@ func setup():
 
 func _physics_process(_delta):
 	if !is_waiting:
-		var current_position: Vector2 = controlled_body.global_position
-		var next_position: Vector2 = nav_agent.get_next_path_position()
-
-		if nav_agent.is_navigation_finished() or stuck_timer.is_stopped():
+		var velocity = move_towards_waypoint(nav_agent.target_position)
+		_update_animation(velocity)
+		
+		if is_navigation_finished():
 			is_waiting = true
 			wander_timer.start(randf_range(0.5, 2.5))
-		else:
-			var new_velocity: Vector2 = (next_position - current_position).normalized() * controlled_body.movement_speed
-			controlled_body.velocity = new_velocity
-			if new_velocity.x >= 0:
-				controlled_body.animation_tree.travel("R_Walk")
-				weapon.animation_tree.travel("Right")
-			else:
-				controlled_body.animation_tree.travel("L_Walk")
-				weapon.animation_tree.travel("Left")
 	else:
 		controlled_body.velocity = Vector2.ZERO
-		if controlled_body.velocity.x >= 0:
+		_update_animation(Vector2.ZERO)
+
+func _choose_new_destination():
+	var random_distance = randf_range(min_distance, max_distance)
+	var random_angle = randf_range(0, 2 * PI)
+	var new_destination = start_wander_position + Vector2(random_distance, 0).rotated(random_angle)
+	update_pathfinding(new_destination)
+
+func _update_animation(velocity: Vector2):
+	if velocity == Vector2.ZERO:
+		if controlled_body.facing_right:
 			controlled_body.animation_tree.travel("R_Idle")
 			weapon.animation_tree.travel("Right")
 		else:
 			controlled_body.animation_tree.travel("L_Idle")
+			weapon.animation_tree.travel("Left")
+	else:
+		if velocity.x >= 0:
+			controlled_body.animation_tree.travel("R_Walk")
+			weapon.animation_tree.travel("Right")
+		else:
+			controlled_body.animation_tree.travel("L_Walk")
 			weapon.animation_tree.travel("Left")
 
 func _on_wander_timer_timeout():
 	_choose_new_destination()
 	is_waiting = false
 	stuck_timer.start(stuck_timeout)
-
-func _choose_new_destination():
-	var random_distance = randf_range(min_distance, max_distance)
-	var random_angle = randf_range(0, 2 * PI)
-	nav_agent.target_position = start_wander_position + Vector2(random_distance, 5).rotated(random_angle)

@@ -1,31 +1,24 @@
-extends Node
+extends AI_State
 
-var direction
-var target
-@onready var parent_node = $"../.."
-@onready var nav_agent = $"../../NavigationAgent2D"
-@export_enum("Passive", "Agressive", "None") var behaviour_type: String
+var starting_position: Vector2
 signal returned_to_original
 
-func start():
-	_setup()
-	
-func _setup():
-	nav_agent.set_target_location(parent_node.starting_position)
-	returned_to_original.connect(parent_node._on_Return)
+func setup():
+	super.setup()
+	starting_position = controlled_body.starting_position
+	update_pathfinding(starting_position)
+	returned_to_original.connect(controlled_body._on_Return)
 
 func _physics_process(_delta):
-	# If we've reached the starting position, go to the Idle state
-	if (parent_node.global_position - parent_node.starting_position).length() < 5:
+	if controlled_body.global_position.distance_to(starting_position) < 5:
 		emit_signal("returned_to_original")
 		return
 
-	# Otherwise, move towards the starting position
-	target = parent_node.global_position.direction_to(nav_agent.get_next_location())
-	direction = target + parent_node.push_vector
-	if target.x >= 0:
-		parent_node.anim_tree.travel("R_Walk")
+	var velocity = move_towards_target()
+	_update_animation(velocity)
+
+func _update_animation(velocity: Vector2):
+	if velocity.x >= 0:
+		controlled_body.animation_tree.travel("R_Walk")
 	else:
-		parent_node.anim_tree.travel("L_Walk")
-		
-	parent_node.move_and_slide(direction * parent_node.movement_speed)
+		controlled_body.animation_tree.travel("L_Walk")
