@@ -613,8 +613,6 @@ shape = SubResource("70")
 position = Vector2(0, -24)
 
 [node name="SoftCollision" parent="." instance=ExtResource("11")]
-push_strength = 15.0
-push_falloff = 7.0
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 position = Vector2(0, -9)

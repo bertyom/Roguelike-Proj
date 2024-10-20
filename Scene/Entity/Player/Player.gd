@@ -129,7 +129,7 @@ func _move():
 
 func apply_soft_collisions():
 	var push_vector = soft_collision.get_push_vector()
-	if push_vector != Vector2.ZERO:
+	if push_vector.length() > 0:
 		velocity += push_vector
 
 #region Dash logic

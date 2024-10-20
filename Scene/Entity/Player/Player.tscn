@@ -188,7 +188,5 @@ script = ExtResource("3_q6c78")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="SoftCollision" parent="." instance=ExtResource("5_02s5l")]
-push_strength = 500.0
-push_falloff = 200.0
 
 [editable path="SoftCollision"]

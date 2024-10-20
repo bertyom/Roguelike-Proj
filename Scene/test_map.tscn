@@ -22,5 +22,9 @@ position = Vector2(115, 33)
 
 [node name="UI" parent="." instance=ExtResource("5_paqd3")]
 
+[node name="Inventory" parent="UI" index="0"]
+visible = false
+
 [editable path="Tilemap"]
 [editable path="UI"]
+[editable path="UI/Inventory"]
