@@ -5,6 +5,6 @@ extends Node2D
 
 
 func _ready() -> void:
-	#GameMap.set_tilemap(self)
-	#GameMap.current_traverse_node = get_tree().get_first_node_in_group("tile_traverse")
-	pass
+	GameMap.set_tilemap(self)
+	GameMap.current_traverse_node = get_tree().get_first_node_in_group("tile_traverse")
+	#pass

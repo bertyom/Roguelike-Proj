@@ -28,9 +28,10 @@ func change_state(new_state: String):
 	active_state.enter()
 
 func temp_change_state(new_state: String, duration: float):
-	previous_state = active_state
-	change_state(new_state)
-	state_timer.start(duration)
+	if active_state.behaviour_type != "Dying":
+		previous_state = active_state
+		change_state(new_state)
+		state_timer.start(duration)
 
 func _on_state_timer_timeout():
 	if previous_state:

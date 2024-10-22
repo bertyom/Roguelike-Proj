@@ -19,7 +19,7 @@ func add_walls():
 	for x in range(world_size.x):
 		for y in range(world_size.y):
 			if matrix[x][y] == GameMap.proc_gen.FLOOR_ROOM or matrix[x][y] == GameMap.proc_gen.FLOOR_PATH:
-				for direction in GameMap.DIR_VECTORS.values():
+				for direction in GameMap.DIR_ALL.values():
 					var nx = x + direction.x
 					var ny = y + direction.y
 					if is_valid_position(nx, ny) and matrix[nx][ny] == GameMap.proc_gen.EMPTY:

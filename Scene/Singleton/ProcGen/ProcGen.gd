@@ -7,6 +7,7 @@ const EMPTY = 0
 const FLOOR_ROOM = 1
 const FLOOR_PATH = 2
 const WALL = 3
+const DOOR = 4
 
 func _on_game_map_tilemap_loaded() -> void:
 	tilemap = GameMap.current_tilemap_node.get_node("Floor")
@@ -26,3 +27,5 @@ func apply_matrix_to_tilemap(matrix: Array) -> void:
 					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(1, 1))
 				WALL:
 					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+				DOOR:
+					tilemap.set_cell(Vector2i(x, y), 0, Vector2i(2, 1))

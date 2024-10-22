@@ -5,7 +5,6 @@ var stopped = false
 func _physics_process(_delta):
 	if not stopped:
 		controlled_body.velocity = Vector2.ZERO
-		
 		stopped = true
 	
 	if controlled_body.facing_right:

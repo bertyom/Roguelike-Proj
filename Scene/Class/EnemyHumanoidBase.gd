@@ -1,6 +1,5 @@
 extends CharacterBody2D
 class_name EnemyHumanoidBase
-signal facing_right_changed #to update weapon facing in real time
 
 #Universal node references
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -78,16 +77,18 @@ func _show_damage_indicator(damage: int):
 
 func take_damage(amount: int, knockback: float, attacker_position: Vector2):
 	current_hp -= amount
-	update_hp_bar()
-	_show_damage_indicator(amount)
-	_unknown_hurt(attacker_position)
-	if knockback > 0:
-		if knockback > knockback_resistance and current_hp > 0:
-			ai_states.temp_change_state("Stagger", 0.5)
-		apply_knockback(knockback*5, attacker_position)
 	if current_hp <= 0:
 		weapon_container.visible = false
 		ai_states.change_state("Dead")
+		return
+	else:
+		update_hp_bar()
+		_show_damage_indicator(amount)
+		_unknown_hurt(attacker_position)
+		if knockback > 0:
+			if knockback > knockback_resistance and current_hp > 0:
+				ai_states.temp_change_state("Stagger", 0.5)
+			apply_knockback(knockback*5, attacker_position)
 
 func _unknown_hurt(location):
 	if ai_states.active_state.behaviour_type == "Passive":

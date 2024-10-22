@@ -138,6 +138,7 @@ hit_from_inside = true
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_adcac")
+disabled = true
 
 [node name="Sprites" type="Node2D" parent="."]
 

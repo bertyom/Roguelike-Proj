@@ -2,8 +2,6 @@ extends ProcGenAlgo
 
 var root_node: Branch
 var paths: Array = []
-var astar: AStar2D
-
 
 func start():
 	root_node = Branch.new(Vector2i(0,0), Vector2i(80,80))
@@ -11,99 +9,92 @@ func start():
 	return generate()
 
 func generate():
-	initialize_matrix(80,80) #inherited from ProcGenAlgo
+	initialize_matrix(80,80)
 	add_rooms()
-	create_astar_graph()
-	add_paths()
-	add_walls() #inherited from ProcGenAlgo
+	connect_rooms_with_simple_paths()
+	add_walls()
 	return matrix
 
 func add_rooms():
 	var rng = RandomNumberGenerator.new()
 	for leaf in root_node.get_leaves():
-		var padding = Vector4i(rng.randi_range(2, 3), rng.randi_range(2, 3), rng.randi_range(2, 3), rng.randi_range(2, 3))
-		var room = {
-			"position": Vector2i(leaf.position.x + padding.x, leaf.position.y + padding.y),
-			"size": Vector2i(leaf.size.x - padding.x - padding.z, leaf.size.y - padding.y - padding.w)
+		var padding = Vector4i(
+			rng.randi_range(2, 3),
+			rng.randi_range(2, 3),
+			rng.randi_range(2, 3),
+			rng.randi_range(2, 3)
+		)
+		
+		# Calculate room corners
+		var top_left = Vector2i(
+			leaf.position.x + padding.x,
+			leaf.position.y + padding.y
+		)
+		var bottom_right = Vector2i(
+			leaf.position.x + leaf.size.x - padding.z,
+			leaf.position.y + leaf.size.y - padding.w
+		)
+		
+		# Store room data efficiently
+		var room_data = {
+			"corners": {
+				"top_left": top_left,
+				"bottom_right": bottom_right
+			},
+			"center": Vector2i(
+				top_left.x + (bottom_right.x - top_left.x) / 2,
+				top_left.y + (bottom_right.y - top_left.y) / 2
+			)
 		}
-		rooms.append(room)
-		for x in range(room.size.x):
-			for y in range(room.size.y):
-				set_matrix_cell(room.position.x + x, room.position.y + y, GameMap.proc_gen.FLOOR_ROOM)
+		rooms.append(room_data)
+		
+		# Fill room in matrix
+		for x in range(top_left.x, bottom_right.x + 1):
+			for y in range(top_left.y, bottom_right.y + 1):
+				set_matrix_cell(x, y, GameMap.proc_gen.FLOOR_ROOM)
 
-func add_paths():
-	var room_centers = []
+func connect_rooms_with_simple_paths():
+	# Connect each room to the next one
+	for i in range(rooms.size() - 1):
+		var current_room = rooms[i]
+		var next_room = rooms[i + 1]
+		create_simple_path(current_room.center, next_room.center)
+
+func create_simple_path(start: Vector2i, end: Vector2i):
+	# First try straight line
+	if start.x == end.x or start.y == end.y:
+		create_straight_path(start, end)
+	else:
+		# Create dogleg (L-shaped) path
+		var corner = Vector2i(end.x, start.y)  # Could also be (start.x, end.y)
+		create_straight_path(start, corner)
+		create_straight_path(corner, end)
+
+func create_straight_path(start: Vector2i, end: Vector2i):
+	var direction = (end - start).sign()
+	var current = start
+	
+	while current != end + direction:
+		if matrix[current.x][current.y] != GameMap.proc_gen.FLOOR_ROOM:
+			set_matrix_cell(current.x, current.y, GameMap.proc_gen.FLOOR_PATH)
+		current += direction
+
+# Helper function to check if point is inside a room
+func is_point_in_room(point: Vector2i) -> bool:
 	for room in rooms:
-		room_centers.append(Vector2(room.position.x + room.size.x / 2, room.position.y + room.size.y / 2))
-	
-	var mst = get_minimum_spanning_tree(room_centers)
-	for edge in mst:
-		var start = room_centers[edge[0]]
-		var end = room_centers[edge[1]]
-		var path = astar.get_point_path(astar.get_closest_point(start), astar.get_closest_point(end))
-		for point in path:
-			if matrix[point.x][point.y] != GameMap.proc_gen.FLOOR_ROOM:
-				set_matrix_cell(int(point.x), int(point.y), GameMap.proc_gen.FLOOR_PATH)
+		if (point.x >= room.corners.top_left.x and 
+			point.x <= room.corners.bottom_right.x and
+			point.y >= room.corners.top_left.y and 
+			point.y <= room.corners.bottom_right.y):
+			return true
+	return false
 
-#FIXME Keep it simple, stupid. Write your own orthogonal connection algo
-func create_astar_graph():
-	astar = AStar2D.new()
-	for x in range(world_size.x):
-		for y in range(world_size.y):
-			if matrix[x][y] == GameMap.proc_gen.FLOOR_ROOM or matrix[x][y] == GameMap.proc_gen.EMPTY:
-				var point_id = astar.get_available_point_id()
-				astar.add_point(point_id, Vector2(x, y))
-				
-				# Connect to left and top neighbors
-				for dx in [-1, 0]:
-					for dy in [-1, 0]:
-						if dx == 0 and dy == 0:
-							continue
-						var nx = x + dx
-						var ny = y + dy
-						if nx >= 0 and ny >= 0 and (matrix[nx][ny] == GameMap.proc_gen.FLOOR_ROOM or matrix[nx][ny] == GameMap.proc_gen.EMPTY):
-							var neighbor_id = astar.get_closest_point(Vector2(nx, ny))
-							if not astar.are_points_connected(point_id, neighbor_id):
-								astar.connect_points(point_id, neighbor_id)
-
-func get_minimum_spanning_tree(points):
-	var edges = []
-	for i in range(points.size()):
-		for j in range(i + 1, points.size()):
-			var dist = points[i].distance_to(points[j])
-			edges.append([i, j, dist])
-	
-	edges.sort_custom(func(a, b): return a[2] < b[2])
-	
-	var mst = []
-	var disjoint_set = DisjointSet.new(points.size())
-	
-	for edge in edges:
-		if disjoint_set.find(edge[0]) != disjoint_set.find(edge[1]):
-			mst.append(edge)
-			disjoint_set.union(edge[0], edge[1])
-	#print(mst)
-	return mst
-	
-
-func is_inside_padding(x, y, leaf, padding):
-	return x <= padding.x or y <= padding.y or x >= leaf.size.x - padding.z or y >= leaf.size.y - padding.w
-
-class DisjointSet:
-	var parent: Array
-
-	func _init(size: int):
-		parent = []
-		for i in range(size):
-			parent.append(i)
-
-	func find(x: int) -> int:
-		if parent[x] != x:
-			parent[x] = find(parent[x])
-		return parent[x]
-
-	func union(x: int, y: int):
-		var root_x = find(x)
-		var root_y = find(y)
-		if root_x != root_y:
-			parent[root_y] = root_x
+# Helper function to get room containing point
+func get_room_containing_point(point: Vector2i) -> Dictionary:
+	for room in rooms:
+		if (point.x >= room.corners.top_left.x and 
+			point.x <= room.corners.bottom_right.x and
+			point.y >= room.corners.top_left.y and 
+			point.y <= room.corners.bottom_right.y):
+			return room
+	return {}

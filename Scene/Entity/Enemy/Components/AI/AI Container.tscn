@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv0wxgaeybvnq"]
+[gd_scene load_steps=10 format=3 uid="uid://dv0wxgaeybvnq"]
 
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AI Container.gd" id="1_tek01"]
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Idle.gd" id="2_4s8mx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Stagger.gd" id="6_mk2sm"]
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Dead.gd" id="7_urm4u"]
 [ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AttackMelee.gd" id="8_4fdkj"]
+[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Return.gd" id="8_6xwn1"]
 
 [node name="States" type="Node"]
 script = ExtResource("1_tek01")
@@ -41,6 +42,8 @@ script = ExtResource("7_urm4u")
 behaviour_type = "None"
 
 [node name="Return" type="Node" parent="."]
+script = ExtResource("8_6xwn1")
+behaviour_type = "Dying"
 
 [node name="AttackMelee" type="Node" parent="."]
 script = ExtResource("8_4fdkj")

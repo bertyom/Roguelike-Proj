@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dowksu2vru8ua"]
+[gd_scene load_steps=59 format=3 uid="uid://dowksu2vru8ua"]
 
 [ext_resource type="Texture2D" uid="uid://btxmc2auodybc" path="res://Image/Sprites/Entity/Enemy/SkeletonBase.png" id="1"]
 [ext_resource type="Script" path="res://Scene/Class/EnemyHumanoidBase.gd" id="1_jnkoy"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bu6ylxuqdyjtn" path="res://Scene/Entity/Enemy/Components/enemy_weapon_container.tscn" id="2_ojljw"]
 [ext_resource type="PackedScene" uid="uid://li2w6s8kvbhp" path="res://Scene/Entity/Enemy/Enemy Weapons/RustyGlaive.tscn" id="2_vu85k"]
 [ext_resource type="PackedScene" uid="uid://s2iunln0ceoe" path="res://Scene/UI/Enemy UI/EnemyIconPopup.tscn" id="5"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Return.gd" id="5_6tkse"]
 [ext_resource type="PackedScene" uid="uid://b6m7fk211ep8s" path="res://Scene/Entity/Enemy/Components/DetectionBox.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c164madtb0wfl" path="res://Scene/Entity/Enemy/Components/UnDetectionBox.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://cggohs4jlwwlh" path="res://Image/UI/Enemy UI/EnemyHealthBarFrame.png" id="9"]
@@ -539,8 +538,8 @@ collision_mask = 4
 [node name="States" parent="." node_paths=PackedStringArray("active_state") instance=ExtResource("2_m7vvh")]
 active_state = NodePath("Wander")
 
-[node name="Return" parent="States" index="7"]
-script = ExtResource("5_6tkse")
+[node name="Dead" parent="States" index="6"]
+behaviour_type = "Dying"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")

@@ -1,7 +1,7 @@
 extends Node
 class_name AI_State
 
-@export_enum("Passive", "Agressive", "Attacking", "None") var behaviour_type: String
+@export_enum("Passive", "Agressive", "Attacking", "Dying", "None") var behaviour_type: String
 @export var controlled_body: CharacterBody2D
 @export var weapon: EnemyWeaponBase
 @export var nav_agent: NavigationAgent2D
@@ -41,7 +41,6 @@ func move_towards_player() -> Vector2:
 	if PlayerData.player_node:
 		update_pathfinding(PlayerData.player_node.global_position)
 		var distance_to_player = get_distance_to_player()
-		
 		if distance_to_player > min_distance_threshold:
 			return move_towards_target()
 		else:
