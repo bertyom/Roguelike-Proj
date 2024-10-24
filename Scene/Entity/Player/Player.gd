@@ -116,7 +116,7 @@ func _move():
 		MovementState.DASH:
 			speed = dash_speed
 
-	if !matching_directions and movement_state != MovementState.DASH:
+	if !matching_directions and movement_state != MovementState.DASH and velocity.x != 0:
 		speed *= unmatching_direction_speed_multiplier
 	
 	if attack_state != AttackState.IDLE:
