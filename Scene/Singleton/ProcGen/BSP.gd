@@ -11,7 +11,7 @@ func start():
 func generate():
 	initialize_matrix(80,80)
 	add_rooms()
-	connect_rooms()
+	connect_rooms_with_alternatives()
 	add_walls()
 	return matrix
 
@@ -19,10 +19,10 @@ func add_rooms():
 	var rng = RandomNumberGenerator.new()
 	for leaf in root_node.get_leaves():
 		var padding = Vector4i(
-			rng.randi_range(2, 3),
-			rng.randi_range(2, 3),
-			rng.randi_range(2, 3),
-			rng.randi_range(2, 3)
+			rng.randi_range(3, 4),
+			rng.randi_range(3, 4),
+			rng.randi_range(3, 4),
+			rng.randi_range(3, 4)
 		)
 		
 		# Calculate room corners
@@ -68,7 +68,7 @@ func union_sets(parent: Array, x: int, y: int) -> bool:
 		return true
 	return false
 
-func connect_rooms():
+func connect_rooms_with_alternatives():
 	# Create edges between all rooms
 	var edges = []
 	for i in range(rooms.size()):
@@ -89,17 +89,43 @@ func connect_rooms():
 	
 	# Build MST using Kruskal's algorithm
 	var mst_edges = []
+	var additional_edges = []
+	var rng = RandomNumberGenerator.new()
+	
 	for edge in edges:
 		if union_sets(parent, edge.room1, edge.room2):
 			mst_edges.append(edge)
 			if mst_edges.size() == rooms.size() - 1:
 				break
 	
-	# Connect rooms using MST edges
-	for edge in mst_edges:
+	# Add additional paths based on certain criteria
+	for edge in edges:
+		# Skip edges already in MST
+		if edge in mst_edges:
+			continue
+			
+		# Only consider relatively short connections
+		# Adjust the multiplier (1.5) to control how far apart rooms can be for alternative paths
+		var closest_mst_distance = INF
+		for mst_edge in mst_edges:
+			closest_mst_distance = min(closest_mst_distance, mst_edge.distance)
+		
+		if edge.distance <= closest_mst_distance * 1.5:
+			# Add the edge with a probability (adjust 0.3 to control density of alternative paths)
+			if rng.randf() < 0.3:
+				additional_edges.append(edge)
+	
+	# Connect rooms using both MST and additional edges
+	for edge in mst_edges + additional_edges:
 		var room1 = rooms[edge.room1]
 		var room2 = rooms[edge.room2]
-		place_and_connect_rooms(room1, room2)
+		
+		# For additional paths, try to use different access points
+		if edge in additional_edges:
+			place_and_connect_rooms_alternative(room1, room2)
+		else:
+			place_and_connect_rooms(room1, room2)
+		
 		room1.connected = true
 		room2.connected = true
 
@@ -115,6 +141,18 @@ func place_and_connect_rooms(room1: Dictionary, room2: Dictionary):
 	create_simple_path(access1, path_start)  # Room1 to corridor
 	create_simple_path(path_start, path_end)  # Main corridor
 	create_simple_path(path_end, access2)  # Corridor to Room2
+
+func place_and_connect_rooms_alternative(room1: Dictionary, room2: Dictionary):
+	# Get alternative access points by trying different walls than the primary connection
+	var access1 = get_alternative_access_point(room1, room2.center)
+	var access2 = get_alternative_access_point(room2, room1.center)
+	
+	var path_start = get_corridor_point(access1, room1)
+	var path_end = get_corridor_point(access2, room2)
+	
+	create_simple_path(access1, path_start)
+	create_simple_path(path_start, path_end)
+	create_simple_path(path_end, access2)
 
 func get_best_access_point(room: Dictionary, target_pos: Vector2i) -> Vector2i:
 	var dx = target_pos.x - room.center.x
@@ -137,6 +175,45 @@ func get_best_access_point(room: Dictionary, target_pos: Vector2i) -> Vector2i:
 			point.y = room.corners.bottom_right.y + 1  # South wall
 		else:
 			point.y = room.corners.top_left.y - 1      # North wall
+	
+	# Adjust point to be one tile away from corners
+	if point.x == room.corners.bottom_right.x + 1 or point.x == room.corners.top_left.x - 1:
+		point.y = clamp(point.y, 
+			room.corners.top_left.y + 1, 
+			room.corners.bottom_right.y - 1)
+	else:
+		point.x = clamp(point.x, 
+			room.corners.top_left.x + 1, 
+			room.corners.bottom_right.x - 1)
+	
+	return point
+
+func get_alternative_access_point(room: Dictionary, target_pos: Vector2i) -> Vector2i:
+	var dx = target_pos.x - room.center.x
+	var dy = target_pos.y - room.center.y
+	var rng = RandomNumberGenerator.new()
+	
+	var point = Vector2i()
+	
+	# Choose a wall semi-randomly, with preference for walls NOT closest to target
+	if rng.randf() < 0.7:  # 70% chance to choose the non-optimal wall
+		if abs(dx) > abs(dy):
+			# Original would choose east/west, so we choose north/south
+			point.x = room.center.x
+			if rng.randf() < 0.5:
+				point.y = room.corners.bottom_right.y + 1  # South wall
+			else:
+				point.y = room.corners.top_left.y - 1      # North wall
+		else:
+			# Original would choose north/south, so we choose east/west
+			point.y = room.center.y
+			if rng.randf() < 0.5:
+				point.x = room.corners.bottom_right.x + 1  # East wall
+			else:
+				point.x = room.corners.top_left.x - 1      # West wall
+	else:
+		# 30% chance to use the original optimal wall selection
+		return get_best_access_point(room, target_pos)
 	
 	# Adjust point to be one tile away from corners
 	if point.x == room.corners.bottom_right.x + 1 or point.x == room.corners.top_left.x - 1:
