@@ -54,39 +54,54 @@ func add_rooms():
 			for y in range(top_left.y, bottom_right.y + 1):
 				set_matrix_cell(x, y, GameMap.proc_gen.FLOOR_ROOM)
 
+# Helper functions for MST
+func find_set(parent: Array, x: int) -> int:
+	if parent[x] != x:
+		parent[x] = find_set(parent, parent[x])
+	return parent[x]
+
+func union_sets(parent: Array, x: int, y: int) -> bool:
+	var px = find_set(parent, x)
+	var py = find_set(parent, y)
+	if px != py:
+		parent[px] = py
+		return true
+	return false
+
 func connect_rooms():
-	# First find closest room pairs
-	var room_pairs = []
+	# Create edges between all rooms
+	var edges = []
 	for i in range(rooms.size()):
-		var closest_distance = INF
-		var closest_room = -1
-		
-		for j in range(rooms.size()):
-			if i != j:
-				var dist = rooms[i].center.distance_to(rooms[j].center)
-				if dist < closest_distance:
-					closest_distance = dist
-					closest_room = j
-		
-		if closest_room != -1:
-			room_pairs.append({
+		for j in range(i + 1, rooms.size()):
+			edges.append({
 				"room1": i,
-				"room2": closest_room,
-				"distance": closest_distance
+				"room2": j,
+				"distance": rooms[i].center.distance_to(rooms[j].center)
 			})
 	
-	# Sort pairs by distance
-	room_pairs.sort_custom(func(a, b): return a.distance < b.distance)
+	# Sort edges by distance
+	edges.sort_custom(func(a, b): return a.distance < b.distance)
 	
-	# Connect rooms and place access points
-	for pair in room_pairs:
-		var room1 = rooms[pair.room1]
-		var room2 = rooms[pair.room2]
-		
-		if !room1.connected or !room2.connected:
-			place_and_connect_rooms(room1, room2)
-			room1.connected = true
-			room2.connected = true
+	# Initialize disjoint set for MST
+	var parent = []
+	for i in range(rooms.size()):
+		parent.append(i)
+	
+	# Build MST using Kruskal's algorithm
+	var mst_edges = []
+	for edge in edges:
+		if union_sets(parent, edge.room1, edge.room2):
+			mst_edges.append(edge)
+			if mst_edges.size() == rooms.size() - 1:
+				break
+	
+	# Connect rooms using MST edges
+	for edge in mst_edges:
+		var room1 = rooms[edge.room1]
+		var room2 = rooms[edge.room2]
+		place_and_connect_rooms(room1, room2)
+		room1.connected = true
+		room2.connected = true
 
 func place_and_connect_rooms(room1: Dictionary, room2: Dictionary):
 	var access1 = get_best_access_point(room1, room2.center)
