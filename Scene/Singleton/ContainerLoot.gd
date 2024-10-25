@@ -5,4 +5,5 @@ var current_container_ID
 
 
 func _ready():
-	container_loot = CommonFunctions.parse_json("res://Data/Containers.json")
+	#container_loot = CommonFunctions.parse_json("res://Data/Containers.json")
+	pass

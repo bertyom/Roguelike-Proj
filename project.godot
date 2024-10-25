@@ -19,10 +19,11 @@ config/icon="res://icon.svg"
 
 GameMap="*res://Scene/Singleton/GameMap.tscn"
 CommonFunctions="*res://Scene/Singleton/CommonFunctions.gd"
-ContainerLoot="*res://Scene/Singleton/ContainerLoot.gd"
 GameData="*res://Scene/Singleton/GameData.gd"
 PlayerData="*res://Scene/Singleton/PlayerData.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+DatabaseManager="*res://Scene/Singleton/DatabaseManager.gd"
+ContainerLoot="*res://Scene/Singleton/ContainerLoot.gd"
 
 [dialogue_manager]
 

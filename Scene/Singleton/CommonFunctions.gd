@@ -52,7 +52,7 @@ func _update_inventory_UI():
 	for i in PlayerData.inv_data.keys():
 		var inv_slot = gridcontainer.get_node(str(i))
 		if PlayerData.inv_data[i]["Item"] != null:
-			var item_name = GameData.item_data[str(PlayerData.inv_data[i]["Item"])]["Name"]
+			var item_name = DatabaseManager.item_cache[str(PlayerData.inv_data[i]["Item"])]["Name"]
 			var icon_texture = load("res://Image/UI/Inventory/Icons/"+item_name+".png")
 			inv_slot.get_node("Icon").set_texture(icon_texture)
 			var item_stack = PlayerData.inv_data[i]["StackSize"]
@@ -72,7 +72,7 @@ func _update_container_UI():
 	for i in container_data.keys():
 		var inv_slot = gridcontainer.get_node(str(i))
 		if container_data[i]["Item"] != null:
-			var item_name = GameData.item_data[str(container_data[i]["Item"])]["Name"]
+			var item_name = DatabaseManager.item_cache[str(container_data[i]["Item"])]["Name"]
 			var icon_texture = load("res://Image/UI/Inventory/Icons/"+item_name+".png")
 			inv_slot.get_node("Icon").set_texture(icon_texture)
 			var item_stack = container_data[i]["StackSize"]
@@ -85,7 +85,7 @@ func _update_container_UI():
 			inv_slot.get_node("Stack").set_text("")
 
 func _add_item(item_ID,quantity):
-	max_stack = GameData.item_data[str(item_ID)]["MaxStack"]
+	max_stack = DatabaseManager.item_cache[str(item_ID)]["MaxStack"]
 	for i in range(1, 80):
 		slot_name = "InvSlot" +str(i)
 		slot_data = PlayerData.inv_data.get(slot_name)
@@ -127,8 +127,8 @@ func _transfer_from_inv(slot_name):
 		var cnt_slot_data
 		var item_to_transfer = PlayerData.inv_data[slot_name]["Item"]
 		var stack_to_transfer = PlayerData.inv_data[slot_name]["StackSize"]
-		var max_stack = GameData.item_data[str(item_to_transfer)]["MaxStack"]
-		var is_stackable = GameData.item_data[str(item_to_transfer)]["IsStackable"]
+		var max_stack = DatabaseManager.item_cache[str(item_to_transfer)]["MaxStack"]
+		var is_stackable = DatabaseManager.item_cache[str(item_to_transfer)]["IsStackable"]
 		if ContainerLoot.current_container_ID != null:
 			container_data = ContainerLoot.container_loot[ContainerLoot.current_container_ID]
 		for i in container_data:
@@ -166,8 +166,8 @@ func _transfer_from_cnt(slot_name):
 		var inv_slot_data
 		var item_to_transfer = ContainerLoot.container_loot[ContainerLoot.current_container_ID][slot_name]["Item"]
 		var stack_to_transfer = ContainerLoot.container_loot[ContainerLoot.current_container_ID][slot_name]["StackSize"]
-		var max_stack = GameData.item_data[str(item_to_transfer)]["MaxStack"]
-		var is_stackable = GameData.item_data[str(item_to_transfer)]["IsStackable"]
+		var max_stack = DatabaseManager.item_cache[str(item_to_transfer)]["MaxStack"]
+		var is_stackable = DatabaseManager.item_cache[str(item_to_transfer)]["IsStackable"]
 		for i in PlayerData.inv_data:
 			inv_slot_data = PlayerData.inv_data[i]
 			# If the slot is empty, move the items to the slot and break the loop

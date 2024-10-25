@@ -10,7 +10,7 @@ func _ready():
 	for i in container_data.keys():
 		var cnt_slot_new = template_cnt_slot.instantiate()
 		if container_data[i]["Item"] != null:
-			var item_name = GameData.item_data[str(container_data[i]["Item"])]["Name"]
+			var item_name = DatabaseManager.item_cache[str(container_data[i]["Item"])]["Name"]
 			var icon_texture = load("res://Image/UI/Inventory/Icons/"+item_name+".png")
 			cnt_slot_new.get_node("Icon").set_texture(icon_texture)
 			var item_stack = container_data[i]["StackSize"]

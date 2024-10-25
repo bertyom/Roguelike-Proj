@@ -22,13 +22,13 @@ func _get_drag_data(_pos):
 	if origin_data_dict[inv_slot]["Item"] != null:
 		var data = {}
 		data["origin_node"] = self
-		data["origin_item_name"] = GameData.item_data[str(origin_data_dict[inv_slot]["Item"])]["Name"]
+		data["origin_item_name"] = DatabaseManager.item_cache[str(origin_data_dict[inv_slot]["Item"])]["Name"]
 		data["origin_item_id"] = origin_data_dict[inv_slot]["Item"]
 		data["origin_panel"] = "Inventory"
-		data["origin_equipslot"] = GameData.item_data[str(origin_data_dict[inv_slot]["Item"])]["EquipSlot"]
-		data["origin_stackable"] = GameData.item_data[str(origin_data_dict[inv_slot]["Item"])]["IsStackable"]
+		data["origin_equipslot"] = DatabaseManager.item_cache[str(origin_data_dict[inv_slot]["Item"])]["EquipSlot"]
+		data["origin_stackable"] = DatabaseManager.item_cache[str(origin_data_dict[inv_slot]["Item"])]["IsStackable"]
 		data["origin_stack"] = origin_data_dict[inv_slot]["StackSize"]
-		data["origin_stack_limit"] = GameData.item_data[str(origin_data_dict[inv_slot]["Item"])]["MaxStack"]
+		data["origin_stack_limit"] = DatabaseManager.item_cache[str(origin_data_dict[inv_slot]["Item"])]["MaxStack"]
 		data["origin_texture"] = texture
 		
 		drag_texture = TextureRect.new()
@@ -67,7 +67,7 @@ func _can_drop_data(_pos, data):
 			data["target_texture"] = texture
 			data["target_stack"] = target_data_dict[target_slot]["StackSize"]
 			if data["origin_panel"] == "Equipment":
-				var target_equipslot = GameData.item_data[str(target_data_dict[target_slot]["Item"])]["EquipSlot"]
+				var target_equipslot = DatabaseManager.item_cache[str(target_data_dict[target_slot]["Item"])]["EquipSlot"]
 				if target_equipslot == data["origin_equipslot"]:
 					return true
 				else:

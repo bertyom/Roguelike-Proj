@@ -33,15 +33,15 @@ func _ready():
 			
 	if valid == true:
 		if stacksize > 1:
-			get_node("Texture/MarginContainer/V1/ItemName").set_text(GameData.item_data[item_id]["Name"]+" x"+str(stacksize))
+			get_node("Texture/MarginContainer/V1/ItemName").set_text(DatabaseManager.item_cache[item_id]["Name"]+" x"+str(stacksize))
 		else: 
-			get_node("Texture/MarginContainer/V1/ItemName").set_text(GameData.item_data[item_id]["Name"])
+			get_node("Texture/MarginContainer/V1/ItemName").set_text(DatabaseManager.item_cache[item_id]["Name"])
 		var item_stat = 1
 		for i in range(GameData.item_stats.size()):
 			var stat_name = GameData.item_stats[i]
 			var stat_label = GameData.item_stats_labels[i]
-			if GameData.item_data[item_id][stat_name] != null:
-				var stat_value = GameData.item_data[item_id][stat_name]
+			if DatabaseManager.item_cache[item_id][stat_name] != null:
+				var stat_value = DatabaseManager.item_cache[item_id][stat_name]
 				get_node("Texture/MarginContainer/V1/V2/Stat" + str(item_stat) + "/Label").set_text(stat_label + ": " +str(stat_value))
 				item_stat += 1
 #endregion
