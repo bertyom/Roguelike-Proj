@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://w6h1f0cmdujj"]
 
 [ext_resource type="Texture2D" uid="uid://7c7ap2rf4l2r" path="res://Image/Sprites/Entity/Player/Player Weapons/WoodLongbow.png" id="1_b2wmc"]
-[ext_resource type="Script" path="res://Scene/Class/RangedWeapon.gd" id="1_wv4ku"]
+[ext_resource type="Script" uid="uid://c2thrykpnykvi" path="res://Scene/Class/RangedWeapon.gd" id="1_wv4ku"]
 
 [sub_resource type="Animation" id="4"]
 resource_name = "Left"
@@ -860,25 +860,25 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j52r0"]
 _data = {
-"Left": SubResource("4"),
-"LeftAttack": SubResource("25"),
-"LeftBottom": SubResource("5"),
-"LeftBottomAttack": SubResource("28"),
-"LeftBottomWindup": SubResource("40"),
-"LeftTop": SubResource("6"),
-"LeftTopAttack": SubResource("27"),
-"LeftTopWindup": SubResource("41"),
-"LeftWindup": SubResource("38"),
-"RESET": SubResource("39"),
-"Right": SubResource("1"),
-"RightAttack": SubResource("29"),
-"RightBottom": SubResource("2"),
-"RightBottomAttack": SubResource("31"),
-"RightBottomWindup": SubResource("44"),
-"RightTop": SubResource("3"),
-"RightTopAttack": SubResource("30"),
-"RightTopWindup": SubResource("43"),
-"RightWindup": SubResource("42")
+&"Left": SubResource("4"),
+&"LeftAttack": SubResource("25"),
+&"LeftBottom": SubResource("5"),
+&"LeftBottomAttack": SubResource("28"),
+&"LeftBottomWindup": SubResource("40"),
+&"LeftTop": SubResource("6"),
+&"LeftTopAttack": SubResource("27"),
+&"LeftTopWindup": SubResource("41"),
+&"LeftWindup": SubResource("38"),
+&"RESET": SubResource("39"),
+&"Right": SubResource("1"),
+&"RightAttack": SubResource("29"),
+&"RightBottom": SubResource("2"),
+&"RightBottomAttack": SubResource("31"),
+&"RightBottomWindup": SubResource("44"),
+&"RightTop": SubResource("3"),
+&"RightTopAttack": SubResource("30"),
+&"RightTopWindup": SubResource("43"),
+&"RightWindup": SubResource("42")
 }
 
 [node name="Longbow" type="Marker2D"]

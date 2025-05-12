@@ -1,6 +1,6 @@
 [gd_scene load_steps=58 format=3 uid="uid://3ovgaqoxo2nv"]
 
-[ext_resource type="Script" path="res://Scene/Class/MeleeWeapon.gd" id="1_1pwgv"]
+[ext_resource type="Script" uid="uid://smjbedcnhxum" path="res://Scene/Class/MeleeWeapon.gd" id="1_1pwgv"]
 [ext_resource type="Texture2D" uid="uid://dpal0mk7yrnre" path="res://Image/Sprites/Entity/Player/Player Weapons/SteelSword.png" id="1_lgykb"]
 [ext_resource type="Texture2D" uid="uid://cxlk8iwuavsqt" path="res://Image/Sprites/Entity/Player/Player Weapons/trail_sword.png" id="3_eay7e"]
 
@@ -1187,24 +1187,24 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dv4oy"]
 _data = {
-"Left_Attack": SubResource("25"),
-"Left_Attack_Bottom": SubResource("28"),
-"Left_Attack_Top": SubResource("27"),
-"Left_Idle": SubResource("4"),
-"Left_Idle_Bottom": SubResource("5"),
-"Left_Idle_Top": SubResource("6"),
-"Left_Windup": SubResource("38"),
-"Left_Windup_Bottom": SubResource("40"),
-"Left_Windup_Top": SubResource("41"),
-"Right_Attack": SubResource("29"),
-"Right_Attack_Bottom": SubResource("31"),
-"Right_Attack_Top": SubResource("30"),
-"Right_Idle": SubResource("1"),
-"Right_Idle_Bottom": SubResource("2"),
-"Right_Idle_Top": SubResource("3"),
-"Right_Windup": SubResource("42"),
-"Right_Windup_Bottom": SubResource("44"),
-"Right_Windup_Top": SubResource("43")
+&"Left_Attack": SubResource("25"),
+&"Left_Attack_Bottom": SubResource("28"),
+&"Left_Attack_Top": SubResource("27"),
+&"Left_Idle": SubResource("4"),
+&"Left_Idle_Bottom": SubResource("5"),
+&"Left_Idle_Top": SubResource("6"),
+&"Left_Windup": SubResource("38"),
+&"Left_Windup_Bottom": SubResource("40"),
+&"Left_Windup_Top": SubResource("41"),
+&"Right_Attack": SubResource("29"),
+&"Right_Attack_Bottom": SubResource("31"),
+&"Right_Attack_Top": SubResource("30"),
+&"Right_Idle": SubResource("1"),
+&"Right_Idle_Bottom": SubResource("2"),
+&"Right_Idle_Top": SubResource("3"),
+&"Right_Windup": SubResource("42"),
+&"Right_Windup_Bottom": SubResource("44"),
+&"Right_Windup_Top": SubResource("43")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttgw4"]

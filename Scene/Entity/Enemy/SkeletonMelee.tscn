@@ -1,7 +1,7 @@
 [gd_scene load_steps=59 format=3 uid="uid://dowksu2vru8ua"]
 
 [ext_resource type="Texture2D" uid="uid://btxmc2auodybc" path="res://Image/Sprites/Entity/Enemy/SkeletonBase.png" id="1"]
-[ext_resource type="Script" path="res://Scene/Class/EnemyHumanoidBase.gd" id="1_jnkoy"]
+[ext_resource type="Script" uid="uid://4w03hcm61xqr" path="res://Scene/Class/EnemyHumanoidBase.gd" id="1_jnkoy"]
 [ext_resource type="PackedScene" uid="uid://dv0wxgaeybvnq" path="res://Scene/Entity/Enemy/Components/AI/AI Container.tscn" id="2_m7vvh"]
 [ext_resource type="PackedScene" uid="uid://bu6ylxuqdyjtn" path="res://Scene/Entity/Enemy/Components/enemy_weapon_container.tscn" id="2_ojljw"]
 [ext_resource type="PackedScene" uid="uid://li2w6s8kvbhp" path="res://Scene/Entity/Enemy/Enemy Weapons/RustyGlaive.tscn" id="2_vu85k"]
@@ -404,15 +404,15 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iioxm"]
 _data = {
-"L_Death": SubResource("72"),
-"L_Idle": SubResource("73"),
-"L_Stagger": SubResource("74"),
-"L_Walk": SubResource("75"),
-"RESET": SubResource("76"),
-"R_Death": SubResource("77"),
-"R_Idle": SubResource("78"),
-"R_Stagger": SubResource("79"),
-"R_Walk": SubResource("80")
+&"L_Death": SubResource("72"),
+&"L_Idle": SubResource("73"),
+&"L_Stagger": SubResource("74"),
+&"L_Walk": SubResource("75"),
+&"RESET": SubResource("76"),
+&"R_Death": SubResource("77"),
+&"R_Idle": SubResource("78"),
+&"R_Stagger": SubResource("79"),
+&"R_Walk": SubResource("80")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="81"]
@@ -544,7 +544,7 @@ behaviour_type = "Dying"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
 libraries = {
-"": SubResource("AnimationLibrary_iioxm")
+&"": SubResource("AnimationLibrary_iioxm")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]

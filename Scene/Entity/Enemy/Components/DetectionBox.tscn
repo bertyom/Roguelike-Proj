@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6m7fk211ep8s"]
 
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/DetectionBox.gd" id="1"]
+[ext_resource type="Script" uid="uid://bbfojgj5w6kjm" path="res://Scene/Entity/Enemy/Components/DetectionBox.gd" id="1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uh1g"]
 radius = 26.0

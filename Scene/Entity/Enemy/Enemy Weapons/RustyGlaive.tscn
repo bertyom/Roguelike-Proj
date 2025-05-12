@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://li2w6s8kvbhp"]
 
-[ext_resource type="Script" path="res://Scene/Class/EnemyWeapon.gd" id="1"]
+[ext_resource type="Script" uid="uid://bj7hmvx3pmnxc" path="res://Scene/Class/EnemyWeapon.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://64ws3lfkagt8" path="res://Image/Sprites/Entity/Enemy/EnemyWeapons/ENM_GlaiveRusty.png" id="2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://1iv7k3whc67x" path="res://Scene/Entity/Enemy/Enemy Weapons/Components/EnemyWeaponAnimTree.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://c2s1qs4sqllq6" path="res://Image/Sprites/Entity/Enemy/EnemyWeapons/trail_spear.png" id="4"]
@@ -351,13 +351,13 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0fku6"]
 _data = {
-"Left": SubResource("46"),
-"LeftAttack": SubResource("47"),
-"LeftWindup": SubResource("48"),
-"RESET": SubResource("Animation_1yak7"),
-"Right": SubResource("50"),
-"RightAttack": SubResource("51"),
-"RightWindup": SubResource("52")
+&"Left": SubResource("46"),
+&"LeftAttack": SubResource("47"),
+&"LeftWindup": SubResource("48"),
+&"RESET": SubResource("Animation_1yak7"),
+&"Right": SubResource("50"),
+&"RightAttack": SubResource("51"),
+&"RightWindup": SubResource("52")
 }
 
 [sub_resource type="CapsuleShape2D" id="53"]

@@ -21,6 +21,7 @@ const MODIFIED_SUFFIX = "(*)"
 var file_map: Dictionary = {}
 
 var current_file_path: String = ""
+var last_selected_file_path: String = ""
 
 var files: PackedStringArray = []:
 	set(next_files):
@@ -33,7 +34,7 @@ var files: PackedStringArray = []:
 
 var unsaved_files: Array[String] = []
 
-var filter: String:
+var filter: String = "":
 	set(next_filter):
 		filter = next_filter
 		apply_filter()
@@ -57,6 +58,7 @@ func select_file(file: String) -> void:
 		var item_text = list.get_item_text(i).replace(MODIFIED_SUFFIX, "")
 		if item_text == get_nice_file(file, item_text.count("/") + 1):
 			list.select(i)
+			last_selected_file_path = file
 
 
 func mark_file_as_unsaved(file: String, is_unsaved: bool) -> void:
@@ -112,6 +114,8 @@ func apply_filter() -> void:
 func apply_theme() -> void:
 	if is_instance_valid(filter_edit):
 		filter_edit.right_icon = get_theme_icon("Search", "EditorIcons")
+	if is_instance_valid(list):
+		list.add_theme_stylebox_override("panel", get_theme_stylebox("panel", "Panel"))
 
 
 ### Signals

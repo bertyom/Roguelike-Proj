@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkc2yyjntnh0"]
 
-[ext_resource type="Script" path="res://Scene/Singleton/ProcGen/ProcGen.gd" id="1_ssh1l"]
-[ext_resource type="Script" path="res://Scene/Singleton/ProcGen/BSP.gd" id="2_htkwv"]
-[ext_resource type="Script" path="res://Scene/Singleton/ProcGen/Walker.gd" id="3_8qgv4"]
+[ext_resource type="Script" uid="uid://c3jb08gpsd85o" path="res://Scene/Singleton/ProcGen/ProcGen.gd" id="1_ssh1l"]
+[ext_resource type="Script" uid="uid://bp1q2xaju26to" path="res://Scene/Singleton/ProcGen/BSP.gd" id="2_htkwv"]
+[ext_resource type="Script" uid="uid://w55ib8vnpn8i" path="res://Scene/Singleton/ProcGen/Walker.gd" id="3_8qgv4"]
 
 [node name="ProcGen" type="Node2D"]
 script = ExtResource("1_ssh1l")

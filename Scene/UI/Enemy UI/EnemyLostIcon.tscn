@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlxiqqebb8u3"]
 
-[ext_resource type="Script" path="res://Scene/UI/Enemy UI/EnemyAlertIcon.gd" id="1"]
+[ext_resource type="Script" uid="uid://uibf1r8csxc0" path="res://Scene/UI/Enemy UI/EnemyAlertIcon.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cdl5m424hd1fx" path="res://Image/UI/Enemy UI/EnemyLostIcon.png" id="2"]
 
 [sub_resource type="Animation" id="1"]
@@ -44,7 +44,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ueheu"]
 _data = {
-"PopUp": SubResource("1")
+&"PopUp": SubResource("1")
 }
 
 [node name="EnemyLostIcon" type="TextureRect"]

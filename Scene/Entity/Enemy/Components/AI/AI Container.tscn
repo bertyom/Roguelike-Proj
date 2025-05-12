@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://dv0wxgaeybvnq"]
 
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AI Container.gd" id="1_tek01"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Idle.gd" id="2_4s8mx"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Chase.gd" id="3_os86d"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Wander.gd" id="4_4b5mi"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Seek.gd" id="5_xteyq"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Stagger.gd" id="6_mk2sm"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Dead.gd" id="7_urm4u"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/AttackMelee.gd" id="8_4fdkj"]
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/AI/Return.gd" id="8_6xwn1"]
+[ext_resource type="Script" uid="uid://dwxpeiho0yav1" path="res://Scene/Entity/Enemy/Components/AI/AI Container.gd" id="1_tek01"]
+[ext_resource type="Script" uid="uid://cc2p83jf8x6um" path="res://Scene/Entity/Enemy/Components/AI/Idle.gd" id="2_4s8mx"]
+[ext_resource type="Script" uid="uid://b1lafmhpndehd" path="res://Scene/Entity/Enemy/Components/AI/Chase.gd" id="3_os86d"]
+[ext_resource type="Script" uid="uid://bttbqeluvpd27" path="res://Scene/Entity/Enemy/Components/AI/Wander.gd" id="4_4b5mi"]
+[ext_resource type="Script" uid="uid://cecatfh8so0kd" path="res://Scene/Entity/Enemy/Components/AI/Seek.gd" id="5_xteyq"]
+[ext_resource type="Script" uid="uid://0b774mnfa11e" path="res://Scene/Entity/Enemy/Components/AI/Stagger.gd" id="6_mk2sm"]
+[ext_resource type="Script" uid="uid://d2f7hbcshjlf0" path="res://Scene/Entity/Enemy/Components/AI/Dead.gd" id="7_urm4u"]
+[ext_resource type="Script" uid="uid://clqb8syf0bdw8" path="res://Scene/Entity/Enemy/Components/AI/AttackMelee.gd" id="8_4fdkj"]
+[ext_resource type="Script" uid="uid://b3kj5x5mt512" path="res://Scene/Entity/Enemy/Components/AI/Return.gd" id="8_6xwn1"]
 
 [node name="States" type="Node"]
 script = ExtResource("1_tek01")

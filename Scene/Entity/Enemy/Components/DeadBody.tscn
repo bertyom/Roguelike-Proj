@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c74jtoytu8qx7"]
 
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Components/DeadBody.gd" id="1"]
+[ext_resource type="Script" uid="uid://bkq5p87orkkrk" path="res://Scene/Entity/Enemy/Components/DeadBody.gd" id="1"]
 
 [node name="Dead Body" type="StaticBody2D"]
 script = ExtResource("1")

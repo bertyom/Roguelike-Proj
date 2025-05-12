@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl7koloffieb0"]
 
 [ext_resource type="Texture2D" uid="uid://bhxoivxryay4e" path="res://Image/UI/Inventory/InventoryBG.png" id="1"]
-[ext_resource type="Script" path="res://Scene/UI/Inventory/ContainerSystem.gd" id="2"]
+[ext_resource type="Script" uid="uid://c0efv2hkq8ucv" path="res://Scene/UI/Inventory/ContainerSystem.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://dg8iea8o70xcq" path="res://Image/UI/Inventory/ContainerSheet.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://b60j7lkeqvok7" path="res://Image/UI/Inventory/ContainerSheetDeco.png" id="4"]
 

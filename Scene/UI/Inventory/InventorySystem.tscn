@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://dij2pt8gwijuw"]
 
 [ext_resource type="Texture2D" uid="uid://er2featxinhy" path="res://Image/UI/Inventory/InventorySheet.png" id="1"]
-[ext_resource type="Script" path="res://Scene/UI/Inventory/EquipSlot.gd" id="2"]
+[ext_resource type="Script" uid="uid://c38j5wdicjv8r" path="res://Scene/UI/Inventory/EquipSlot.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://cxyop0m57gsmv" path="res://Image/UI/Inventory/InventorySheetDeco.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://brooluisdus25" path="res://Image/UI/Inventory/EquipSheetDeco.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bhxoivxryay4e" path="res://Image/UI/Inventory/InventoryBG.png" id="5"]
-[ext_resource type="Script" path="res://Scene/UI/Inventory/InvScrollContainer.gd" id="8_oqegw"]
-[ext_resource type="Script" path="res://Scene/UI/Inventory/InventorySystem.gd" id="17"]
-[ext_resource type="Script" path="res://Scene/UI/Inventory/EquipTexture.gd" id="18"]
+[ext_resource type="Script" uid="uid://dvkiowsmyco3w" path="res://Scene/UI/Inventory/InvScrollContainer.gd" id="8_oqegw"]
+[ext_resource type="Script" uid="uid://kjrfq6ik6j36" path="res://Scene/UI/Inventory/InventorySystem.gd" id="17"]
+[ext_resource type="Script" uid="uid://dx8uoxmb5q7h0" path="res://Scene/UI/Inventory/EquipTexture.gd" id="18"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3

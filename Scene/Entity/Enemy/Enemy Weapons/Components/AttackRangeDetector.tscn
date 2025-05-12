@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dlvp01w070bok"]
 
-[ext_resource path="res://Scenes/Weapons/EnemyWeapons/AttackRangeDetector.gd" type="Script" id=1]
+[sub_resource type="Resource" id="Resource_yqprl"]
+metadata/__load_path__ = "res://Scenes/Weapons/EnemyWeapons/AttackRangeDetector.gd"
 
 [node name="AttackRange" type="Area2D"]
 collision_layer = 0
 collision_mask = 1024
-script = ExtResource( 1 )
+script = SubResource("Resource_yqprl")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0m81gc61s6mq"]
 
 [ext_resource type="Texture2D" uid="uid://c6w6w7rrhapns" path="res://Image/Sprites/Props/FlyAmanita.png" id="1"]
-[ext_resource type="Script" path="res://Scene/Class/InteractableHarvest.gd" id="1_rd0e7"]
-[ext_resource type="Shader" path="res://Scene/Shader/interaction_outline.gdshader" id="2_b8ybb"]
+[ext_resource type="Script" uid="uid://fsu2textj4uv" path="res://Scene/Class/InteractableHarvest.gd" id="1_rd0e7"]
+[ext_resource type="Shader" uid="uid://elypcjx3hwtc" path="res://Scene/Shader/interaction_outline.gdshader" id="2_b8ybb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2hwk"]
 radius = 11.0
@@ -52,8 +52,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bropn"]
 _data = {
-"Harvest": SubResource("6"),
-"RESET": SubResource("7")
+&"Harvest": SubResource("6"),
+&"RESET": SubResource("7")
 }
 
 [node name="FlyAmanita" type="StaticBody2D"]

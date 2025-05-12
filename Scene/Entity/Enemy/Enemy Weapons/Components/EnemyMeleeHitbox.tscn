@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvsv3lj7gksy0"]
 
-[ext_resource type="Script" path="res://Scene/Entity/Enemy/Enemy Weapons/Components/EnemyMeleeHitbox.gd" id="1"]
+[ext_resource type="Script" uid="uid://biqpkfl7wjf77" path="res://Scene/Entity/Enemy/Enemy Weapons/Components/EnemyMeleeHitbox.gd" id="1"]
 
 [node name="EnemyMeleeHitbox" type="Area2D"]
 collision_layer = 128

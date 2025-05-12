@@ -3,6 +3,8 @@ extends ProcGenAlgo
 var root_node: Branch
 var paths: Array = []
 
+#FIXME Creates diagonal paths sometimes, dunno why
+
 func start():
 	root_node = Branch.new(Vector2i(0,0), Vector2i(80,80))
 	root_node.split(4, paths)
@@ -19,10 +21,10 @@ func add_rooms():
 	var rng = RandomNumberGenerator.new()
 	for leaf in root_node.get_leaves():
 		var padding = Vector4i(
-			rng.randi_range(3, 4),
-			rng.randi_range(3, 4),
-			rng.randi_range(3, 4),
-			rng.randi_range(3, 4)
+			rng.randi_range(2, 3),
+			rng.randi_range(2, 3),
+			rng.randi_range(2, 3),
+			rng.randi_range(2, 3)
 		)
 		
 		# Calculate room corners

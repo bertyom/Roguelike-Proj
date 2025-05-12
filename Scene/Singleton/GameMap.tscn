@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkvorubd4udp0"]
 
-[ext_resource type="Script" path="res://Scene/Singleton/GameMap.gd" id="1_2jf8p"]
+[ext_resource type="Script" uid="uid://cecg0ul5e8xej" path="res://Scene/Singleton/GameMap.gd" id="1_2jf8p"]
 [ext_resource type="PackedScene" uid="uid://dkc2yyjntnh0" path="res://Scene/Singleton/ProcGen/ProcGen.tscn" id="2_nf7nh"]
 
 [node name="GameMap" type="Node"]

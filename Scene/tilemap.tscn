@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://1pmbacqrr23f"]
 
-[ext_resource type="Script" path="res://Scene/tilemap.gd" id="1_hv0kt"]
+[ext_resource type="Script" uid="uid://b18fw7uvgx6jk" path="res://Scene/tilemap.gd" id="1_hv0kt"]
 [ext_resource type="Texture2D" uid="uid://30itdlpsnmbf" path="res://Image/Tilemap/test_floor+wall.png" id="2_m6vg4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2lip2"]

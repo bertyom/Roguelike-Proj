@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bsjld5a3wdsqd" path="res://Image/UI/Player UI/HealthBarProgress.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://bm37he7cc6b3c" path="res://Image/UI/Player UI/ManaBarProgress.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://volitopx8jku" path="res://Image/UI/Player UI/StaminaBarProgress.png" id="7"]
-[ext_resource type="Script" path="res://Scene/UI/Player UI/StatBars.gd" id="8"]
+[ext_resource type="Script" uid="uid://c3w0aq87ba3me" path="res://Scene/UI/Player UI/StatBars.gd" id="8"]
 [ext_resource type="Texture2D" uid="uid://3twrdp4hyrf2" path="res://Image/UI/Player UI/ExpBarProgress.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://ds12ywaruqluj" path="res://Image/UI/Player UI/ExpBarFrame.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://57vxe5ltcsqh" path="res://Image/UI/Enemy UI/EnemyHealthBarDarker.png" id="11"]
